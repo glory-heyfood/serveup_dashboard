@@ -59,12 +59,12 @@ const Page = () => {
 	}, [hashChange]);
 
 	return (
-		
+		<DashLayout>
 			<div>
 				<h1>Welcome to the dashboard Page</h1>
 				{Content}
 			</div>
-		
+		</DashLayout>
 	);
 };
 
