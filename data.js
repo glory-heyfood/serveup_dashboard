@@ -106,7 +106,7 @@ export const sidebarData = [
     {
         icon:bellIcon,
         text:"New orders",
-        href:"/Dashboard"
+        href:"/idd"
     },
 
     {

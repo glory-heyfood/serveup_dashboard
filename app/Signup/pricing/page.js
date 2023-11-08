@@ -11,7 +11,7 @@ const Page = () => {
 	const router = useRouter();
 
 	const handleClick = () => {
-		router.push("/Dashboard");
+		router.push("/axori2");
 	};
 
 	const handleCardClick = (card) => {

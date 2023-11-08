@@ -7,7 +7,7 @@ import React from "react";
 const Page = () => {
 	const router = useRouter();
 	const handleClick = () => {
-		router.push("/Signup/business-info");
+		router.push("/signup/business-info");
 	};
 	return (
 		<div className='flex'>

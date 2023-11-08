@@ -15,7 +15,7 @@ const Home = () => {
 	const [check, setCheck] = useState(false);
 	const router = useRouter();
 	const handleClick = () => {
-		router.push("/Signup/verify-email");
+		router.push("/signup/verify-email");
 	};
 
 	useEffect(() => {

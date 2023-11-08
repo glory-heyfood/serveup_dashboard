@@ -32,7 +32,7 @@ const Page = () => {
 
 	const handleClick = () => {
 		console.log("Clicked");
-		router.push("/Signup/pricing");
+		router.push("/signup/pricing");
 	};
 
 	useEffect(() => {
@@ -135,7 +135,7 @@ const Page = () => {
 									className='text-black tracking-[-0.26px] sudoBold font-[400] text-[0.9em]'
 									value='Physiceal Location'
 								>
-									Physiceal Location
+									Physical Location
 								</MenuItem>
 								<MenuItem
 									className='text-black tracking-[-0.26px] sudoBold font-[400] text-[0.9em]'
@@ -147,7 +147,7 @@ const Page = () => {
 									className='text-black tracking-[-0.26px] sudoBold font-[400] text-[0.9em]'
 									value='Physice and Online'
 								>
-									Physice and Online
+									Physical and Online
 								</MenuItem>
 							</Select>
 						</FormControl>
