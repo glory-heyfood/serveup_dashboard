@@ -106,60 +106,60 @@ export const sidebarData = [
     {
         icon:bellIcon,
         text:"New orders",
-        href:"/idd"
+        href:"/id"
     },
 
     {
         icon:chartIcon,
         text:"Analytics",
-        href:""
+        href:"/id/analytics"
     },
 
     {
         icon:storeIcon,
         text:"Stores",
-        href:""
+        href:"/id/stores"
     },
 
     {
         icon:userIcon,
         text:"Customers",
-        href:""
+        href:"/id/customers"
     },
 
     {
         icon:marketingIcon,
         text:"Marketing",
-        href:""
+        href:"/id/marketing"
     },
     {
         icon:rewardIcon,
         text:"Loyalty Rewards",
-        href:""
+        href:"/id/loyalty"
     },
     {
         icon:promotionICon,
         text:"Promotions",
-        href:""
+        href:"/id/promotions"
     },
     {
         icon:briefcaseICon,
         text:"Employees",
-        href:""
+        href:"/id/employees"
     },
     {
         icon:websiteIcon,
         text:"Website",
-        href:""
+        href:"/id/website"
     },
     {
         icon:mobileIcon,
         text:"Mobile App",
-        href:""
+        href:"/id/mobile"
     },
     {
         icon:companyIcon,
         text:"Business Settings",
-        href:""
+        href:"/id/business"
     },
 ]

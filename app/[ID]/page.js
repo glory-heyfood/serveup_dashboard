@@ -1,19 +1,3 @@
-// import DashLayout from "@/components/DashLayout";
-// import React from "react";
-
-// const Page = () => {
-// 	return (
-// 		<DashLayout>
-// 			<div className=" py-[40px] ">
-//                 <h1 className="dashHeader">New Orders</h1>
-//             </div>
-// 		</DashLayout>
-// 	);
-// };
-
-// export default Page;
-
-// pages/about.js
 "use client";
 import DashLayout from "@/components/DashLayout";
 import { useEffect, useState } from "react";
@@ -57,7 +41,7 @@ const Page = () => {
 
 	const DefaultContent = () => (
 		<div>
-			<h2>About Page Default Content</h2>
+			<h2>Dashboard Page Default Content</h2>
 			<a href='#/blog'>Go to Blog</a>
 		</div>
 	);
@@ -75,12 +59,12 @@ const Page = () => {
 	}, [hashChange]);
 
 	return (
-		<DashLayout>
+		
 			<div>
-				<h1>About Page</h1>
+				<h1>Welcome to the dashboard Page</h1>
 				{Content}
 			</div>
-		</DashLayout>
+		
 	);
 };
 
