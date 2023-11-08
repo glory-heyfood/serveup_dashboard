@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +24,67 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+@font-face {
+	font-family: "SoDoSans-bold";
+	src: url("../fonts/SoDoSans-Bold.woff2") format("woff2"),
+		url("../fonts/SoDoSans-Bold.woff") format("woff");
 }
+
+@font-face {
+	font-family: "SoDoSans-reg";
+	src: url("../fonts/SoDoSans-Regular.woff2") format("woff2"),
+		url("../fonts/SoDoSans-Regular.woff") format("woff");
+}
+
+@font-face {
+	font-family: "SoDoSans-semibold";
+	src: url("../fonts/SoDoSans-SemiBold.woff2") format("woff2"),
+		url("../fonts/SoDoSans-SemiBold.woff") format("woff");
+}
+
+.sodoBold {
+	font-family: soDoSans-bold;
+}
+
+.sodoReg {
+	font-family: SoDoSans-reg;
+}
+
+.sodoSemiBold {
+	font-family: soDoSans-semibold;
+}
+
+h1 {
+	font-size: 24px;
+	color: black;
+	font-family: soDoSans-bold;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 14px;
+	color: black;
+	font-family: soDoSans-semibold;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 12px;
+	color: black;
+	font-family: soDoSans-bold;
+	font-weight: 400;
+}
+
+.dashHeader{
+    color: #000;
+font-family: SoDoSans-bold;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: -0.8px;
+}
+
+
