@@ -1,5 +1,6 @@
 "use client";
-import DashBtn from "@/components/DashBtn";
+import AuthBtn from "@/components/AuthBtn";
+
 import Input from "@/components/Input";
 import { Button, TextField } from "@mui/material";
 import Image from "next/image";
@@ -28,14 +29,14 @@ const Home = () => {
 	return (
 		<div className='flex'>
 			<div
-				className='w-[60%] h-screen hidden sm:block '
+				className='w-[50%] lg:w-[60%] h-screen hidden sm:block '
 				style={{
 					backgroundImage: 'url("/images/sign-in-frame.png")',
 					backgroundSize: "cover",
 					backgroundPosition: "cover",
 				}}
 			></div>
-			<div className='flex flex-col px-[1em] pt-[3em] md:px-[3em] md:pt-[5em] space-y-[3.2em] w-full sm:w-[40%]'>
+			<div className='flex flex-col px-[1em] pt-[3em] lg:px-[3em] md:pt-[5em] space-y-[3.2em] w-full md:w-[50%] lg:w-[60%]'>
 				<Image
 					src='/images/sign-in-logo.svg'
 					width={120}
@@ -94,7 +95,7 @@ const Home = () => {
 					</div>
 
 					<div className='w-full'>
-						<DashBtn
+						<AuthBtn
 							disabled={disabled}
 							text='Continue'
 							padding='16px 32px'

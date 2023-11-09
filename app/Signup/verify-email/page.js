@@ -1,5 +1,5 @@
 "use client";
-import DashBtn from "@/components/DashBtn";
+import AuthBtn from "@/components/AuthBtn";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -12,14 +12,14 @@ const Page = () => {
 	return (
 		<div className='flex'>
 			<div
-				className='w-[60%] h-screen'
+				className='w-[50%] lg:w-[60%] h-screen hidden md:block'
 				style={{
 					backgroundImage: 'url("/images/sign-in-frame.png")',
 					backgroundSize: "cover",
 					backgroundPosition: "cover",
 				}}
 			></div>
-			<div className='flex flex-col px-[1em]  md:px-[3em] py-[5em] space-y-[1.75em] w-full md:w-[40%] h-screen overflow-auto'>
+			<div className='flex flex-col px-[1em]  lg:px-[3em] py-[5em] space-y-[1.75em] w-full md:w-[50%] lg:w-[40%] h-screen overflow-auto'>
 				<Image
 					src='/images/sign-in-logo.svg'
 					width={120}
@@ -37,30 +37,30 @@ const Page = () => {
 						</h2>
 					</div>
 
-					<div className='flex space-x-[1em] !mt-[2em] !mb-[5em]'>
+					<div className='grid grid-cols-6 md:gap-[1em] min-h-[56px !mt-[2em] !mb-[5em]'>
 						<input
 							type='text'
-							className='h-[56px] w-[56px] outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className='h-[56px] w-[56px] outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className='h-[56px] w-[56px] outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className='h-[56px] w-[56px] outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className='h-[56px] w-[56px] outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className='h-[56px] w-[56px] outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 					</div>
 
@@ -74,7 +74,7 @@ const Page = () => {
 					</div>
 
 					<div className='w-full'>
-						<DashBtn
+						<AuthBtn
 							text='Continue'
 							padding='1.2em 2em'
 							handleClick={handleClick}

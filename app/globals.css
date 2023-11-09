@@ -44,6 +44,17 @@ body {
 		url("../fonts/SoDoSans-SemiBold.woff") format("woff");
 }
 
+@font-face {
+	font-family: "SoDoSans-light";
+	src: url("../fonts/SoDoSans-Light.woff2") format("woff2"),
+		url("../fonts/SoDoSans-Light.woff") format("woff");
+}
+
+
+.sodoLight {
+    font-family:SodoSans-light
+}
+
 .sodoBold {
 	font-family: soDoSans-bold;
 }
@@ -57,34 +68,33 @@ body {
 }
 
 h1 {
-	font-size: 24px;
+	font-size: 1.5em;
 	color: black;
 	font-family: soDoSans-bold;
 	font-weight: 600;
 }
 
 h2 {
-	font-size: 14px;
+	font-size: 0.875em;
 	color: black;
 	font-family: soDoSans-semibold;
 	font-weight: 400;
 }
 
 h3 {
-	font-size: 12px;
+	font-size: 0.75em;
 	color: black;
-	font-family: soDoSans-bold;
+	font-family: soDoSans-reg;
 	font-weight: 400;
 }
 
-.dashHeader{
-    color: #000;
-font-family: SoDoSans-bold;
-font-size: 20px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-letter-spacing: -0.8px;
+.dashHeader {
+	color: #000;
+	font-family: SoDoSans-bold;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: -0.8px;	
+    margin-bottom:1.5em ;
 }
-
-

@@ -1,7 +1,6 @@
 "use client";
-import DashBtn from "@/components/DashBtn";
+import AuthBtn from "@/components/AuthBtn";
 import Input from "@/components/Input";
-import { Button, TextField } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -28,14 +27,14 @@ const Home = () => {
 	return (
 		<div className='flex'>
 			<div
-				className='w-[60%] h-screen'
+				className='md:w-[50%] lg:w-[60%]  h-screen hidden md:block'
 				style={{
 					backgroundImage: 'url("/images/sign-in-frame.png")',
 					backgroundSize: "cover",
 					backgroundPosition: "cover",
 				}}
 			></div>
-			<div className='flex flex-col md:px-[3em] md:pt-[5em] md:space-y-[6.2em] w-full md:w-[40%]'>
+			<div className='flex flex-col px-[1em] lg:px-[3em] pt-[3em] md:pt-[5em] space-y-[3em] md:space-y-[6.2em] w-full md:w-[50%] lg:w-[50%]'>
 				<Image
 					src='/images/sign-in-logo.svg'
 					width={120}
@@ -46,7 +45,7 @@ const Home = () => {
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
 						<h1>Sign In</h1>
-						<h3 className="tracking-[0.28px]">
+						<h3 className='tracking-[0.28px]'>
 							New to Serveup?{" "}
 							<Link href='/signup' className='text-[#072A85]'>
 								Sign up
@@ -58,18 +57,16 @@ const Home = () => {
 						<Input
 							text='Email/phone number'
 							onChange={(e) => setEmail(e.target.value)}
-							
 						/>
 						<Input
 							text='Password'
 							type='password'
-						
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
 
 					<div className='w-fit'>
-						<DashBtn
+						<AuthBtn
 							text='Sign in'
 							padding='1.2em 2em'
 							handleClick={handleClick}

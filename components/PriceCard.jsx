@@ -11,7 +11,7 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 			</div>
 
 			<div
-				className={`rounded-[12px] px-[1.75em] py-[2em] w-[290px] h-[700px] ${
+				className={`rounded-[12px] px-[1.75em] py-[2em] w-[290px]  h-fit sm:h-[700px] ${
 					isSelected
 						? "bg-[#f1f5ff] border-[#DCE6FF]  border-[2px]"
 						: "bg-white border border-[#F0F0F0]"
