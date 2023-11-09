@@ -6,7 +6,7 @@ import AuthBtn from "./AuthBtn";
 const AuthHeader = ({ disabled, handleClick }) => {
 	return (
 		<div
-			className='flex justify-between py-[0.5em] md:pr-[2.5em] md:pl-[1.5em] px-[1em]'
+			className='flex justify-between items-center py-[0.5em] md:pr-[2.5em] md:pl-[1.5em] px-[1em]'
 			style={{
 				boxShadow: " 0px 1px 0px 0px #E6E6E6",
 			}}

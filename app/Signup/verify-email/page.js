@@ -37,30 +37,30 @@ const Page = () => {
 						</h2>
 					</div>
 
-					<div className='grid grid-cols-6 md:gap-[1em] min-h-[56px !mt-[2em] !mb-[5em]'>
+					<div className='grid grid-cols-6 md:gap-[1em] min-h-[56px] !mt-[2em] !mb-[5em]'>
 						<input
 							type='text'
-							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 						<input
 							type='text'
-							className=' h-[2em] lg:h-[3.5em] w-[2em] lg:w-[3.5em]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
 						/>
 					</div>
 

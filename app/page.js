@@ -34,7 +34,7 @@ const Home = () => {
 					backgroundPosition: "cover",
 				}}
 			></div>
-			<div className='flex flex-col px-[1em] lg:px-[3em] pt-[3em] md:pt-[5em] space-y-[3em] md:space-y-[6.2em] w-full md:w-[50%] lg:w-[50%]'>
+			<div className='flex flex-col px-[1em] lg:px-[3em] pt-[3em] md:pt-[5em] space-y-[3em] md:space-y-[6.2em] w-full md:w-[50%] lg:w-[40%]'>
 				<Image
 					src='/images/sign-in-logo.svg'
 					width={120}
