@@ -9,16 +9,14 @@ const AuthBtn = ({ text, padding, handleClick, disabled, icon }) => {
 			onClick={() => {
 				handleClick();
 			}}
-			startIcon={icon}
-			className='text-[14px] sodoBold font-[600] tracking-[-0.56px] text-white '
+			startIcon={icon}			
 			sx={{
 				backgroundColor: `${!disabled && "#072A85 !important"}`,
-				padding: `${padding}`,
-				textTransform: "capitalize",
+				padding: `${padding}`,				
 				width: "100%",
 			}}
 		>
-			{text}
+			<h4 className="normal-case text-[14px] sodoSemiBold font-[600] tracking-[-0.56px] text-white ">{text}</h4>
 		</Button>
 	);
 };

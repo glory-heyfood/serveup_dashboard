@@ -491,7 +491,39 @@ export const storeColorIcon = (
 	</svg>
 );
 
+export const storeRightIcon = (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='20'
+		height='20'
+		viewBox='0 0 20 20'
+		fill='none'
+	>
+		<path
+			d='M8.33334 6.66663L11.6667 9.99996L8.33334 13.3333'
+			stroke='#848997'
+			stroke-width='2'
+			stroke-linecap='round'
+			stroke-linejoin='round'
+		/>
+	</svg>
+);
 
-export const storeRightIcon =<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-<path d="M8.33334 6.66663L11.6667 9.99996L8.33334 13.3333" stroke="#848997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+export const XIcon = (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='32'
+		height='32'
+		viewBox='0 0 32 32'
+		fill='none'
+	>
+		<rect width='32' height='32' rx='4' fill='#F0F0F0' />
+		<path
+			d='M21 21L16 16M16 16L11 11M16 16L21 11M16 16L11 21'
+			stroke='black'
+			stroke-width='2'
+			stroke-linecap='round'
+			stroke-linejoin='round'
+		/>
+	</svg>
+);

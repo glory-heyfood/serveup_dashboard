@@ -29,10 +29,10 @@ const Page = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[0.87em]'>
-						<h1 className='tracking-[-0.96px]'>Verify your Email</h1>
-						<h2 className='tracking-[-0.56px]'>
+						<h1 className='tracking-[-0.96px] sodoSemiBold'>Verify your Email</h1>
+						<h2 className='tracking-[-0.56px] sodoReg'>
 							An OTP has been sent to{" "}
-							<span className='sodoBold'>toastiesng@toasties.ng</span>, enter it
+							<span className='sodoSemiBold'>toastiesng@toasties.ng</span>, enter it
 							to verify your email address.{" "}
 						</h2>
 					</div>
@@ -68,8 +68,8 @@ const Page = () => {
 						<span className='text-[#072A85] text-[14px] sodoBold tracking-[-0.28px] '>
 							0:58
 						</span>
-						<h2 className='text-[#AAAEB8] tracking-[-0.28px]'>
-							Didn’t receive? Resend OTP
+						<h2 className='text-[#AAAEB8] tracking-[-0.28px] sodoReg'>
+							Didn’t receive? <span className=" cursor-pointer sodoSemiBold">Resend OTP</span>
 						</h2>
 					</div>
 

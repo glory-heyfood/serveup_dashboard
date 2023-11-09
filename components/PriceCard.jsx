@@ -19,7 +19,11 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 			>
 				<div className='flex flex-col space-y-[0.75em]'>
 					<h1
-						className={`${isSelected ? "text-[#072a85]" : " text-[#00081C]"}`}
+						className={`${
+							isSelected
+								? "text-[#072a85] sodoReg tracking-[-0.96px] font-[400]"
+								: " text-[#00081C] sodoReg tracking-[-0.96px] font-[400]"
+						}`}
 					>
 						{data.name}
 					</h1>
@@ -29,9 +33,9 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 					</p>
 				</div>
 
-				{data.price === "CUSTOM PRICING" ? (
+				{data.price === "Custom Pricing" ? (
 					<h4
-						className={`mt-[1.1em] mb-[2em] items-center  text-[1.55em] tracking-[-0.56px] text-[#00081C] font-[600] ${
+						className={`mt-[0.8em] mb-[1.1em] items-center  text-[1.75em] tracking-[-0.56px] text-[#00081C] font-[600] sodoSemiBold ${
 							isSelected ? "text-[#072a85]" : " text-[#00081C]"
 						}
 							
@@ -43,12 +47,12 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 					<div
 						className={`flex space-x-[6px] items-center ${
 							index === 0 || index === 1
-								? "mb-[2em] mt-[2.3em]"
+								? "mb-[2em] mt-[2.6em]"
 								: "mt-[1.5em] mb-[2em]"
 						}`}
 					>
 						<h1
-							className={`items-center   text-[1.55em] font-[600] ${
+							className={`items-center   text-[1.75em] font-[600] sodoSemiBold ${
 								isSelected ? "text-[#072a85]" : " text-[#00081C]"
 							}`}
 						>

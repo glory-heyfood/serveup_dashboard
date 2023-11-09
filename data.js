@@ -72,9 +72,9 @@ export const Pricing = [
 	},
 
 	{
-		name: "Enterprice",
+		name: "Enterprise",
 		text: "Meticulously designed for established businesses and industry leaders seeking a comprehensive and highly customizable solution.",
-		price: "CUSTOM PRICING",
+		price: "Custom Pricing",
 		plans: [
 			"Online ordering and delivery",
 			"Pickup order",

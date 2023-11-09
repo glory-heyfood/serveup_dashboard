@@ -46,14 +46,14 @@ const Home = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
-						<h1 className='tracking-[-0.96px]'>Let’s create your account</h1>
-						<h2 className='tracking-[-0.28px] text-[14px] sodoSemiBold '>
+                    <h1 className="sodoSemiBold tracking-[-0.96px]">Let’s create your account</h1>
+						<h4 className='tracking-[-0.28px] text-[14px] sodoReg '>
 							Already have a Serveup account?
-							<Link href='/' className='text-[#072A85]'>
+							<Link href='/' className='text-[#072A85] sodoSemiBold'>
 								{" "}
 								Sign in
 							</Link>{" "}
-						</h2>
+						</h4>
 					</div>
 
 					<div className='flex flex-col space-y-[1em]'>

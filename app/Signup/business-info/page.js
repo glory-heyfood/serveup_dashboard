@@ -47,7 +47,7 @@ const Page = () => {
 		<div>
 			<AuthHeader disabled={disabled} handleClick={handleClick} />
 			<div className='flex flex-col space-y-[3em] md:w-[500px] mx-auto mt-[2.5em] px-[1em]'>
-				<h1 className='text-center tracking-[-0.96px]'>
+				<h1 className='text-center tracking-[-0.96px] sodoSemiBold'>
 					Tell us about your business
 				</h1>
 				<div className='flex flex-col space-y-[2.5em]'>

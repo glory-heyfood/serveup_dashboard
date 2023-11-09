@@ -44,18 +44,18 @@ const Home = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
-						<h1>Sign In</h1>
-						<h3 className='tracking-[0.28px]'>
+						<h1 className="sodoSemiBold tracking-[-0.96px]">Sign in</h1>
+						<h4 className='tracking-[-0.28px] sodoReg'>
 							New to Serveup?{" "}
-							<Link href='/signup' className='text-[#072A85]'>
+							<Link href='/signup' className='text-[#072A85] sodoSemiBold'>
 								Sign up
 							</Link>{" "}
-						</h3>
+						</h4>
 					</div>
 
 					<div className='flex flex-col space-y-[1em]'>
 						<Input
-							text='Email/phone number'
+							text='Email address/phone number'
 							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<Input
