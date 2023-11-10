@@ -1,5 +1,5 @@
 "use client";
-import AuthBtn from "@/components/AuthBtn";
+import AuthBtn from "@/components/Auth/AuthBtn";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -29,10 +29,10 @@ const Page = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[0.87em]'>
-						<h1 className='tracking-[-0.96px] sodoSemiBold'>Verify your Email</h1>
-						<h2 className='tracking-[-0.56px] sodoReg'>
+						<h1 className='tracking-[-0.96px] sodo600'>Verify your Email</h1>
+						<h2 className='tracking-[-0.56px] sodo400'>
 							An OTP has been sent to{" "}
-							<span className='sodoSemiBold'>toastiesng@toasties.ng</span>, enter it
+							<span className='sodo600'>toastiesng@toasties.ng</span>, enter it
 							to verify your email address.{" "}
 						</h2>
 					</div>
@@ -65,11 +65,11 @@ const Page = () => {
 					</div>
 
 					<div className='flex space-x-[0.5em] !mb-[8.375em] items-center justify-center '>
-						<span className='text-[#072A85] text-[14px] sodoBold tracking-[-0.28px] '>
+						<span className='text-[#072A85] text-[14px] sodo700 tracking-[-0.28px] '>
 							0:58
 						</span>
-						<h2 className='text-[#AAAEB8] tracking-[-0.28px] sodoReg'>
-							Didn’t receive? <span className=" cursor-pointer sodoSemiBold">Resend OTP</span>
+						<h2 className='text-[#AAAEB8] tracking-[-0.28px] sodo400'>
+							Didn’t receive? <span className=" cursor-pointer sodo600">Resend OTP</span>
 						</h2>
 					</div>
 

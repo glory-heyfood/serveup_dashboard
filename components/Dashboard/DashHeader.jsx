@@ -5,10 +5,10 @@ import React from "react";
 const DashHeader = () => {
 	return (
 		<div
-			className='flex justify-between  items-center '
+			className='flex justify-between  items-center fixed top-0 left-0 w-full z-50 bg-white '
 			style={{
 				boxShadow: " 0px 1px 0px 0px #E6E6E6",
-				padding: "9px 40px 8px 24px",
+				padding: "15px 40px 16px 24px",
 			}}
 		>
 			<div className='flex space-x-[24px] items-center'>

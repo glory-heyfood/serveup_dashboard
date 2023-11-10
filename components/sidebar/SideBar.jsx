@@ -11,7 +11,7 @@ const SideBar = () => {
 				padding: "40px 20px 0px 20px",
 			}}
 		>
-			<div className=' grid grid-cols-3 gap-x-[1.5em] gap-y-[2em]'>
+			<div className=' grid grid-cols-3 gap-x-[1.5em] gap-y-[1.5em]'>
 				{sidebarData.map((data, i) => (
 					<SidebarItem
 						href={data.href}

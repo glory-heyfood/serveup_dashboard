@@ -1,5 +1,5 @@
 "use client";
-import AuthBtn from "@/components/AuthBtn";
+import AuthBtn from "@/components/Auth/AuthBtn";
 import Input from "@/components/Input";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,10 +44,10 @@ const Home = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
-						<h1 className="sodoSemiBold tracking-[-0.96px]">Sign in</h1>
-						<h4 className='tracking-[-0.28px] sodoReg'>
+						<h1 className="sodo600 tracking-[-0.96px] leading-normal text-[24px] ">Sign in</h1>
+						<h4 className='tracking-[-0.28px] sodo400'>
 							New to Serveup?{" "}
-							<Link href='/signup' className='text-[#072A85] sodoSemiBold'>
+							<Link href='/signup' className='text-[#072A85] sodo600'>
 								Sign up
 							</Link>{" "}
 						</h4>

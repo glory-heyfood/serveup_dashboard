@@ -11,13 +11,15 @@ const DashBtn = ({ text, padding, handleClick, disabled, icon }) => {
 				handleClick();
 			}}
 			startIcon={icon}
+           
 			sx={{
+                boxShadow:"none",
 				backgroundColor: `${!disabled && "#072A85 !important"}`,
 				padding: `${padding}`,
-				width: "100%",
+				width: "100%",                
 			}}
 		>
-			<h1 className='text-[12px] sodoSemiBold font-[0]  tracking-[-0.48px] normal-case text-white '>
+			<h1 className='text-[12px] sodo600 ml-[-4px] mt-[1px] tracking-[-0.48px] normal-case text-white '>
 				{text}
 			</h1>
 		</Button>

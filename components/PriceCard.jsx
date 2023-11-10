@@ -21,13 +21,13 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 					<h1
 						className={`${
 							isSelected
-								? "text-[#072a85] sodoReg tracking-[-0.96px] font-[400]"
-								: " text-[#00081C] sodoReg tracking-[-0.96px] font-[400]"
+								? "text-[#072a85] sodo400 tracking-[-0.96px] font-[400]"
+								: " text-[#00081C] sodo400 tracking-[-0.96px] font-[400]"
 						}`}
 					>
 						{data.name}
 					</h1>
-					<p className='text-[#646976] text-[0.75em] tracking-[-0.4px] font-[300] '>
+					<p className='text-[#646976] text-[0.75em] tracking-[-0.48px] sodo300 '>
 						{" "}
 						{data.text}{" "}
 					</p>
@@ -35,7 +35,7 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 
 				{data.price === "Custom Pricing" ? (
 					<h4
-						className={`mt-[0.8em] mb-[1.1em] items-center  text-[1.75em] tracking-[-0.56px] text-[#00081C] font-[600] sodoSemiBold ${
+						className={`mt-[0.8em] mb-[1.1em] items-center  text-[1.75em] tracking-[-0.56px] text-[#00081C] font-[600] inter ${
 							isSelected ? "text-[#072a85]" : " text-[#00081C]"
 						}
 							
@@ -52,7 +52,7 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 						}`}
 					>
 						<h1
-							className={`items-center   text-[1.75em] font-[600] sodoSemiBold ${
+							className={`items-center   text-[1.75em] font-[600] sodo600 ${
 								isSelected ? "text-[#072a85]" : " text-[#00081C]"
 							}`}
 						>

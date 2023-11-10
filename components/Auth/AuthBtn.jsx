@@ -16,7 +16,7 @@ const AuthBtn = ({ text, padding, handleClick, disabled, icon }) => {
 				width: "100%",
 			}}
 		>
-			<h4 className="normal-case text-[14px] sodoSemiBold font-[600] tracking-[-0.56px] text-white ">{text}</h4>
+			<span className="normal-case text-[14px] sodo600 tracking-[-0.56px] text-white ">{text}</span>
 		</Button>
 	);
 };

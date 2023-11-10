@@ -5,7 +5,7 @@ const PriceCardItem = ({ text }) => {
 	return (
 		<div className="flex space-x-[8px] items-center">
 			<div>{checkmarkIcon}</div>
-			<p className='text-[#646976] text-[12px] tracking-[-0.4px] font-[300] '>
+			<p className='text-[#181818] text-[12px] tracking-[-0.4px] font-[300] '>
 				{text}
 			</p>
 		</div>

@@ -9,13 +9,12 @@ const Input = ({ text, type, onChange }) => {
 			sx={{
 				borderRadius: "4px",
 				"& input": {
-					color: "#A9ADB5",
+					color: "#000",
 					fontSize: "0.9em",
 				},
 				"& label": {
 					color: "#A9ADB5",
-					fontSize: "0.9em",
-					// letterSpacing: "-0.24px",
+					fontSize: "0.9em",					
 				},
 			}}
 			onChange={(e) => onChange(e)}

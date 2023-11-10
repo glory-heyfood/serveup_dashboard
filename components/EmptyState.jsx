@@ -1,7 +1,7 @@
 import { plusIcon, shieldIcon } from "@/SVGs";
 import { Button } from "@mui/material";
 import React from "react";
-import DashBtn from "./DashBtn";
+import DashBtn from "./Dashboard/DashBtn";
 
 const EmptyState = ({ header, text, btnText, handleClick, icon }) => {
 	return (
@@ -15,11 +15,11 @@ const EmptyState = ({ header, text, btnText, handleClick, icon }) => {
 					{icon}
 				</div>
 				<div className='flex flex-col space-y-[0.25em] items-center justify-center'>
-					<h1 className='text-[1em] text-black tracking-[-0.64px] sodoBold '>
+					<h1 className='text-[1em] text-black tracking-[-0.64px] sodo700 '>
 						{" "}
 						{header}
 					</h1>
-					<p className='text-[#7E8493] text-[12px] tracking-[-0.48px] sodoReg '>
+					<p className='text-[#7E8493] text-[12px] tracking-[-0.48px] sodo400 '>
 						{text}
 					</p>
 				</div>
@@ -28,8 +28,8 @@ const EmptyState = ({ header, text, btnText, handleClick, icon }) => {
 				<div className="inline">
                     <DashBtn
 					text={btnText}
-					padding='10px 12px'
-					onClick={handleClick}
+					padding='8px 14px'
+					handleClick={handleClick}
 					icon={plusIcon}
 				/>
                 </div>

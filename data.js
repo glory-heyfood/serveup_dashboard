@@ -1,4 +1,16 @@
-import { bellIcon, briefcaseICon, chartIcon, companyIcon, marketingIcon, mobileIcon, promotionICon, rewardIcon, storeIcon, userIcon, websiteIcon } from "./SVGs";
+import {
+	bellIcon,
+	briefcaseICon,
+	chartIcon,
+	companyIcon,
+	marketingIcon,
+	mobileIcon,
+	promotionICon,
+	rewardIcon,
+	storeIcon,
+	userIcon,
+	websiteIcon,
+} from "./SVGs";
 
 export const Pricing = [
 	{
@@ -100,66 +112,121 @@ export const Pricing = [
 	},
 ];
 
-
 // Data for side bar dashboard
 export const sidebarData = [
-    {
-        icon:bellIcon,
-        text:"New orders",
-        href:"/id"
-    },
+	{
+		icon: bellIcon,
+		text: "New orders",
+		href: "/id",
+	},
 
-    {
-        icon:chartIcon,
-        text:"Analytics",
-        href:"/id/analytics"
-    },
+	{
+		icon: chartIcon,
+		text: "Analytics",
+		href: "/id/analytics",
+	},
 
-    {
-        icon:storeIcon,
-        text:"Stores",
-        href:"/id/stores"
-    },
+	{
+		icon: storeIcon,
+		text: "Stores",
+		href: "/id/stores",
+	},
 
-    {
-        icon:userIcon,
-        text:"Customers",
-        href:"/id/customers"
-    },
+	{
+		icon: userIcon,
+		text: "Customers",
+		href: "/id/customers",
+	},
 
-    {
-        icon:marketingIcon,
-        text:"Marketing",
-        href:"/id/marketing"
-    },
-    {
-        icon:rewardIcon,
-        text:"Loyalty Rewards",
-        href:"/id/loyalty"
-    },
-    {
-        icon:promotionICon,
-        text:"Promotions",
-        href:"/id/promotions"
-    },
-    {
-        icon:briefcaseICon,
-        text:"Employees",
-        href:"/id/employees"
-    },
-    {
-        icon:websiteIcon,
-        text:"Website",
-        href:"/id/website"
-    },
-    {
-        icon:mobileIcon,
-        text:"Mobile App",
-        href:"/id/mobile"
-    },
-    {
-        icon:companyIcon,
-        text:"Business Settings",
-        href:"/id/business"
-    },
-]
+	{
+		icon: marketingIcon,
+		text: "Marketing",
+		href: "/id/marketing",
+	},
+	{
+		icon: rewardIcon,
+		text: "Loyalty Rewards",
+		href: "/id/loyalty",
+	},
+	{
+		icon: promotionICon,
+		text: "Promotions",
+		href: "/id/promotions",
+	},
+	{
+		icon: briefcaseICon,
+		text: "Employees",
+		href: "/id/employees",
+	},
+	{
+		icon: websiteIcon,
+		text: "Website",
+		href: "/id/website",
+	},
+	{
+		icon: mobileIcon,
+		text: "Mobile App",
+		href: "/id/mobile",
+	},
+	{
+		icon: companyIcon,
+		text: "Business Settings",
+		href: "/id/business",
+	},
+];
+
+export const options = [
+	{ label: "selecc", value: "irr" },
+	{ label: "pooo", value: "ee" },
+	{ label: "pooo", value: "ee" },
+	{ label: "pooo", value: "ee" },
+	{ label: "pooo", value: "ee" },
+	{ label: "pooo", value: "ee" },
+];
+
+export const customerData = [
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+	{
+		name: "Katherine Alariko",
+		email: "Kattyriko@gmail.com",
+	},
+];

@@ -1,22 +1,39 @@
 "use client";
 import { plusIcon, shieldIcon } from "@/SVGs";
-import CustomTextField from "@/components/CustomTextField";
-import DashBtn from "@/components/DashBtn";
-import DashLayout from "@/components/DashLayout";
+import CustomSearch from "@/components/CustomSearch";
+import DashBtn from "@/components/Dashboard/DashBtn";
+import DashLayout from "@/components/Dashboard/DashLayout";
 import React, { useState } from "react";
 import StoresItem from "./StoresItem";
 import { Button } from "@mui/material";
 import EmptyState from "@/components/EmptyState";
+import AddStore from "./AddStore";
 
 const Page = () => {
 	const [showState, setShowState] = useState(true);
-	return (
+	const [showStore, setShowStore] = useState(false);
+    const handleOpenStore = () => {
+        setShowStore(true)
+    }
+
+    const handleCloseStore = () => {
+        setShowStore(false)
+    }
+
+   const handleChange = (e) => {
+        console.log(e.target.value)
+    }
+
+	return showStore ? (
+		<AddStore handleClose={handleCloseStore} />
+	) : (
 		<DashLayout>
 			{showState ? (
 				<div>
 					<h1 className='dashHeader'>Stores</h1>
 					<EmptyState
-						btnText='Add new stores'
+                        handleClick = {handleOpenStore}
+						btnText='Add new store'
 						header='No Stores'
 						text='You have not added any store'
 						icon={shieldIcon}
@@ -27,11 +44,16 @@ const Page = () => {
 					<div className='flex items-center justify-between mb-[1.5em]'>
 						<h1 className='dashHeader !mb-[0px]'>Stores</h1>
 						<div className='inline'>
-							<DashBtn icon={plusIcon} text='Add new store' />
+							<DashBtn
+                                handleClick={handleOpenStore}
+								icon={plusIcon}
+								padding='8px 14px'
+								text='Add new store'
+							/>
 						</div>
 					</div>
 
-					<CustomTextField inputType='search' placeholder='Search' fullWidth />
+					<CustomSearch placeholder='Search' fullWidth handleChange={handleChange} />
 
 					<div className='flex flex-col mt-[0.75em]'>
 						<StoresItem text='Toasties - Ikeja' />

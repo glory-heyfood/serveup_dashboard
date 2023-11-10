@@ -1,5 +1,5 @@
 import React from "react";
-import DashHeader from "./DashHeader";
+import DashHeader from "./Dashboard/DashHeader";
 
 const MarketingLayout = ({children}) => {
 	return (

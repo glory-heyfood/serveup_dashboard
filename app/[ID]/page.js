@@ -70,7 +70,7 @@
 
 // export default Page;
 "use client";
-import DashLayout from "@/components/DashLayout";
+import DashLayout from "@/components/Dashboard/DashLayout";
 import React, { useState } from "react";
 import NewOrderCard from "./NewOrderCard";
 import EmptyState from "@/components/EmptyState";
@@ -82,7 +82,7 @@ const Page = () => {
 	return (
 		<DashLayout>
 			<div className=' w-full '>
-				<h1 className='dashHeader '>New orders</h1>
+				<h1 className='dashHeader '>New Orders</h1>
 
 				{showState ? (
 					<EmptyState

@@ -527,3 +527,64 @@ export const XIcon = (
 		/>
 	</svg>
 );
+
+export const checkBoxIcon = (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='17'
+		viewBox='0 0 16 17'
+		fill='none'
+	>
+		<rect y='0.5' width='16' height='16' rx='2' fill='#072A85' />
+		<path
+			d='M12.2952 5.62011L11.7243 5.16058C11.4428 4.93439 11.2793 4.93701 11.0383 5.23463L6.88854 10.3558L4.95735 8.7513C4.69093 8.52749 4.52426 8.53939 4.30521 8.8132L3.8645 9.38701C3.64093 9.66844 3.6695 9.8282 3.93378 10.0489L6.68616 12.3256C6.9695 12.5637 7.12902 12.5392 7.34807 12.2727L12.3669 6.30582C12.6026 6.02249 12.5883 5.8532 12.2952 5.62011Z'
+			fill='white'
+		/>
+	</svg>
+);
+
+export const clockStoreIcon = (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='17'
+		viewBox='0 0 16 17'
+		fill='none'
+	>
+		<path
+			d='M8 5.16667V8.5L9 10.1667M14 8.5C14 11.8137 11.3137 14.5 8 14.5C4.68629 14.5 2 11.8137 2 8.5C2 5.18629 4.68629 2.5 8 2.5C11.3137 2.5 14 5.18629 14 8.5Z'
+			stroke='#072A85'
+			stroke-width='1.5'
+			stroke-linecap='round'
+			stroke-linejoin='round'
+		/>
+	</svg>
+);
+
+export const dropDownBlueIcon = (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		width='16'
+		height='16'
+		viewBox='0 0 16 16'
+		fill='none'
+	>
+		<path
+			d='M4 6L8 10L12 6'
+			stroke='#072A85'
+			stroke-width='2'
+			stroke-linecap='round'
+			stroke-linejoin='round'
+		/>
+	</svg>
+);
+
+export const dropDownBlackIcon = <svg xmlns="http://www.w3.org/2000/svg" width="8" height="4" viewBox="0 0 8 4" fill="none">
+<path d="M1 0.5L4 3.5L7 0.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+export const userBlueIcon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+<path d="M7.99998 6.66658C9.47274 6.66658 10.6666 5.47268 10.6666 3.99992C10.6666 2.52716 9.47274 1.33325 7.99998 1.33325C6.52722 1.33325 5.33331 2.52716 5.33331 3.99992C5.33331 5.47268 6.52722 6.66658 7.99998 6.66658Z" stroke="#072A85" stroke-width="1.5"/>
+<path d="M7.99998 14.0001C10.5773 14.0001 12.6666 12.8062 12.6666 11.3334C12.6666 9.86066 10.5773 8.66675 7.99998 8.66675C5.42265 8.66675 3.33331 9.86066 3.33331 11.3334C3.33331 12.8062 5.42265 14.0001 7.99998 14.0001Z" stroke="#072A85" stroke-width="1.5"/>
+</svg>
