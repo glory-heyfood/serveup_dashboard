@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 @font-face {
 	font-family: "SoDoSans-bold";
@@ -36,6 +36,9 @@
 	font-style: normal;
 }
 
+.inter600{
+    font-family: 'Inter', sans-serif;
+}
 .sodo300 {
 	font-family: SodoSans-light;
 }

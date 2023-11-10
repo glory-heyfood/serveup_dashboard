@@ -35,7 +35,7 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 
 				{data.price === "Custom Pricing" ? (
 					<h4
-						className={`mt-[0.8em] mb-[1.1em] items-center  text-[1.75em] tracking-[-0.56px] text-[#00081C] font-[600] inter ${
+						className={`mt-[0.8em] mb-[1.1em] items-center  text-[1.75em] tracking-[-0.7px] text-[#00081C]  inter600 ${
 							isSelected ? "text-[#072a85]" : " text-[#00081C]"
 						}
 							
@@ -52,13 +52,13 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 						}`}
 					>
 						<h1
-							className={`items-center   text-[1.75em] font-[600] sodo600 ${
+							className={`items-center   text-[1.75em] tracking-[-0.56px] inter600 ${
 								isSelected ? "text-[#072a85]" : " text-[#00081C]"
 							}`}
 						>
 							₦{data.price}{" "}
 						</h1>
-						<p className='text-[#646976] text-[0.82em] tracking-[-0.56px] font-[400]  '>
+						<p className='text-[#646976] text-[0.82em] tracking-[-0.56px] sodo400  '>
 							/month
 						</p>
 					</div>
