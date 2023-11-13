@@ -6,8 +6,8 @@ import DashBtn from "./Dashboard/DashBtn";
 const EmptyState = ({ header, text, btnText, handleClick, icon }) => {
 	return (
 		<div
-			className={`border border-[#E6E6E6] rounded-[8px] flex items-center justify-center flex-col space-y-[1em] ${
-				btnText ? "py-[2.5em]" : "py-[3.75em]"
+			className={`border border-[#E6E6E6] rounded-[8px] flex items-center justify-center flex-col space-y-[1em] py-[1.5em] ${
+				btnText ? "md:py-[2.5em]" : "md:py-[3.75em]"
 			} `}
 		>
 			<div className='flex flex-col space-y-[1.25em] items-center'>

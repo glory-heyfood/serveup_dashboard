@@ -18,7 +18,7 @@ const AuthHeader = ({ disabled, handleClick }) => {
 			<div className='w-[80px]'>
 				<AuthBtn
 					text='Next'
-					padding='8px 32px'
+					padding='8px 12px'
 					disabled={disabled}
 					handleClick={handleClick}
 				/>

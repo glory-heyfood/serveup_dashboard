@@ -2,13 +2,33 @@
 import AuthBtn from "@/components/Auth/AuthBtn";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Page = () => {
 	const router = useRouter();
 	const handleClick = () => {
 		router.push("/signup/business-info");
 	};
+
+	useEffect(() => {
+		const handlePaste = (event) => {
+			const pastedValue = event.clipboardData.getData("text");
+
+			for (let i = 0; i < pastedValue.length && i < 6; i++) {
+				const inputIndex = i + 1;
+				document.getElementById(`input${inputIndex}`).value = pastedValue[i];
+			}
+
+			event.preventDefault();
+		};
+
+		window.addEventListener("paste", handlePaste);
+
+		return () => {
+			window.removeEventListener("paste", handlePaste);
+		};
+	}, []);
+
 	return (
 		<div className='flex'>
 			<div
@@ -37,39 +57,27 @@ const Page = () => {
 						</h2>
 					</div>
 
-					<div className='grid grid-cols-6 md:gap-[1em] min-h-[56px] !mt-[2em] !mb-[5em]'>
-						<input
-							type='text'
-							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-						/>
-						<input
-							type='text'
-							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-						/>
-						<input
-							type='text'
-							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-						/>
-						<input
-							type='text'
-							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-						/>
-						<input
-							type='text'
-							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-						/>
-						<input
-							type='text'
-							className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-						/>
+					<div className='grid grid-cols-6 md:gap-[1em] min-h-[56px] !mt-[2em] !mb-[3em]'>
+						{[1, 2, 3, 4, 5, 6].map((index) => (
+							<div key={index}>
+								<input
+									type='text'
+									id={`input${index}`}
+									maxLength='1'
+									className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
+									// onInput={(event) => handleInput(event.target, event)}
+								/>
+							</div>
+						))}
 					</div>
 
-					<div className='flex space-x-[0.5em] !mb-[8.375em] items-center justify-center '>
-						<span className='text-[#072A85] text-[14px] sodo700 tracking-[-0.28px] '>
+					<div className='flex space-x-[0.5em] !mb-[6.375em] items-center justify-center '>
+						<span className='text-[#072A85] text-[14px] sodo600 tracking-[-0.28px] '>
 							0:58
 						</span>
 						<h2 className='text-[#AAAEB8] tracking-[-0.28px] sodo400'>
-							Didn’t receive? <span className=" cursor-pointer sodo600">Resend OTP</span>
+							Didn’t receive?{" "}
+							<span className=' cursor-pointer sodo600'>Resend OTP</span>
 						</h2>
 					</div>
 

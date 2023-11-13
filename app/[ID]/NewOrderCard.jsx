@@ -3,25 +3,25 @@ import React from "react";
 
 const NewOrderCard = () => {
 	return (
-		<div className='border border-[#E6E6E6] rounded-[4px] pt-[1.25em] pb-[0.75em] pr-[1em] pl-[1.25em] '>
-			<div className='w-full flex flex-col space-y-[0.5em]'>
+		<div className='border border-[#E6E6E6] rounded-[4px] pt-[1.25em] pb-[0.75em] pr-[1.2em] pl-[1.25em] '>
+			<div className='w-full flex flex-col space-y-[0.3em]'>
 				<div className='flex justify-between items-center w-full'>
-					<h2 className='tracking-[-0.56px]   sodo600'>Toasties Ikeja</h2>
+					<h2 className='md:tracking-[-0.7px] text-[16px] tracking-[-0.64px]  sodo600'>Toasties-Ikeja</h2>
 					<h3 className='tracking-[-0.48px] sodo600 text-[#7E8493]'>9:35 PM</h3>
 				</div>
-				<h3 className='text-[#5F6370] sodo400 tracking-[-0.48px]'>
+				<h3 className='text-[#5F6370]  sodo400 tracking-[-0.6px]'>
 					Adeniran Temitope
 				</h3>
-				<div className="flex items-start space-x-[0.7em]">
-                    <h3 className=" text-black  sodo700 border-[0.5px] rounded-[2px] py-[1px] px-[3px]  border-[#E6E6E6]">1x</h3>
+				<div className="flex items-start space-x-[0.5em]">
+                    <h3 className=" text-black text-[11.5px] sodo700 border-[0.5px] rounded-[2px] py-[1px] px-[2px]  border-[#E6E6E6]">1x</h3>
 					<div className='flex flex-col space-y-[0.25em]'>
-						<h3 className='tracking-[-0.48px] sodo600 text-[#000]'>
+						<h3 className='tracking-[-0.6px] sodo600 text-[#000]'>
 							Chicken Sandwich
 						</h3>
-						<h3 className='tracking-[-0.48px] sodo400 text-[#7E8493] '>
+						<h3 className='tracking-[-0.38px] sodo400 leading-[15px] text-[#7E8493] '>
 							1x Extra cheese
 						</h3>
-						<h3 className='tracking-[-0.48px] sodo400 text-[#7E8493] '>
+						<h3 className='tracking-[-0.38px] sodo400 leading-[15px] text-[#7E8493] '>
 							2x Sausage
 						</h3>
 					</div>
@@ -29,7 +29,7 @@ const NewOrderCard = () => {
 			</div>
 
 			<div className='flex items-center justify-between mt-[0.8em] '>
-				<div className='flex space-x-[0.25em]'>
+				<div className='flex space-x-[0.25em] items-start'>
 					<span> {bikeIcon} </span>
 					<h3 className='tracking-[-0.48px] sodo600 font-[400] '>Delivery</h3>
 				</div>

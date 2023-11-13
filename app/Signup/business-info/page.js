@@ -63,48 +63,51 @@ const Page = () => {
 								sx={{
 									"& .MuiSelect-select": {
 										color: "#5F6370",
+                                        letterSpacing:"-0.26px",
+                                        fontSize:"14px",
+                                        fontFamily:"SodoSans-reg"
 									},
 								}}
 							>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400 text-[0.9em]'
+									className='text-black  sudo400  text-[0.9em] tracking-[-0.56px]'
 									value=''
 									disabled
 								>
 									What kind of business do you run?
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Restaurant'
 								>
 									Restaurant
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Hotel'
 								>
 									Hotel
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Food Truck'
 								>
 									Food Truck
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Cafe & Bakery'
 								>
 									Cafe & Bakery
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Bar & NightClub'
 								>
 									Bar & NightClub
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Others'
 								>
 									Others
@@ -116,35 +119,38 @@ const Page = () => {
 							<Select
 								value={operate}
 								displayEmpty
-								inputProps={{ "aria-label": "Without label" }}
-								onChange={handleOperateChange}
-								sx={{
+								inputProps={{ "aria-label": "Without label" }}								
+								onChange={handleOperateChange}                                
+								sx={{                                   
 									"& .MuiSelect-select": {
 										color: "#5F6370",
+                                        letterSpacing:"-0.26px",
+                                        fontSize:"14px",
+                                        fontFamily:"SodoSans-reg"
 									},
 								}}
 							>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value=''
 									disabled
 								>
 									How do you operate your business?
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Physiceal Location'
 								>
 									Physical Location
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Online Store'
 								>
 									Online Store
 								</MenuItem>
 								<MenuItem
-									className='text-black tracking-[-0.26px] sudo400text-[0.9em]'
+									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
 									value='Physice and Online'
 								>
 									Physical and Online

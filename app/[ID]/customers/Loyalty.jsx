@@ -10,7 +10,7 @@ const Loyalty = ({ data, points }) => {
 					boxShadow: " 0px 1px 0px 0px #F0F0F0",
 				}}
 			>
-				<h3 className='text-[0.635em] text-black sodo600 tracking-[-0.2px] '>
+				<h3 className='text-[0.635em] text-black sodo700 tracking-[-0.2px] '>
 					{" "}
 					POINTS BALANCE{" "}
 				</h3>

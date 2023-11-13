@@ -22,7 +22,7 @@ const Home = () => {
 		} else {
 			setDisabled(false);
 		}
-	}, [email, password]);
+	}, [email, password])
 
 	return (
 		<div className='flex'>
@@ -44,8 +44,8 @@ const Home = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
-						<h1 className="sodo600 tracking-[-0.96px] leading-normal text-[24px] ">Sign in</h1>
-						<h4 className='tracking-[-0.28px] sodo400'>
+						<h1 className="sodo600 font-[900] tracking-[-0.96px] leading-normal text-[24px] ">Sign in</h1>
+						<h4 className='tracking-[-0.28px] sodo400  text-[0.875em]'>
 							New to Serveup?{" "}
 							<Link href='/signup' className='text-[#072A85] sodo600'>
 								Sign up
@@ -68,7 +68,7 @@ const Home = () => {
 					<div className='w-fit'>
 						<AuthBtn
 							text='Sign in'
-							padding='1.2em 2em'
+							padding='1.1em 2.5em'
 							handleClick={handleClick}
 							disabled={disabled}
 						/>

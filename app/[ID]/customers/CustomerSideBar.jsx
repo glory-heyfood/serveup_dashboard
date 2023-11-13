@@ -79,13 +79,13 @@ const CustomerSideBar = ({ handleClose }) => {
 					</span>
 				</div>
 				<div className='flex items-center space-x-[0.75em] mb-[1.5em]'>
-					<div className='bg-[#F0F3FC] rounded-[4px] flex items-center  justify-center py-[0.5em] px-[0.75em] '>
+					<div className='bg-[#F0F3FC] cursor-pointer rounded-[4px] flex items-center  justify-center py-[0.5em] px-[0.75em] '>
 						<h3 className='text-[#072A85] text-[0.75em] sodo400 tracking-[-0.24px]'>
 							Kattryko@gmail.com
 						</h3>
 					</div>
 
-					<div className='bg-[#F0F3FC] rounded-[4px] flex items-center  justify-center py-[0.5em] px-[0.75em] '>
+					<div className='bg-[#F0F3FC] cursor-pointer rounded-[4px] flex items-center  justify-center py-[0.5em] px-[0.75em] '>
 						<h3 className='text-[#072A85] text-[0.75em] sodo400 tracking-[-0.24px]'>
 							+2348064578212
 						</h3>

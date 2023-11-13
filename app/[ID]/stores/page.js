@@ -27,7 +27,7 @@ const Page = () => {
 	return showStore ? (
 		<AddStore handleClose={handleCloseStore} />
 	) : (
-		<DashLayout>
+		<DashLayout btn={true}>
 			{showState ? (
 				<div>
 					<h1 className='dashHeader'>Stores</h1>
@@ -41,13 +41,13 @@ const Page = () => {
 				</div>
 			) : (
 				<>
-					<div className='flex items-center justify-between mb-[1.5em]'>
+					<div className='flex flex-col space-y-[1.5em] md:flex-row  md:items-center justify-between mb-[1.5em] md:mb-[1.2em]'>
 						<h1 className='dashHeader !mb-[0px]'>Stores</h1>
-						<div className='inline'>
+						<div className='inline-block w-fit'>
 							<DashBtn
                                 handleClick={handleOpenStore}
 								icon={plusIcon}
-								padding='8px 14px'
+								padding='7px 15px'
 								text='Add new store'
 							/>
 						</div>

@@ -47,7 +47,7 @@ const Home = () => {
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
                     <h1 className="sodo600 tracking-[-0.96px]">Let’s create your account</h1>
-						<h4 className='tracking-[-0.28px] text-[14px] sodo400 '>
+						<h4 className='tracking-[-0.28px] text-[0.875em] sodo400 '>
 							Already have a Serveup account?
 							<Link href='/' className='text-[#072A85] sodo600'>
 								{" "}
@@ -73,7 +73,7 @@ const Home = () => {
 						/>
 					</div>
 
-					<div className='flex space-x-[1em] items-center'>
+					<div className='flex space-x-[1em] items-center !mt-[2em]'>
 						<input
 							type='checkbox'
 							className='h-[16px] w-[16px]'
@@ -82,7 +82,7 @@ const Home = () => {
 								console.log(e.target.checked);
 							}}
 						/>
-						<p className='text-[0.82em] sodo400 tracking-[-0.52px] '>
+						<p className='text-[0.82em] sodo400 tracking-[-0.52px]  '>
 							I agree to Serveup’s{" "}
 							<Link href='' className='text-[#072A85] sodo600'>
 								Terms of Service
@@ -94,7 +94,7 @@ const Home = () => {
 						</p>
 					</div>
 
-					<div className='w-full'>
+					<div className='w-full !mt-[2em]'>
 						<AuthBtn
 							disabled={disabled}
 							text='Continue'

@@ -7,10 +7,10 @@ const CustomSelect = ({
 	handleChange,
 	selectedValue,
 	defaultValue,
-    ...props
+	...props
 }) => {
 	const Icon = () => {
-		return <span className='ml-[4px]'>{dropDownBlackIcon}</span>;
+		return <span className='ml-[4px] mt-[-1px]'>{dropDownBlackIcon}</span>;
 	};
 
 	return (
@@ -19,15 +19,19 @@ const CustomSelect = ({
 			IconComponent={() => <Icon />}
 			inputProps={{ "aria-label": "Without label" }}
 			value={selectedValue}
-            {...props}
+			{...props}
 			onChange={(e) => {
 				handleChange(e);
 			}}
 			style={{
 				backgroundColor: "#F2F2F2",
 				border: "none",
+				borderRadius: "4px",
 				outline: "none",
-				padding: "0.875em 0.75em",
+				padding: "0px 14px",
+                height:"44px",
+                dispalay:"flex",
+                alignItems:"center",
 				"&:focus": {
 					border: "none",
 				},
@@ -35,7 +39,7 @@ const CustomSelect = ({
 			sx={{
 				"& .MuiSelect-select": {
 					color: "#000",
-					fontFamily: "sodoSans-reg",
+					fontFamily: "sodoSans-SemiBold",
 					letterSpacing: "-0.24px",
 					fontSize: "0.75em",
 					padding: "0px !important",
@@ -56,7 +60,7 @@ const CustomSelect = ({
 			>
 				{defaultValue}
 			</MenuItem>
-			{options.map((option, i) => (
+			{options?.map((option, i) => (
 				<MenuItem
 					key={i}
 					className='text-black tracking-[-0.24px] text-[0.75em]'

@@ -7,19 +7,22 @@ const Input = ({ text, type, onChange }) => {
 			label={text}
 			type={type}
 			sx={{
-				borderRadius: "4px",
+				borderRadius: "6px",
 				"& input": {
 					color: "#000",
-					fontSize: "0.9em",
+					fontSize: "0.9em",                    
+                    fontFamily:"SodoSans-reg"
 				},
 				"& label": {
-					color: "#A9ADB5",
-					fontSize: "0.9em",					
+					color: "#cacaca",
+					fontSize: "0.9em",
+                    fontFamily:"SodoSans-reg"
+                    					
 				},
 			}}
 			onChange={(e) => onChange(e)}
 		/>
-	);
+	);    
 };
 
 export default Input;

@@ -6,17 +6,17 @@ const ComponentModalLayout = ({ handleClose, children }) => {
 	return (
 		<div className='h-screen w-full '>
 			<DashHeader />
-			<div className='flex h-screen relative w-full pt-[2.5em]'>
-				<div className='w-[350px]  '>
+			<div className='flex h-screen relative  overflow-hidden overflow-y-scroll scroll-hidden w-full pt-[88px] '>
+				<div className=' absolute md:fixed left-[20px] sm:left-[32px] lg:left-[64px]'>
 					<span
-						className='cursor-pointer w-fit inline-block mt-[2em] ml-[4em]'
+						className='cursor-pointer w-fit inline-block '
 						onClick={handleClose}
 					>
 						{XIcon}
 					</span>
 				</div>
 
-				<div className='px-[32px] py-[2em] w-full  '>{children}</div>
+				<div className='  w-full sm:w-[70%] lg:w-[53%] h-full  mx-auto '>{children}</div>
 			</div>
 		</div>
 	);

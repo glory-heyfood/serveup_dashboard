@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 
 @font-face {
 	font-family: "SoDoSans-bold";
 	src: url("../fonts/SoDoSans-Bold.woff2") format("woff2"),
 		url("../fonts/SoDoSans-Bold.woff") format("woff");
-        font-weight: 700;
+	font-weight: 700;
 	font-style: normal;
 }
 
@@ -16,7 +16,7 @@
 	font-family: "SoDoSans-reg";
 	src: url("../fonts/SoDoSans-Regular.woff2") format("woff2"),
 		url("../fonts/SoDoSans-Regular.woff") format("woff");
-        font-weight: 400;
+	font-weight: 400;
 	font-style: normal;
 }
 
@@ -36,8 +36,8 @@
 	font-style: normal;
 }
 
-.inter600{
-    font-family: 'Inter', sans-serif;
+.inter600 {
+	font-family: "Inter", sans-serif;
 }
 .sodo300 {
 	font-family: SodoSans-light;
@@ -57,31 +57,92 @@
 
 h1 {
 	font-size: 1.5em;
-	color: black;	
+	color: black;
 }
 
 h2 {
 	font-size: 0.875em;
-	color: black;	
+	color: black;
 }
 
 h3 {
 	font-size: 0.75em;
 	color: black;
-	font-family: soDoSans-reg;	
+	font-family: soDoSans-reg;
 }
 
-.scroll-hidden::-webkit-scrollbar{
-    display: none;
+@media (max-width:767px) {
+
+    .padd{
+        padding: 0px !important;
+    }
+
+    h2 {
+        font-size: 16px;
+        color: black;
+    }
+
+    h3 {
+        font-size: 14px;
+        color: black;
+        font-family: soDoSans-reg;
+    }
+    
+}
+
+.scroll-hidden::-webkit-scrollbar {
+	display: none;
 }
 
 .dashHeader {
 	color: #000;
 	font-family: SoDoSans-bold;
-	font-size: 1.3em;
+	font-size: 20px;
 	font-style: normal;
 	font-weight: 800;
 	line-height: normal;
-	letter-spacing: -0.8px;
-	margin-bottom: 1.5em;
+	letter-spacing: -0.9px;
+	margin-bottom: 1.1em;
 }
+
+.animate05s{
+    transition: all 0.5s ease-in;
+}
+
+.animate01s{
+    transition: all 0.3s ease-in;
+}
+
+/* Styling mui drop down */
+.MuiPaper-root {
+	box-shadow: none;
+    border:0.5px solid rgb(233, 233, 233);    
+}
+
+.MuiMenuItem-gutters{
+    padding: 16px 0px 16px 12px;    
+}
+
+/* Styling the date popup picker */
+.MuiPickersToolbar-root{
+    background-color:#072A85;    
+}
+.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root {
+    color:white;
+    text-align: center;
+    font-family: SodoSans-SemiBold;
+}
+.css-3dah0e-MuiModal-root-MuiDialog-root .MuiDialog-paper{
+    border:none;
+}
+/* Styling priceCard height in onboarding page */
+@media (max-width:567px) {
+        .priceCard{
+        height: fit-content !important;
+    }
+}
+
+*:focus {
+    outline: none !important;
+    border:none;
+  }

@@ -145,7 +145,7 @@ export const sidebarData = [
 	},
 	{
 		icon: rewardIcon,
-		text: "Loyalty Rewards",
+		text: "Loyalty rewards",
 		href: "/id/loyalty",
 	},
 	{

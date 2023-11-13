@@ -14,9 +14,10 @@ const AuthBtn = ({ text, padding, handleClick, disabled, icon }) => {
 				backgroundColor: `${!disabled && "#072A85 !important"}`,
 				padding: `${padding}`,				
 				width: "100%",
+                boxShadow:"none",
 			}}
 		>
-			<span className="normal-case text-[14px] sodo600 tracking-[-0.56px] text-white ">{text}</span>
+			<span className="normal-case text-[14px]  sodo400 tracking-[-0.56px] text-white ">{text}</span>
 		</Button>
 	);
 };

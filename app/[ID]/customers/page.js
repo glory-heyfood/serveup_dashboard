@@ -28,7 +28,7 @@ const Page = () => {
 	return (
 		<DashLayout>
 			{empty ? (
-				<div>
+				<div className="">
                     <h1 className='dashHeader'>Customers</h1>
 					<EmptyState
 						icon={shieldIcon}
@@ -45,10 +45,11 @@ const Page = () => {
 					</Button>
 				</div>
 			) : (
-				<div className='flex flex-col   '>
+                // Using negative margin cause i didnt want to disrupt the entire layout
+				<div className='flex flex-col  ml-[-32px]  '>
 					<div>
 						{/* Dont forget to change this when integration starts */}
-						<div className='flex space-x-4 items-start justify-between'>
+						<div className='flex space-x-4 items-start justify-between pl-[32px]'>
 							<h1 className='dashHeader'>Customers</h1>
 
 							<Button
@@ -60,7 +61,7 @@ const Page = () => {
 							</Button>
 						</div>
 
-						<div className='flex space-x-[0.75em] w-[50%] '>
+						<div className='flex space-x-[0.75em] w-[50%] pl-[32px]'>
 							<CustomSelect
 								options={options}
 								defaultValue='All Join dates'
@@ -82,7 +83,7 @@ const Page = () => {
 							/>
 						</div>
 
-						<hr className='h-[0.5px] w-full bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] ' />
+						<hr className='h-[0.5px] w-full bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] ml-[32px] ' />
 
 						<div className='w-full overflow-auto scroll-hidden h-[65vh] flex-grow'>
 							{customerData.map((data, i) => (

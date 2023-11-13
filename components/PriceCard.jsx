@@ -11,7 +11,7 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 			</div>
 
 			<div
-				className={`rounded-[12px] px-[1.75em] py-[2em] w-[260px]  h-fit sm:h-[700px] ${
+				className={`rounded-[12px] px-[1.75em] py-[2em] w-[260px]  priceCard h-[700px] ${
 					isSelected
 						? "bg-[#f1f5ff] border-[#DCE6FF]  border-[2px]"
 						: "bg-white border border-[#F0F0F0]"
@@ -35,8 +35,8 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 
 				{data.price === "Custom Pricing" ? (
 					<h4
-						className={`mt-[0.8em] mb-[1.1em] items-center  text-[1.75em] tracking-[-0.7px] text-[#00081C]  inter600 ${
-							isSelected ? "text-[#072a85]" : " text-[#00081C]"
+						className={`mt-[0.8em] mb-[0.9em] items-center  text-[1.75em] tracking-[-0.7px] text-[#00081C]  inter600 ${
+							isSelected ? "text-[#072a85] mb-[0.8em] text-[1.74em]" : " text-[#00081C]"
 						}
 							
 						`}
@@ -47,8 +47,8 @@ const PriceCard = ({ data, isSelected, index, onCardClick }) => {
 					<div
 						className={`flex space-x-[6px] items-center ${
 							index === 0 || index === 1
-								? "mb-[2em] mt-[2.6em]"
-								: "mt-[1.5em] mb-[2em]"
+								? "mb-[1.5em] mt-[2.6em]"
+								: "mt-[1.5em] mb-[1.5em]"
 						}`}
 					>
 						<h1

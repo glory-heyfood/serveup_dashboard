@@ -4,7 +4,7 @@ import React from "react";
 const CustomerItems = ({ data, handleClick, isSelected }) => {
 	return (
 		<div
-			className={`flex space-x-[1.25em] pt-[0.875em] pb-[1em] hover:bg-[#F0F3FC]  cursor-pointer ${
+			className={`flex space-x-[0.85em] pt-[0.813em] pb-[0.813em] hover:bg-[#F0F3FC] pl-[32px]  animate01s cursor-pointer ${
 				isSelected && "bg-[#F0F3FC]"
 			} `}
 			onClick={() => {
@@ -16,7 +16,7 @@ const CustomerItems = ({ data, handleClick, isSelected }) => {
 				{userBlueIcon}{" "}
 			</span>
 			<div className='flex flex-col space-y-[2px]'>
-				<h3 className='sodo600 text-[#000] text-[0.75em] tracking-[-0.24px]'>
+				<h3 className=' text-[#000] sodo700 text-[0.75em] tracking-[-0.24px]'>
 					{" "}
 					{data.name}{" "}
 				</h3>

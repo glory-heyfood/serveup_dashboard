@@ -25,7 +25,7 @@ function CustomSearch({ placeholder, handleChange, ...props }) {
 			sx={{
 				backgroundColor: "#F8F8F8",
 				borderRadius: "8px",
-				padding: "0.875em 1.25em",
+				padding: "13.5px 20px",
 
 				"& .MuiOutlinedInput-root": {
 					"& fieldset": {
