@@ -1,9 +1,18 @@
+import { toggleGridSidebar } from "@/redux/features/gridSidebarSlice";
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const SidebarItem = ({ icon, href, text }) => {
+    const dispatch = useDispatch()
 	return (
-		<Link href={href} className="h-[81px]">
+		<Link href={href} className="h-[81px]"
+        onClick = {()=> {
+            if(text==="Marketing" && window.location.pathname === href){
+                dispatch(toggleGridSidebar(true))
+            }
+        }}
+        >
 			<div className='flex flex-col items-center space-y-[0.6em] '>                
 				<div className='bg-[#F0F0F0] rounded-[8px] p-[0.75em]'>
 					<span>{icon}</span>

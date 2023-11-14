@@ -1,10 +1,31 @@
+"use client";
+import { mailIcon } from "@/SVGs";
+import BreadCrumb from "@/components/BreadCrumb";
+import EmptyState from "@/components/EmptyState";
 import MarketingLayout from "@/components/MarketingLayout";
-import React from "react";
+import React, { useState } from "react";
+import Campaign from "./Campaign";
 
 const Page = () => {
+	const [showCampaign, setShowCampaign] = useState(false);
 	return (
 		<MarketingLayout>
-			<div>Marketing</div>
+			{showCampaign ? (
+				<Campaign handleClick={()=>setShowCampaign(false)} />
+			) : (
+				<div className='w-full'>
+					<div className="mb-[32px]">
+                    <BreadCrumb main='Marketing' link='Email Campaign' />
+                    </div>
+					<EmptyState
+						icon={mailIcon}
+						btnText='Create new campaign'
+						header='No Email Campaign'
+						handleClick={() => setShowCampaign(true)}
+						text='You have not created any campaigns'
+					/>
+				</div>
+			)}
 		</MarketingLayout>
 	);
 };

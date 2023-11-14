@@ -1,8 +1,7 @@
 import { RadioCheckIcon } from "@/SVGs";
 import React from "react";
 
-const RadioCheck = ({ isChecked }) => {
-    console.log(isChecked)
+const RadioCheck = ({ isChecked }) => {    
 	return (
 		<div>
 			{isChecked ? (

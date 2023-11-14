@@ -31,7 +31,7 @@ const LabelDateInput = ({ label, time }) => {
 				</div>
 			</div>
 			<div className='w-[74%]'>
-				<div className='w-[80%] flex items-center justify-between'>
+				<div className='w-[100%] flex items-center justify-between'>
 					<div className='flex items-center space-x-[0.5em]'>
 						<h2 className='text-[0.81em] sodo300 tracking-[-0.52px] text-[#A9ADB5]'>
 							Open

@@ -127,7 +127,7 @@ h3 {
 .MuiPickersToolbar-root{
     background-color:#072A85;    
 }
-.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root {
+.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected  {
     color:white;
     text-align: center;
     font-family: SodoSans-SemiBold;
@@ -135,6 +135,20 @@ h3 {
 .css-3dah0e-MuiModal-root-MuiDialog-root .MuiDialog-paper{
     border:none;
 }
+
+.css-1g7nc1s-MuiPickersLayout-root, .css-1lugbff-MuiPickersLayout-root{
+    display: flex;
+    flex-direction: column;
+}
+
+.css-1m5r8g7-MuiTimePickerToolbar-amPmSelection{
+    flex-direction: column;
+}
+.css-1dakek4-MuiPickersToolbar-content{
+    flex-wrap: nowrap;
+}
+
+
 /* Styling priceCard height in onboarding page */
 @media (max-width:567px) {
         .priceCard{

@@ -1,9 +1,10 @@
 import React from "react";
 import LabelInput from "./LabelInput";
 
-const LabelSearchInput = ({ placeholder, label, handleChange }) => {
+const LabelSearchInput = ({ placeholder, label, handleChange, ...props }) => {
 	return (
 		<LabelInput
+            {...props}
 			padding='13px 0px 14px 16px'
 			label={
 				<h2 className='text-[0.81em] sodo600 tracking-[-0.52px] '>{label}</h2>
