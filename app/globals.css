@@ -115,37 +115,37 @@ h3 {
 
 /* Styling mui drop down */
 .MuiPaper-root {
-	box-shadow: none;
+	box-shadow: none !important;
     border:0.5px solid rgb(233, 233, 233);    
 }
 
 .MuiMenuItem-gutters{
-    padding: 16px 0px 16px 12px;    
+    padding: 16px 0px 16px 12px !important;    
 }
 
 /* Styling the date popup picker */
 .MuiPickersToolbar-root{
-    background-color:#072A85;    
+    background-color:#072A85 !important;    
 }
 .css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected  {
-    color:white;
-    text-align: center;
-    font-family: SodoSans-SemiBold;
+    color:white !important;
+    text-align: center !important;
+    font-family: SodoSans-SemiBold !important;
 }
 .css-3dah0e-MuiModal-root-MuiDialog-root .MuiDialog-paper{
-    border:none;
+    border:none !important;
 }
 
 .css-1g7nc1s-MuiPickersLayout-root, .css-1lugbff-MuiPickersLayout-root{
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .css-1m5r8g7-MuiTimePickerToolbar-amPmSelection{
-    flex-direction: column;
+    flex-direction: column !important;
 }
 .css-1dakek4-MuiPickersToolbar-content{
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
 }
 
 

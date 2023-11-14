@@ -11,6 +11,7 @@ const CampaignItemInput = ({placeholder, handleChange}) => {
 					sx={{
 						color: "#A9ADB5",
 						border: "1px solid #E6E6E6",
+                        borderRadius:"4px",
 						padding: "15px 0px 16px 16px",
 						letterSpacing: "-0.52px",
 						fontSize: "13px",

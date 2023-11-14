@@ -15,7 +15,7 @@ const GridSideBar = ({ btn, sideBarShow }) => {
 			}`}
 			style={{
 				boxShadow: "1.1px 0px 0px 0px #E6E6E6",
-				padding: "80px 0px 0px 0",
+				padding: "80px 21px 0px 0",
 			}}
 		>
 
@@ -29,15 +29,15 @@ const GridSideBar = ({ btn, sideBarShow }) => {
                     >
 						{menuGrid}
 					</div>
-					<div className='pr-[35px] mt-[20px] '>
+					<div className='pr-[14px] mt-[20px] '>
 						<div className='bg-[#F2F4F9] pl-[24px] py-[16px] '>
-							<h2 className='text-[#072A85] tracking-[-0.28px] text-[14px] '>
+							<h2 className='text-[#072A85] sodo600 tracking-[-0.28px] text-[14px] '>
 								Email campaign
 							</h2>
 						</div>
 
 						<div className='bg-[#fff] pl-[24px] py-[19px] '>
-							<h2 className='text-[#000] tracking-[-0.28px] text-[14px] '>SMS campaign</h2>
+							<h2 className='text-[#000] sodo600 tracking-[-0.28px] text-[14px] '>SMS campaign</h2>
 						</div>
 					</div>
 				</>
