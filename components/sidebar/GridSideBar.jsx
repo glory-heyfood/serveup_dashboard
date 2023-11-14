@@ -10,12 +10,12 @@ const GridSideBar = ({ btn, sideBarShow }) => {
     const dispatch = useDispatch()
 	return (
 		<div
-			className={`bg-white md:bg-transparent  animate05s md:translate-x-0  h-screen md:h-full md:block hidden top-0 left-0 z-50 md:z-0  md:static w-full md:w-[350px]  ${
-				btn ? "md:mt-[-26px]" : "md:mt-[-32px]"
+			className={`bg-white md:bg-transparent  animate05s md:translate-x-0  h-screen  md:block hidden top-0 left-0 z-50 md:z-0  md:static w-full md:w-[350px]     ${
+				btn ? "md:mt-[-26px]" : ""
 			}`}
 			style={{
 				boxShadow: "1.1px 0px 0px 0px #E6E6E6",
-				padding: "32px 0px 0px 0",
+				padding: "80px 0px 0px 0",
 			}}
 		>
 

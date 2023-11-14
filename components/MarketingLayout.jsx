@@ -8,9 +8,9 @@ const MarketingLayout = ({children}) => {
 	return (
 		<div className='h-screen'>
 			<DashHeader />
-			<div className='flex h-[93.5vh] pt-[80px] w-full'>
+			<div className='flex   w-full'>
 				<GridSideBar gridContent={gridContent} setGridContent={setGridContent} />
-				<div className='px-[32px] w-full '>{children}</div>
+				<div className='px-[32px] w-full h-screen overflow-auto scroll-hidden pt-[80px] '>{children}</div>
 			</div>
 		</div>
 	);
