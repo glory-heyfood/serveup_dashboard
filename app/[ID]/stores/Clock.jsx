@@ -26,6 +26,7 @@ const Clock = ({handleTimeChange}) => {
 						},
 					"& .MuiInputBase-input": {
 						padding: "0px",
+                        border:"none",
 						cursor: "pointer",
 						fontSize: "0.81em",
 						fontFamily: "SodoSans-SemiBold",

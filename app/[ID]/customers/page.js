@@ -83,7 +83,7 @@ const Page = () => {
 							/>
 						</div>
 
-						<hr className='h-[0.5px] w-full bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] ml-[32px] mr-[32px] ' />
+						<hr className='h-[0.5px] w-[94%] bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] ml-[32px] mr-[32px] ' />
 
 						<div className='w-full overflow-auto scroll-hidden h-[65vh] flex-grow'>
 							{customerData.map((data, i) => (

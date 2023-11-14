@@ -125,9 +125,12 @@ h3 {
 
 /* Styling the date popup picker */
 .MuiPickersToolbar-root{
-    background-color:#072A85 !important;    
+    background-color:#072A85 !important;   
+    color:white !important;
+    text-align: center !important;
+    font-family: SodoSans-SemiBold !important; 
 }
-.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected  {
+.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-1kq7u7p.Mui-selected, .css-ud9jt, .css-1kq7u7p, .css-n4qtc0  {
     color:white !important;
     text-align: center !important;
     font-family: SodoSans-SemiBold !important;
