@@ -67,7 +67,7 @@ const CampaignItems = ({
 			</div>
 
 			<div
-				className={`relative  animate01s z-0 w-[100%]  ${
+				className={`relative  animate00s z-0 w-[100%]  ${
 					show
 						? "translate-y-[0%] opacity-100 max-h-fit"
 						: "  translate-y-[-100%] opacity-0 max-h-[0]"

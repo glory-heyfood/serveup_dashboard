@@ -113,8 +113,8 @@ h3 {
     transition: all 0.3s ease-in;
 }
 
-.animate01s{
-    transition: all 0.1s ease-in;
+.animate005s{
+    transition: all 0.05s ease-in;
 }
 
 /* Styling mui drop down */
