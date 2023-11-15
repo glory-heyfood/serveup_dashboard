@@ -21,9 +21,10 @@ const LabelSelect = ({
 	handleChange,
 	selectedValue,
 	defaultValue,
+    width,
 }) => {
 	return (
-		<LabelInput label={<Label label={label} />} padding='13px 0px 14px 16px'>
+		<LabelInput width={width} label={<Label label={label} />} padding='13px 0px 14px 16px'>
 			<Select
 				displayEmpty
 				IconComponent={() => <Icon />}

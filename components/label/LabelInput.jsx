@@ -12,7 +12,7 @@ const LabelInput = ({ label, padding, children, width }) => {
 			>
 				{label}
 			</div>
-			<div className="w-[74%]">
+			<div className="flex-grow">
             {children}
             </div>
 		</div>

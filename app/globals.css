@@ -109,8 +109,12 @@ h3 {
     transition: all 0.5s ease-in;
 }
 
-.animate01s{
+.animate03s{
     transition: all 0.3s ease-in;
+}
+
+.animate01s{
+    transition: all 0.1s ease-in;
 }
 
 /* Styling mui drop down */
@@ -130,12 +134,12 @@ h3 {
     text-align: center !important;
     font-family: SodoSans-SemiBold !important; 
 }
-.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root,.css-1f43ekz-MuiTypography-root-MuiPickersToolbarText-root-MuiTimePickerToolbar-separator,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root,.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-ihhycx-MuiTimePickerToolbar-amPmSelection .MuiTimePickerToolbar-ampmLabel, .css-1hbyad5-MuiTypography-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root, .css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected,.css-1kq7u7p.Mui-selected, .css-ud9jt, .css-1kq7u7p, .css-n4qtc0  {
+.MuiTypographyOverline  {
     color:white !important;
     text-align: center !important;
     font-family: SodoSans-SemiBold !important;
 }
-.css-3dah0e-MuiModal-root-MuiDialog-root .MuiDialog-paper{
+.MuiPaper-elevation24,.MuiDialog-paper{
     border:none !important;
 }
 

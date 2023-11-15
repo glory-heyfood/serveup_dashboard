@@ -1,5 +1,6 @@
+"use client";
 import { backArrowIcon } from "@/SVGs";
-import React from "react";
+import React, { useState } from "react";
 import CampaignItems from "./CampaignItems";
 import { TextField } from "@mui/material";
 import CampaignItemInput from "./CampaignItemInput";
@@ -9,11 +10,32 @@ import CampaignItemSelect from "./CampaignItemSelect";
 import CampaignLabelSelect from "./CampaignLabelSelect";
 
 const CreateCampaign = ({handleClick}) => {
+    const [nameContent, setNameContent] = useState(null)
+    const [emailContent, setEmailContent] = useState(null)
+    const [fromContent, setFromContent] = useState(null)
+    const [fromEmailContent, setFromEmailContent] = useState(null)
 	const handleChange = () => {
 		console.log("heu");
 	};
+
+    const handleNameChange = (e) =>{
+        setNameContent(e.target.value)
+    }
+
+    const handleEmailChange = (e) =>{
+        setEmailContent(e.target.value)
+    }
+
+    const handleFromChange = (e) =>{
+        setFromContent(e.target.value)
+    }
+
+    const handleFromEmailChange = (e) =>{
+        setFromEmailContent(e.target.value)
+    }
+
 	return (
-		<div>
+		<div className="pb-[120px]">
 			<div className='bg-[#F0F0F0]  rounded-[4px] mb-[24px] flex items-center justify-center h-[32px] w-[32px] cursor-pointer '
             onClick={handleClick}
             >
@@ -26,21 +48,24 @@ const CreateCampaign = ({handleClick}) => {
 				header='Campaign name'
 				subHeader='Give your campaign a unique name'
 				linkText='Add campaign name'
+                content={nameContent}
 			>
 				<CampaignItemInput
-					placeholder='Campaign name'
-					handleChange={handleChange}
+					placeholder='Campaign name'                    
+					handleChange={handleNameChange}
 				/>
 			</CampaignItems>
 
 			<CampaignItems
 				header='Email Subject'
 				subHeader='What is the subject of this campaign?'
-				linkText='Insert data'
+				linkText='Add email subject '
+                content={emailContent}
+                insert={true}
 			>
 				<CampaignItemInput
 					placeholder='Email Subject'
-					handleChange={handleChange}
+					handleChange={handleEmailChange}
 				/>
 			</CampaignItems>
 
@@ -48,16 +73,19 @@ const CreateCampaign = ({handleClick}) => {
 				header='From'
 				subHeader='Who is sending this campaign?'
 				linkText='Add sender'
+                content={fromContent}
 			>
 				<div className='flex w-full space-x-[20px]'>
 					<div className='w-[50%]'>
-						<LabelSearchInput label='Name' placeholder='Name' fullWidth />
+						<LabelSearchInput label='Name' handleChange={handleFromChange} placeholder='Name' fullWidth />
 					</div>
 					<div className='w-[50%]'>
 						<LabelSearchInput
+                        width="w-[40%]"
 							label='Email Address'
 							placeholder='Email address'
 							fullWidth
+                            handleChange={handleFromEmailChange}
 						/>
 					</div>
 				</div>
@@ -78,7 +106,8 @@ const CreateCampaign = ({handleClick}) => {
 
 					<div className='flex space-x-[20px]'>
 						<div className='w-[50%]'>
-							<CampaignLabelSelect
+							<LabelSelect
+                                width="w-[40%]"
 								label='Use date joined'
 								defaultValue='Select date'
 								selectedValue=''
@@ -87,7 +116,8 @@ const CreateCampaign = ({handleClick}) => {
 						</div>
 
 						<div className='w-[50%]'>
-							<CampaignLabelSelect
+							<LabelSelect
+                                width="w-[40%]"
 								label='Use last order date'
 								selectedValue=''
 								defaultValue='Select date'
@@ -110,7 +140,8 @@ const CreateCampaign = ({handleClick}) => {
 
 					<div className='flex space-x-[20px]'>
 						<div className='w-[50%]'>
-							<CampaignLabelSelect
+							<LabelSelect
+                            width="w-[40%]"
 								label='Use data joined'
 								selectedValue=''
 								defaultValue='Select date'
@@ -118,7 +149,8 @@ const CreateCampaign = ({handleClick}) => {
 							/>
 						</div>
 						<div className='w-[50%]'>
-							<CampaignLabelSelect
+							<LabelSelect
+                            width="w-[40%]"
 								label='Use last order date'
 								selectedValue=''
 								defaultValue='Select date'

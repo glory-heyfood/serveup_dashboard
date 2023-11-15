@@ -8,6 +8,7 @@ const CampaignItemInput = ({placeholder, handleChange}) => {
 					type ='text'
                     fullWidth
                     placeholder={placeholder}
+                    onChange={(e)=>handleChange(e)}
 					sx={{
 						color: "#A9ADB5",
 						border: "1px solid #E6E6E6",
