@@ -7,6 +7,7 @@ const CustomSelect = ({
 	handleChange,
 	selectedValue,
 	defaultValue,
+    height,
 	...props
 }) => {
 	const Icon = () => {
@@ -29,9 +30,9 @@ const CustomSelect = ({
 				borderRadius: "4px",
 				outline: "none",
 				padding: "0px 14px",
-                height:"44px",
-                dispalay:"flex",
-                alignItems:"center",
+				height: height ? height : "44px",
+				dispalay: "flex",
+				alignItems: "center",
 				"&:focus": {
 					border: "none",
 				},
@@ -53,13 +54,15 @@ const CustomSelect = ({
 					},
 			}}
 		>
-			<MenuItem
-				className='text-black tracking-[-0.26px]  font-[400] text-[0.9em]'
-				value=''
-				disabled
-			>
-				{defaultValue}
-			</MenuItem>
+			{defaultValue && (
+				<MenuItem
+					className='text-black tracking-[-0.26px]  font-[400] text-[0.9em]'
+					value=''
+					disabled
+				>
+					{defaultValue}
+				</MenuItem>
+			)}
 			{options?.map((option, i) => (
 				<MenuItem
 					key={i}

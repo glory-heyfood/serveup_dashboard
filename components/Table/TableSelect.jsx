@@ -38,7 +38,7 @@ const TableSelect = ({ page, rows, rowsPerPage, handleJumpToPage }) => {
 			onChange={handleJumpToPage}
 		>
 			{Array.from(
-				{ length: Math.ceil(rows.length / rowsPerPage) },
+				{ length: Math.ceil(rows / rowsPerPage) },
 				(_, index) => (
 					<MenuItem key={index + 1} value={index + 1}>
 						{index + 1}

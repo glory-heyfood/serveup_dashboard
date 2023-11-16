@@ -10,10 +10,11 @@ import TableRow from "@mui/material/TableRow";
 import { Box, Button, MenuItem, Select, TextField } from "@mui/material";
 import CustomSelect from "../CustomSelect";
 import TableSelect from "./TableSelect";
+import { sendCampaignData } from "@/data";
 
-export default function TableComponent({ column, row }) {
+export default function TableComponent({ lab, column, row, setData, tab, length }) {
 	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);
+	const [rowsPerPage, setRowsPerPage] = React.useState(10);	
 	const [jumpToPage, setJumpToPage] = React.useState("");
 
 	const columns = column;
@@ -29,47 +30,46 @@ export default function TableComponent({ column, row }) {
 		setPage(0);
 	};
 
-	// const handleJumpToPage = () => {
-	// 	const newPage = jumpToPage - 1;
-	// 	if (newPage >= 0 && newPage < Math.ceil(rows.length / rowsPerPage)) {
-	// 		setPage(newPage);
-	// 	}
-	// };
-
 	const handleJumpToPage = (event) => {
 		setPage(event.target.value - 1);
 	};
 
+
+	React.useEffect(() => {
+		const dat = sendCampaignData(page, rowsPerPage, tab);
+		setData(dat.data);		
+	}, [page, rowsPerPage]);
+
 	return (
 		<Paper sx={{ width: "100%", overflow: "hidden" }}>
-			<TableContainer sx={{ maxHeight: 440, border: "none" }}>
-				<Box
-					display='flex'
-					alignItems='center'
-					justifyContent='space-between'
-					mb={2}
+			<div className='flex items-start justify-between border border-transparent border-b-[#E6E6E6] w-full'>
+				{lab}
+				<div className='flex items-center  space-x-[12px]'>
+					<h3 className='tracking-[-0.24px] '>Showing&nbsp;</h3>
+					<CustomSelect
+						selectedValue={rowsPerPage}
+						handleChange={handleChangeRowsPerPage}
+						height='32px'
+						options={[
+							{ value: 10, label: 10 },
+							{ value: 25, label: 25 },
+							{ value: 100, label: 100 },
+						]}
+					/>
+					<h3 className='tracking-[-0.24px] '>&nbsp; per page</h3>
+				</div>
+			</div>
+			<TableContainer
+				sx={{ maxHeight: 350, border: "none" }}
+				className='scroll-hidden'
+			>
+				<Table
+					sx={{
+						border: "none",
+					}}
+					stickyHeader
+					aria-label='sticky table'
 				>
-					<Box>
-						Showing&nbsp;
-						<Select value={rowsPerPage} onChange={handleChangeRowsPerPage}>
-							<MenuItem value={10}>10</MenuItem>
-							<MenuItem value={25}>25</MenuItem>
-							<MenuItem value={100}>100</MenuItem>
-						</Select>
-						&nbsp; per page
-					</Box>
-				</Box>
-
-				{/* <TablePagination
-					rowsPerPageOptions={[10, 25, 100]}
-					component='div'
-					count={rows.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-				/> */}
-				<Table stickyHeader aria-label='sticky table'>
 					<TableHead>
 						<TableRow>
 							{columns.map((column) => (
@@ -84,13 +84,57 @@ export default function TableComponent({ column, row }) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows
-							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-							.map((row) => {
-								return (
-									<TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
-										{columns.map((column) => {
-											const value = row[column.id];
+						{rows.map((row) => {
+							return (
+								<TableRow role='checkbox' tabIndex={-1} key={row.code}>
+									{columns.map((column) => {
+										const value = row[column.id];
+										if (value === "Sent") {
+											return (
+												<TableCell key={column.id} align={column.align}>
+													<div
+														className='inline-flex py-[3px] px-[10px] items-center justify-center  rounded-[20px]'
+														style={{
+															background: "rgba(6, 174, 104, 0.10)",
+														}}
+													>
+														<h1 className='text-[#06AE68] text-[12px] tracking-[-0.48px] sodo600 '>
+															{value}
+														</h1>
+													</div>
+												</TableCell>
+											);
+										} else if (value === "Pending") {
+											return (
+												<TableCell key={column.id} align={column.align}>
+													<div
+														className='inline-flex py-[3px] px-[10px] items-center justify-center  rounded-[20px]'
+														style={{
+															background: "rgba(245, 100, 18, 0.10)",
+														}}
+													>
+														<h1 className='text-[#F56412] text-[12px] tracking-[-0.48px] sodo600 '>
+															{value}
+														</h1>
+													</div>
+												</TableCell>
+											);
+										} else if (value === "Draft") {
+											return (
+												<TableCell key={column.id} align={column.align}>
+													<div
+														className='inline-flex py-[3px] px-[10px] items-center justify-center  rounded-[20px]'
+														style={{
+															background: "#F0F0F0",
+														}}
+													>
+														<h1 className='text-[#000] text-[12px] tracking-[-0.48px] sodo600 '>
+															{value}
+														</h1>
+													</div>
+												</TableCell>
+											);
+										} else {
 											return (
 												<TableCell key={column.id} align={column.align}>
 													{column.format && typeof value === "number"
@@ -98,52 +142,52 @@ export default function TableComponent({ column, row }) {
 														: value}
 												</TableCell>
 											);
-										})}
-									</TableRow>
-								);
-							})}
+										}
+									})}
+								</TableRow>
+							);
+						})}
 					</TableBody>
 				</Table>
 			</TableContainer>
 
-			<div className='flex items-center justify-center space-x-[4px]'>
-				{Array.from(
-					{ length: Math.ceil(rows.length / rowsPerPage) },
-					(_, index) => {
-						if (
-							index < 5 ||
-							index === Math.ceil(rows.length / rowsPerPage) - 1
-						) {
-							const currentPage = index + 1;
-							return (
-								<div
-									key={currentPage}
-									className={`${
-										page === index ? "bg-[#F2F4F9]" : "bg-transparent"
-									} w-[24px] p-[4px] rounded-[4px] cursor-pointer flex items-center justify-center hover:bg-[#F2F4F9]`}
-									onClick={() => setPage(index)}
-								>
-									<h3 className='tracking-[-0.24px]'>{currentPage}</h3>
-								</div>
-							);
-						} else if (index === 5) {
-							return (
-								<Box key='ellipsis' mx={1}>
-									...
-								</Box>
-							);
-						}
-						return null;
-					},
-				)}
-			</div>
+			<div className='flex items-center justify-between mt-[24px] '>
+				<div className='flex items-center justify-center space-x-[4px]'>
+					{Array.from(
+						{ length: Math.ceil(length / rowsPerPage) },
+						(_, index) => {
+							if (index < 5 || index === Math.ceil(length / rowsPerPage) - 1) {
+								const currentPage = index + 1;
+								return (
+									<div
+										key={currentPage}
+										className={`${
+											page === index ? "bg-[#F2F4F9]" : "bg-transparent"
+										} w-[24px] p-[4px] rounded-[4px] cursor-pointer flex items-center justify-center hover:bg-[#F2F4F9]`}
+										onClick={() => setPage(index)}
+									>
+										<h3 className='tracking-[-0.24px]'>{currentPage}</h3>
+									</div>
+								);
+							} else if (index === 5) {
+								return (
+									<Box key='ellipsis' mx={1}>
+										...
+									</Box>
+								);
+							}
+							return null;
+						},
+					)}
+				</div>
 
-			<TableSelect
-				page={page}
-				handleJumpToPage={handleJumpToPage}
-				rows={rows}
-				rowsPerPage={rowsPerPage}
-			/>
+				<TableSelect
+					page={page}
+					handleJumpToPage={handleJumpToPage}
+					rows={length}
+					rowsPerPage={rowsPerPage}
+				/>
+			</div>
 		</Paper>
 	);
 }

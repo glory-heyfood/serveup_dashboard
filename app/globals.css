@@ -123,8 +123,30 @@ h3 {
     border:0.5px solid rgb(233, 233, 233);    
 }
 
+.MuiPaper-elevation1{
+    border: none !important;    
+}
+
 .MuiMenuItem-gutters{
     padding: 16px 0px 16px 12px !important;    
+}
+
+.MuiTableCell-root{
+    border-bottom: 0.5px solid #F0F0F0;  
+    color: black;  
+    font-size: 12px;
+    font-family: SodoSans-SemiBold;
+    letter-spacing: -0.24px;
+    padding: 12px 0px;
+}
+
+.MuiTableCell-stickyHeader{
+    border-bottom: 0.5px solid #F0F0F0;  
+    color: black;  
+    font-size: 12px;
+    font-family: SodoSans-Bold;
+    letter-spacing: -0.24px;
+    padding: 12px 0px;
 }
 
 /* Styling the date popup picker */

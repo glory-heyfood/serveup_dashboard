@@ -1,70 +1,142 @@
+"use client";
 import TableComponent from "@/components/Table/Table";
+import { campaignData, sendCampaignData } from "@/data";
 import * as React from "react";
 
+const Lab = ({ setData, setSelected, selected, setLength, length }) => {
+	const selectedArray = [
+		{
+			label: "All",
+			number: sendCampaignData(0, 10, "All").length,
+		},
+		{
+			label: "Sent",
+			number: sendCampaignData(0, 10, "Sent").length,
+		},
+
+		{
+			label: "Pending",
+			number: sendCampaignData(0, 10, "Pending").length,
+		},
+		{
+			label: "Draft",
+			number: sendCampaignData(0, 10, "Draft").length,
+		},
+	];
+	return (
+		<div className='flex space-x-[40px]'>
+			{selectedArray.map((data, i) => (
+				<div
+					key={i}
+					onClick={() => {
+						setSelected(data.label);
+						const dat = sendCampaignData(0, 10, data.label);
+						setData(dat.data);
+						setLength(dat.length);
+					}}
+					className={` ${
+						selected === data.label
+							? "border-transparent border-[2px] border-b-[#072A85]  "
+							: "  "
+					} flex space-x-[4px] pb-[12px] cursor-pointer items-center`}
+				>
+					<h3
+						className={` ${
+							selected === data.label ? "text-[#072A85]" : "text-[#7E8493]"
+						} "tracking-[-0.24px] text-[12px]"`}
+					>
+						{data.label === "Pending" ? "Scheduled" : data.label}
+					</h3>
+					<div className='bg-[#F2F2F2] py-[2px] px-[6px] flex items-center rounded-[24px] justify-center '>
+						<h3 className='text-[10px] sodo700 tracking-[-0.2px] '>
+							{data.number}
+						</h3>
+					</div>
+				</div>
+			))}
+		</div>
+	);
+};
+
 export default function StickyHeadTable() {
+	const [data, setData] = React.useState([]);
+	const [selected, setSelected] = React.useState("All");
+	const [length, setLength] = React.useState([]);
 	const columns = [
-		{ id: "name", label: "Name", minWidth: 170 },
-		{ id: "code", label: "ISO\u00a0Code", minWidth: 100 },
+		{ id: "Name", label: "Name", minWidth: 200 },
+
 		{
-			id: "population",
-			label: "Population",
-			minWidth: 170,
-			align: "right",
-			format: (value) => value.toLocaleString("en-US"),
+			id: "Status",
+			label: "Status",
+			minWidth: 150,
+			align: "left",
+		},
+
+		{
+			id: "Open",
+			label: "Open",
+			minWidth: 150,
+			align: "left",
+		},
+
+		{
+			id: "Clicks",
+			label: "Clicks",
+			minWidth: 150,
+			align: "left",
 		},
 		{
-			id: "size",
-			label: "Size\u00a0(km\u00b2)",
-			minWidth: 170,
-			align: "right",
-			format: (value) => value.toLocaleString("en-US"),
-		},
-		{
-			id: "density",
-			label: "Density",
-			minWidth: 170,
-			align: "right",
-			format: (value) => value.toFixed(2),
+			id: "DeliveryDate",
+			label: "Delivery\u00a0 Date",
+			minWidth: 100,
+			align: "left",
 		},
 	];
 
-	function createData(name, code, population, size) {
-		const density = population / size;
-		return { name, code, population, size, density };
+	function createData(Name, Status, Open, Clicks, DeliveryDate) {
+		return { Name, Status, Open, Clicks, DeliveryDate };
 	}
 
-	const rows = [
-		createData("India", "IN", 1324171354, 3287263),
-		createData("China", "CN", 1403500365, 9596961),
-		createData("Italy", "IT", 60483973, 301340),
-		createData("United States", "US", 327167434, 9833520),
-		createData("Canada", "CA", 37602103, 9984670),
-		createData("Australia", "AU", 25475400, 7692024),
-		createData("Germany", "DE", 83019200, 357578),
-		createData("Ireland", "IE", 4857000, 70273),
-		createData("Mexico", "MX", 126577691, 1972550),
-		createData("Japan", "JP", 126317000, 377973),
-		createData("France", "FR", 67022000, 640679),
-		createData("United Kingdom", "GB", 67545757, 242495),
-		createData("Russia", "RU", 146793744, 17098246),
-		createData("Nigeria", "NG", 200962417, 923768),
-		createData("Brazil", "BR", 210147125, 8515767),
-		createData("India", "IN", 1324171354, 3287263),
-		createData("China", "CN", 1403500365, 9596961),
-		createData("Italy", "IT", 60483973, 301340),
-		createData("United States", "US", 327167434, 9833520),
-		createData("Canada", "CA", 37602103, 9984670),
-		createData("Australia", "AU", 25475400, 7692024),
-		createData("Germany", "DE", 83019200, 357578),
-		createData("Ireland", "IE", 4857000, 70273),
-		createData("Mexico", "MX", 126577691, 1972550),
-		createData("Japan", "JP", 126317000, 377973),
-		createData("France", "FR", 67022000, 640679),
-		createData("United Kingdom", "GB", 67545757, 242495),
-		createData("Russia", "RU", 146793744, 17098246),
-		createData("Nigeria", "NG", 200962417, 923768),
-		createData("Brazil", "BR", 210147125, 8515767),
-	];
+	const rows = [];
 
-	return <TableComponent column={columns} row={rows} />;
+	console.log(data);
+
+	data?.forEach((data) => {
+		rows.push(
+			createData(
+				data.name,
+				data.Status,
+				data.Opens,
+				data.Clicks,
+				data.DeliveryDate,
+			),
+		);
+	});
+
+	React.useEffect(() => {
+		const dat = sendCampaignData(0, 10, "All");
+		setData(dat.data);
+		setLength(dat.length);
+	}, []);
+
+	if (rows.length !== 0) {
+		return (
+			<TableComponent
+				setData={setData}
+				lab={
+					<Lab
+						setData={setData}
+						setSelected={setSelected}
+						selected={selected}
+						setLength={setLength}
+						length={length}
+					/>
+				}
+				column={columns}
+				row={rows}
+				length={length}
+				tab={selected}
+			/>
+		);
+	}
 }

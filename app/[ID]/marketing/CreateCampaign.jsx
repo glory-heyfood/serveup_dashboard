@@ -142,7 +142,7 @@ const CreateCampaign = ({handleClick}) => {
 						<div className='w-[50%]'>
 							<LabelSelect
                             width="w-[40%]"
-								label='Use data joined'
+								label='Date'
 								selectedValue=''
 								defaultValue='Select date'
 								option={[""]}
@@ -151,9 +151,9 @@ const CreateCampaign = ({handleClick}) => {
 						<div className='w-[50%]'>
 							<LabelSelect
                             width="w-[40%]"
-								label='Use last order date'
+								label='Time'
 								selectedValue=''
-								defaultValue='Select date'
+								defaultValue='Select time'
 								option={[""]}
 							/>
 						</div>
