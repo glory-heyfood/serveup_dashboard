@@ -12,7 +12,7 @@ import CustomSelect from "../CustomSelect";
 import TableSelect from "./TableSelect";
 import { sendCampaignData } from "@/data";
 
-export default function TableComponent({ lab, column, row, setData, tab, length }) {
+export default function TableComponent({ TableTab, column, row, setData, tab, length }) {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);	
 	const [jumpToPage, setJumpToPage] = React.useState("");
@@ -43,7 +43,7 @@ export default function TableComponent({ lab, column, row, setData, tab, length 
 	return (
 		<Paper sx={{ width: "100%", overflow: "hidden" }}>
 			<div className='flex items-start justify-between border border-transparent border-b-[#E6E6E6] w-full'>
-				{lab}
+				{TableTab}
 				<div className='flex items-center  space-x-[12px]'>
 					<h3 className='tracking-[-0.24px] '>Showing&nbsp;</h3>
 					<CustomSelect

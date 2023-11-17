@@ -544,7 +544,7 @@ export const checkBoxIcon = (
 	</svg>
 );
 
-export const clockStoreIcon = (
+export const clockBlueIcon = (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width='16'
@@ -623,4 +623,8 @@ export const mailIcon = <svg xmlns="http://www.w3.org/2000/svg" width="40" heigh
 
 export const backArrowIcon = <svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10" fill="none">
 <path d="M11.6667 5H1M1 5L5 1M1 5L5 9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+export const dateIconBlue = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+<path d="M2 6.66667H14M4.66667 2V3.33333M11.3333 2V3.33333M4.13333 14H11.8667C12.6134 14 12.9868 14 13.272 13.8547C13.5229 13.7269 13.7269 13.5229 13.8547 13.272C14 12.9868 14 12.6134 14 11.8667V5.46667C14 4.71993 14 4.34656 13.8547 4.06135C13.7269 3.81046 13.5229 3.60649 13.272 3.47866C12.9868 3.33333 12.6134 3.33333 11.8667 3.33333H4.13333C3.3866 3.33333 3.01323 3.33333 2.72801 3.47866C2.47713 3.60649 2.27315 3.81046 2.14533 4.06135C2 4.34656 2 4.71993 2 5.46667V11.8667C2 12.6134 2 12.9868 2.14533 13.272C2.27315 13.5229 2.47713 13.7269 2.72801 13.8547C3.01323 14 3.38659 14 4.13333 14Z" stroke="#072A85" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

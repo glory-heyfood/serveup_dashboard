@@ -1,13 +1,18 @@
 import { sidebarData } from "@/data";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SidebarItem from "./SidebarItem";
-import { menuGrid } from "@/SVGs";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleGridSidebar } from "@/redux/features/gridSidebarSlice";
 
-const GridSideBar = ({ btn, sideBarShow }) => {
-    const gridSidebar = useSelector((state) => state.gridSidebar.showGridSidebar)
-    const dispatch = useDispatch()
+import { useSelector } from "react-redux";
+
+const GridSideBar = ({ btn, sideBarShow, GridComponent }) => {
+    const [gridSidebar, setGridSidebar] = useState(false)
+	const grid = useSelector((state) => state.gridSidebar.showGridSidebar);
+    console.log(grid)
+
+    useEffect(()=>{
+        setGridSidebar(!gridSidebar)
+    }, [grid])
+	
 	return (
 		<div
 			className={`bg-white md:bg-transparent  animate05s md:translate-x-0  h-screen  md:block hidden top-0 left-0 z-50 md:z-0  md:static w-full md:w-[350px]     ${
@@ -18,33 +23,13 @@ const GridSideBar = ({ btn, sideBarShow }) => {
 				padding: "80px 21px 0px 0",
 			}}
 		>
-
-			{gridSidebar ? (
-				<>
-					{" "}
-					<div className='bg-[#F0F0F0] w-fit rounded-[4px] p-[8px] ml-[24px] cursor-pointer'
-                    onClick={()=>{
-                        dispatch(toggleGridSidebar(false))                        
-                    }}
-                    >
-						{menuGrid}
-					</div>
-					<div className='pr-[14px] mt-[20px] '>
-						<div className='bg-[#F2F4F9] pl-[24px] py-[16px] '>
-							<h2 className='text-[#072A85] sodo600 tracking-[-0.28px] text-[14px] '>
-								Email campaign
-							</h2>
-						</div>
-
-						<div className='bg-[#fff] pl-[24px] py-[19px] '>
-							<h2 className='text-[#000] sodo600 tracking-[-0.28px] text-[14px] '>SMS campaign</h2>
-						</div>
-					</div>
-				</>
+			{grid ? (
+				// I had to use an array for some reason the components display using arrays instead
+				[GridComponent]
 			) : (
 				<div className=' grid grid-cols-4 md:grid-cols-3 gap-x-[32px] md:gap-x-[1.5em] gap-y-[50px] md:gap-y-[1.5em] ml-[20.2px]'>
 					{sidebarData.map((data, i) => (
-						<SidebarItem							
+						<SidebarItem
 							href={data.href}
 							icon={data.icon}
 							text={data.text}

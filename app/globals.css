@@ -132,31 +132,31 @@ h3 {
 }
 
 .MuiTableCell-root{
-    border-bottom: 0.5px solid #F0F0F0;  
-    color: black;  
-    font-size: 12px;
-    font-family: SodoSans-SemiBold;
-    letter-spacing: -0.24px;
-    padding: 12px 0px;
+    border-bottom: 0.5px solid #F0F0F0 !important ;  
+    color: black !important;  
+    font-size: 12px !important;
+    font-family: SodoSans-SemiBold !important;
+    letter-spacing: -0.24px !important;
+    padding: 12px 0px !important;
 }
 
 .MuiTableCell-stickyHeader{
-    border-bottom: 0.5px solid #F0F0F0;  
-    color: black;  
-    font-size: 12px;
-    font-family: SodoSans-Bold;
-    letter-spacing: -0.24px;
-    padding: 12px 0px;
+    border-bottom: 0.5px solid #F0F0F0 !important ;  
+    color: black !important;  
+    font-size: 12px !important;
+    font-family: SodoSans-Bold !important;
+    letter-spacing: -0.24px !important;
+    padding: 12px 0px !important;
 }
 
 /* Styling the date popup picker */
-.MuiPickersToolbar-root{
+.MuiPickersToolbar-root, .MuiPickersToolbarText-root{
     background-color:#072A85 !important;   
     color:white !important;
     text-align: center !important;
     font-family: SodoSans-SemiBold !important; 
 }
-.MuiTypographyOverline  {
+.MuiTypographyOverline , .MuiTypography-overline  {
     color:white !important;
     text-align: center !important;
     font-family: SodoSans-SemiBold !important;

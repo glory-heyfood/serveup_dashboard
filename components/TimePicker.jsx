@@ -1,15 +1,20 @@
 import React from "react";
 import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
 import dayjs from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const Clock = ({handleTimeChange}) => {
+const TimePicker = ({handleTimeChange, color}) => {
 	return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
 		<div>
 			<MobileTimePicker          
             onAccept={(e)=>{
-                // handleTimeChange(e)
+                const time = e.$H > 12 ? `${e.$H - 12}:${e.$m} PM ` : `${e.$H}:${e.$m} AM `
                 console.log("accepted");
                 console.log(e.$H, e)
+                console.log(time)
+                handleTimeChange(time)
 
             }}
 				sx={{
@@ -31,13 +36,14 @@ const Clock = ({handleTimeChange}) => {
 						fontSize: "0.81em",
 						fontFamily: "SodoSans-SemiBold",
 						letterSpacing: "-0.52px",
-						color: "#072A85",
+						color: color ? color : "#072A85",
 					},
 				}}
 				defaultValue={dayjs("2022-04-17T15:30")}
 			/>
 		</div>
+        </LocalizationProvider>
 	);
 };
 
-export default Clock;
+export default TimePicker;

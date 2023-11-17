@@ -142,7 +142,7 @@ export const sidebarData = [
 	{
 		icon: marketingIcon,
 		text: "Marketing",
-		href: "/id/marketing",
+		href: "/id/marketing#/email",
 	},
 	{
 		icon: rewardIcon,

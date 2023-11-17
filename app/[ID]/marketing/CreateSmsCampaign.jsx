@@ -11,13 +11,10 @@ import LabelInput from "@/components/label/LabelInput";
 import DatePicker from "@/components/DatePicker";
 import TimePicker from "@/components/TimePicker";
 
-const CreateCampaign = ({ handleClick }) => {
-	const [nameContent, setNameContent] = useState(null);
-	const [emailContent, setEmailContent] = useState(null);
-	const [fromContent, setFromContent] = useState(null);
-    const [scheduleContent, setScheduleContent] = useState('')
-	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
+const CreateSmsCampaign = ({ handleClick }) => {
+	const [scheduleContent, setScheduleContent] = useState("");
+	const [date, setDate] = useState("");
+	const [time, setTime] = useState("");
 	const [formData, setFormData] = useState({
 		name: null,
 		email: null,
@@ -38,17 +35,17 @@ const CreateCampaign = ({ handleClick }) => {
 		}));
 	};
 
-    const handleDateChange = (value) =>{
-        setDate(value)
-    }
+	const handleDateChange = (value) => {
+		setDate(value);
+	};
 
-    const handleTimeChange = (value) =>{
-        setTime(value)
-    }
+	const handleTimeChange = (value) => {
+		setTime(value);
+	};
 
-    useEffect(()=>{
-        setScheduleContent(`${date} . ${time}`)
-    }, [date, time])
+	useEffect(() => {
+		setScheduleContent(`${date} . ${time}`);
+	}, [date, time]);
 
 	return (
 		<div className='pb-[120px]'>
@@ -76,48 +73,9 @@ const CreateCampaign = ({ handleClick }) => {
 				/>
 			</CampaignItems>
 
-			<CampaignItems
-				header='Email Subject'
-				subHeader='What is the subject of this campaign?'
-				linkText='Add email subject '
-				content={formData.email}
-				insert={true}
-			>
-				<CampaignItemInput
-					placeholder='Email Subject'
-					name='email'
-					handleChange={handleChange}
-				/>
-			</CampaignItems>
+			
 
-			<CampaignItems
-				header='From'
-				subHeader='Who is sending this campaign?'
-				linkText='Add sender'
-				content={formData.from}
-			>
-				<div className='flex w-full space-x-[20px]'>
-					<div className='w-[50%]'>
-						<LabelSearchInput
-							label='Name'
-							handleChange={handleChange}
-							placeholder='Name'
-							name='from'
-							fullWidth
-						/>
-					</div>
-					<div className='w-[50%]'>
-						<LabelSearchInput
-							width='w-[40%]'
-							label='Email Address'
-							placeholder='Email address'
-							name='fromEmail'
-							fullWidth
-							handleChange={handleChange}
-						/>
-					</div>
-				</div>
-			</CampaignItems>
+			
 
 			<CampaignItems
 				header='Recipients'
@@ -215,4 +173,4 @@ const CreateCampaign = ({ handleClick }) => {
 	);
 };
 
-export default CreateCampaign;
+export default CreateSmsCampaign;

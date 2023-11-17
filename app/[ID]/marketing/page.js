@@ -1,43 +1,50 @@
 "use client";
-import { mailIcon } from "@/SVGs";
-import BreadCrumb from "@/components/BreadCrumb";
-import EmptyState from "@/components/EmptyState";
-import MarketingLayout from "@/components/MarketingLayout";
-import React, { useState } from "react";
-import CreateCampaign from "./CreateCampaign";
-import Campaign from "./Campaign";
+import { useEffect, useState } from "react";
+import SMSPage from "./SMSPage";
+import EmailPage from "./EmailPage";
+let WINDOW;
+
+if (typeof window !== "undefined") {
+	WINDOW = window;
+}
 
 const Page = () => {
-	const [showCampaign, setShowCampaign] = useState(false);
-	const [show, setShow] = useState(false);
-	return (
-		<MarketingLayout>
-			{showCampaign ? (
-				<CreateCampaign handleClick={() => setShowCampaign(false)} />
-			) : (
-				<div className='w-full'>
-					<div className={` ${show ? "mb-[32px]" : "mb-[20px]"}`}>
-						<BreadCrumb main='Marketing' link='Email Campaign' />
-					</div>
-					{show ? (
-						<EmptyState
-							icon={mailIcon}
-							btnText='Create new campaign'
-							header='No Email Campaign'
-							handleClick={() => setShowCampaign(true)}
-							text='You have not created any campaigns'
-						/>
-					) : (
-						<Campaign handleClick={() => setShowCampaign(true)} />
-					)}
-				</div>
-			)}
+	const [subRoute, setSubRoute] = useState(WINDOW?.location.hash.substr(1));
+	const [Show, setShow] = useState(false);
 
-			<h1 className='text-[12px] cursor-pointer' onClick={() => setShow(!show)}>
-				Change Tabs
-			</h1>
-		</MarketingLayout>
-	);
+	const handleHashChange = () => {
+		const newSubRoute = WINDOW?.location.hash.substr(1);		
+		setSubRoute(newSubRoute);		
+	};
+
+	useEffect(() => {		
+		window.addEventListener("hashchange", handleHashChange);
+		window.addEventListener("reload", handleHashChange);
+
+
+		return () => {
+			window.removeEventListener("hashchange", handleHashChange);
+		};
+	}, []);
+
+	const renderContent = () => {
+		console.log(subRoute);
+		console.log("Calls  ");
+		switch (subRoute) {
+			case "/sms":
+				return <SMSPage />;
+			case "/email":
+				return <EmailPage />;
+		}
+	};
+
+    useEffect(()=>{
+        setSubRoute(WINDOW?.location.hash.substr(1))
+        setShow(true)
+    }, [])
+
+    // If u reload  it throws hydration error so i am using show to make sure it calls the render function after initial render and this avoided the error on reload
+	return <div>{Show && renderContent()}</div>;
 };
 
 export default Page;

@@ -6,13 +6,20 @@ const Icon = () => {
 	return <span className='ml-[8px]'>{dropDownBlueIcon}</span>;
 };
 
-const CampaignItemSelect = ({ option, defaultValue }) => {
+const CampaignItemSelect = ({
+	option,
+	defaultValue,
+	name,
+	handleChange,
+	selectedValue,
+}) => {
 	return (
 		<Select
 			displayEmpty
 			IconComponent={() => <Icon />}
 			inputProps={{ "aria-label": "Without label" }}
-			value=""
+			value={selectedValue}
+			name={name}
 			onChange={(e) => {
 				handleChange(e);
 			}}
@@ -31,7 +38,7 @@ const CampaignItemSelect = ({ option, defaultValue }) => {
 				backgroundColor: "#fff",
 				border: "1px solid #E6E6E6",
 				outline: "none",
-                padding:"15px 26px 16px 16px",
+				padding: "15px 26px 16px 16px",
 				"&:focus": {
 					// border: "none",
 				},
@@ -54,13 +61,15 @@ const CampaignItemSelect = ({ option, defaultValue }) => {
 					},
 			}}
 		>
-			<MenuItem
-				className='text-black tracking-[-0.26px] sudoBold font-[400] text-[0.9em]'
-				value=''
-				disabled
-			>
-				{defaultValue}
-			</MenuItem>
+			{defaultValue && (
+				<MenuItem
+					className='text-black tracking-[-0.26px] sudoBold font-[400] text-[0.9em]'
+					value=''
+					disabled
+				>
+					{defaultValue}
+				</MenuItem>
+			)}
 			{option.map((option, i) => (
 				<MenuItem
 					key={i}

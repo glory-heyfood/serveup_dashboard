@@ -1,13 +1,14 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 
-const CampaignItemInput = ({placeholder, handleChange}) => {
+const CampaignItemInput = ({placeholder, handleChange, name}) => {
   return (
     <div>
         <TextField
 					type ='text'
                     fullWidth
                     placeholder={placeholder}
+                    name={name}
                     onChange={(e)=>handleChange(e)}
 					sx={{
 						color: "#A9ADB5",

@@ -1,7 +1,7 @@
 import React from "react";
 import LabelInput from "./LabelInput";
 
-const LabelSearchInput = ({ placeholder, label, handleChange, ...props }) => {
+const LabelSearchInput = ({ placeholder, label, handleChange,name, ...props }) => {
 	return (
 		<LabelInput
             {...props}
@@ -13,6 +13,7 @@ const LabelSearchInput = ({ placeholder, label, handleChange, ...props }) => {
 			<input
 				type='text'
 				placeholder={placeholder}
+                name={name}
 				className='w-full placeholder:text-[#A9ADB5] placeholder:text-[13px] border-none outline-none sodo300 tracking-[-0.52px] bg-transparent p-0 text-[13px] text-[#000]'
 				onChange={(e) => handleChange(e)}
 			/>

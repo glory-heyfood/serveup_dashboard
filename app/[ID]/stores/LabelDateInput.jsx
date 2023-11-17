@@ -1,4 +1,4 @@
-import { checkBoxIcon, clockStoreIcon } from "@/SVGs";
+import { checkBoxIcon, clockBlueIcon } from "@/SVGs";
 import LabelInput from "@/components/label/LabelInput";
 import React from "react";
 
@@ -38,7 +38,7 @@ const LabelDateInput = ({ label, time }) => {
 						</h2>
 						<div className='flex items-center space-x-[0.25em]'>
 							{" "}
-							<span> {clockStoreIcon} </span>{" "}
+							<span> {clockBlueIcon} </span>{" "}
 							<h2 className='text-[0.81em] sodo600 tracking-[-0.52px] text-[#072A85]'>
 								{time}
 							</h2>{" "}
@@ -51,7 +51,7 @@ const LabelDateInput = ({ label, time }) => {
 						</h2>
 						<div className='flex items-center space-x-[0.25em]'>
 							{" "}
-							<span> {clockStoreIcon} </span>{" "}
+							<span> {clockBlueIcon} </span>{" "}
 							<h2 className='text-[0.81em] sodo600 tracking-[-0.52px] text-[#072A85]'>
 								{time}
 							</h2>{" "}
