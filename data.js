@@ -364,43 +364,79 @@ export const campaignData = [
 
 export const sendCampaignData = (page, noOfRows, tab) => {
 	if (tab === "All") {
-		return {data:campaignData.slice(page * noOfRows, page * noOfRows + noOfRows), length:campaignData.length}
+		return {
+			data: campaignData.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: campaignData.length,
+		};
 	}
 
-    if(tab === "Sent") {
-        const newArr = []
-        campaignData.map((data)=> {
-            if(data.Status === "Sent"){
-                newArr.push(data)
-            }
-        })
+	if (tab === "Sent") {
+		const newArr = [];
+		campaignData.map((data) => {
+			if (data.Status === "Sent") {
+				newArr.push(data);
+			}
+		});
 
-        return {data:newArr.slice(page * noOfRows, page * noOfRows + noOfRows), length:newArr.length}
-    }
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+	}
 
-    if(tab === "Draft") {
-        const newArr = []
-        campaignData.map((data)=> {
-            if(data.Status === "Draft"){
-                newArr.push(data)
-            }
-        })
+	if (tab === "Draft") {
+		const newArr = [];
+		campaignData.map((data) => {
+			if (data.Status === "Draft") {
+				newArr.push(data);
+			}
+		});
 
-        return {data:newArr.slice(page * noOfRows, page * noOfRows + noOfRows), length:newArr.length}
-    }
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+	}
 
-    if(tab === "Pending") {
-        const newArr = []
-        campaignData.map((data)=> {
-            if(data.Status === "Pending"){
-                newArr.push(data)
-            }
-        })
+	if (tab === "Pending") {
+		const newArr = [];
+		campaignData.map((data) => {
+			if (data.Status === "Pending") {
+				newArr.push(data);
+			}
+		});
 
-        return {data:newArr.slice(page * noOfRows, page * noOfRows + noOfRows), length:newArr.length}
-    }
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+	}
 };
 
 export const getCampaignDataLength = () => {
-    return campaignData.length
-}
+	return campaignData.length;
+};
+
+export const AddStoreLabeDateInputData = [
+	{
+		label: "Monday",
+	},
+	{
+		label: "Tuesday",
+	},
+	{
+		label: "Wednesday",
+	},
+	{
+		label: "Thursday",
+	},
+	{
+		label: "Friday",
+	},
+	{
+		label: "Saturday",
+	},
+	{
+		label: "Sunday",
+	},
+];

@@ -7,20 +7,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import isEmail from "validator/lib/isEmail";
+import isStrongPassword from "validator/lib/isStrongPassword"
 
 const Home = () => {
 	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [ismail, setIsmail] = useState(true);
+	const [password, setPassword] = useState("");   
+    const [isPassword, setIsPassword]  = useState(true)
 	const [number, setNumber] = useState("");
 	const [disabled, setDisabled] = useState(true);
 	const [check, setCheck] = useState(false);
 	const router = useRouter();
+
 	const handleClick = () => {
 		router.push("/signup/verify-email");
 	};
 
 	useEffect(() => {
-		if (email === "" || number === "" || password === "" || check === false) {
+		if (
+			email.trim() === "" ||
+			number.trim() === "" ||
+			password === "" ||
+			check === false
+		) {
 			setDisabled(true);
 		} else {
 			setDisabled(false);
@@ -46,7 +56,9 @@ const Home = () => {
 
 				<div className='flex flex-col space-y-[1.5em] w-full'>
 					<div className='flex flex-col space-y-[1em]'>
-                    <h1 className="sodo600 tracking-[-0.96px]">Let’s create your account</h1>
+						<h1 className='sodo600 tracking-[-0.96px]'>
+							Let’s create your account
+						</h1>
 						<h4 className='tracking-[-0.28px] text-[0.875em] sodo400 '>
 							Already have a Serveup account?
 							<Link href='/' className='text-[#072A85] sodo600'>
@@ -60,7 +72,15 @@ const Home = () => {
 						<Input
 							text='Enter your email'
 							type='email'
-							onChange={(e) => setEmail(e.target.value)}
+							err={
+								ismail === false && email.trim() !== ""
+									? "Please input a valid email address"
+									: ""
+							}
+							onChange={(e) => {
+								setEmail(e.target.value);
+								setIsmail(isEmail(e.target.value));                                
+							}}
 						/>
 						<Input
 							text='Enter your phone number'
@@ -69,7 +89,12 @@ const Home = () => {
 						<Input
 							text='Create your password'
 							type='password'
-							onChange={(e) => setPassword(e.target.value)}
+                            err = {(!isPassword && password.trim() !== "" ) && "Password must have at least 8 characters,at least one uppercase, at least one lowercase and at least one special symbol" }
+							onChange={(e) => {
+                                setPassword(e.target.value)
+                                console.log(isStrongPassword(e.target.value))
+                                setIsPassword(isStrongPassword(e.target.value))
+                            }}
 						/>
 					</div>
 

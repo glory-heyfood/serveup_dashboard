@@ -15,15 +15,15 @@ const CampaignItems = ({
 	const [show, setShow] = useState(false);
 	const [check, setCheck] = useState(false);
 	return (
-		<div className={`pt-[22px] pr-[34px] ${show ? "w-[80%]" : "w-full"}`}>
+		<div className={`pt-[22px] lg:pr-[34px] ${show ? "w-full lg:w-[80%]" : "w-full"}`}>
 			<div
-				className='flex justify-between items-center z-20 relative mb-[16px] pb-[22px]'
+				className='flex flex-col sm:flex-row space-y-[6px] sm:space-y-0 justify-between sm:items-center z-20 relative mb-[16px] md:pb-[22px]'
 				style={{
 					boxShadow: show ? "0px" : " 0px 0.5px 0px 0px #F0F0F0",
 				}}
 			>
 				<div
-					className={`flex space-x-[16px] ${show ? "w-[50%]" : "w-[160px]"} `}
+					className={`flex space-x-[16px] ${show ? "w-full sm:w-[50%]" : "w-[160px]"} `}
 					onClick={() => setCheck(false)}
 				>
 					<RadioCheck isChecked={check} />
@@ -39,7 +39,7 @@ const CampaignItems = ({
 					</div>
 				</div>
 
-				<div className='w-[50%] flex-grow'>
+				<div className='sm:w-[50%]  ml-[36px] sm:ml-0 flex-grow'>
 					<h3 className='text-[#5F6370] text-[12px] tracking-[-0.24px] sodo400 text-left '>
 						{check && content}
 					</h3>
@@ -50,11 +50,11 @@ const CampaignItems = ({
 						className={`text-[#072A85] sodo700 text-[12px] tracking-[-0.24px] cursor-pointer 		
 						 `}
 					>
-						{insert && <Insert defaultValue='Insert' selectedValue="" option={[""]} />}
+						{insert && insert}
 					</div>
 				) : (
 					<div
-						className={`text-[#072A85] sodo700 text-[12px] tracking-[-0.24px] cursor-pointer 
+						className={` ml-[36px] sm:ml-0 text-[#072A85] sodo700 text-[12px] tracking-[-0.24px] cursor-pointer 
 						} `}
 						onClick={() => {
 							setShow(true);

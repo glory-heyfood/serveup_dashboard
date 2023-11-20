@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleGridSidebar } from "@/redux/features/gridSidebarSlice";
+import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 
 const GridComponent = () => {
 	const dispatch = useDispatch();
@@ -21,16 +22,12 @@ const GridComponent = () => {
 	return (
 		<div>
 			{" "}
-			<div
-				className='bg-[#F0F0F0] w-fit rounded-[4px] p-[8px] ml-[24px] cursor-pointer'
-				onClick={() => {
-					dispatch(toggleGridSidebar(false));
-				}}
-			>
-				{menuGrid}
-			</div>
+			
 			<div className='pr-[14px] mt-[20px] '>
-				<a
+				<a  
+                onClick={()=>{
+                    dispatch(toggleSidebar(true))
+                }}
 					href='#/email'
 					className={`${
 						shaded ? "bg-[#F2F4F9]" : "bg-white"
@@ -45,7 +42,10 @@ const GridComponent = () => {
 					</h2>
 				</a>
 
-				<a
+				<a  
+                onClick={()=>{
+                    dispatch(toggleSidebar(true))
+                }}
 					href='#/sms'
 					className={`${
 						!shaded ? "bg-[#F2F4F9]" : "bg-white"

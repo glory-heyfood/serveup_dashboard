@@ -2,13 +2,32 @@
 import AuthBtn from "@/components/Auth/AuthBtn";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
+	const [formData, setFormData] = useState({
+		input1: "",
+		input2: "",
+		input3: "",
+		input4: "",
+		input5: "",
+		input6: "",
+	});
+	const [disabled, setDisabled] = useState(true);
 	const router = useRouter();
+
 	const handleClick = () => {
 		router.push("/signup/business-info");
 	};
+
+    const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[name]: value,
+		}));
+	};
+
 
 	useEffect(() => {
 		const handlePaste = (event) => {
@@ -16,7 +35,11 @@ const Page = () => {
 
 			for (let i = 0; i < pastedValue.length && i < 6; i++) {
 				const inputIndex = i + 1;
-				document.getElementById(`input${inputIndex}`).value = pastedValue[i];
+				document.getElementById(`input${inputIndex}`).value = pastedValue[i];    
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    [`input${inputIndex}`]: pastedValue[i],
+                }));            
 			}
 
 			event.preventDefault();
@@ -28,6 +51,15 @@ const Page = () => {
 			window.removeEventListener("paste", handlePaste);
 		};
 	}, []);
+
+    useEffect(() => {
+		console.log(formData);
+		const isAnyInputEmpty = Object.values(formData).some(
+			(value) => value.trim() === "",
+		);
+		console.log(isAnyInputEmpty);
+		setDisabled(isAnyInputEmpty);
+	}, [formData]);
 
 	return (
 		<div className='flex'>
@@ -62,10 +94,13 @@ const Page = () => {
 							<div key={index}>
 								<input
 									type='text'
+									name={`input${index}`}
+									onChange={(e) => {
+										handleChange(e);
+									}}
 									id={`input${index}`}
 									maxLength='1'
 									className=' h-[2em] lg:h-[56px] w-[2em] lg:w-[56px]  outline-none px-[0.5em] text-center text-[1.5em] rounded-[4px] border border-[#E6E6E6]'
-									// onInput={(event) => handleInput(event.target, event)}
 								/>
 							</div>
 						))}
@@ -86,7 +121,7 @@ const Page = () => {
 							text='Continue'
 							padding='1.2em 2em'
 							handleClick={handleClick}
-							// disabled={disabled}
+							disabled={disabled}
 						/>
 					</div>
 				</div>

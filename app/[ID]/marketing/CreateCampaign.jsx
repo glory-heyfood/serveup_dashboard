@@ -1,28 +1,29 @@
 "use client";
-import { backArrowIcon, clockBlueIcon, dateIconBlue } from "@/SVGs";
+import { XIcon, backArrowIcon, clockBlueIcon, dateIconBlue } from "@/SVGs";
 import React, { useEffect, useState } from "react";
 import CampaignItems from "./CampaignItems";
 import CampaignItemInput from "./CampaignItemInput";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
 import LabelSelect from "@/components/label/LabelSelect";
 import CampaignItemSelect from "./CampaignItemSelect";
-
 import LabelInput from "@/components/label/LabelInput";
 import DatePicker from "@/components/DatePicker";
 import TimePicker from "@/components/TimePicker";
+import Insert from "./Insert";
 
 const CreateCampaign = ({ handleClick }) => {
-	const [nameContent, setNameContent] = useState(null);
-	const [emailContent, setEmailContent] = useState(null);
-	const [fromContent, setFromContent] = useState(null);
-    const [scheduleContent, setScheduleContent] = useState('')
-	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
+	const [scheduleContent, setScheduleContent] = useState("");
+	const [fromContent, setFromContent] = useState("");
+	const [emailValue, setEmailValue] = useState("");
+	const [selectedOption, setSelectedOption] = useState("");
+	const [date, setDate] = useState("");
+	const [time, setTime] = useState("");
 	const [formData, setFormData] = useState({
-		name: null,
-		email: null,
-		from: null,
-		fromEmail: null,
+		name: "",
+		email: "",
+		from: "",
+		fromEmail: "",
+        locationSelect:"",
 		scheduleSelect: "Now",
 		sheduleContent: {
 			date: "",
@@ -38,17 +39,35 @@ const CreateCampaign = ({ handleClick }) => {
 		}));
 	};
 
-    const handleDateChange = (value) =>{
-        setDate(value)
-    }
+	const handleDateChange = (value) => {
+		setDate(value);
+	};
 
-    const handleTimeChange = (value) =>{
-        setTime(value)
-    }
+	const handleTimeChange = (value) => {
+		setTime(value);
+	};
 
-    useEffect(()=>{
-        setScheduleContent(`${date} . ${time}`)
-    }, [date, time])
+	const handleEmailChange = (e) => {
+		setEmailValue(e.target.value);
+	};
+
+	const handleEmailSelectChange = (e) => {        
+		const selectedValue = e.target.value
+        setSelectedOption(selectedValue);
+        setEmailValue((prevInputValue) => `${prevInputValue} ${selectedValue}`);
+	};
+
+	useEffect(() => {
+		setScheduleContent(`${date} . ${time}`);
+	}, [date, time]);
+
+	useEffect(() => {
+		if (formData.from.trim() !== "" && formData.fromEmail.trim() !== "") {
+			setFromContent(formData.from);
+		} else {
+			setFromContent("");
+		}
+	}, [formData]);
 
 	return (
 		<div className='pb-[120px]'>
@@ -56,7 +75,7 @@ const CreateCampaign = ({ handleClick }) => {
 				className='bg-[#F0F0F0]  rounded-[4px] mb-[24px] flex items-center justify-center h-[32px] w-[32px] cursor-pointer '
 				onClick={handleClick}
 			>
-				{backArrowIcon}
+				{XIcon}
 			</div>
 
 			<h1 className='text-[16px] sodo700 tracking-[-0.64px] mb-[24px] '>
@@ -80,13 +99,24 @@ const CreateCampaign = ({ handleClick }) => {
 				header='Email Subject'
 				subHeader='What is the subject of this campaign?'
 				linkText='Add email subject '
-				content={formData.email}
-				insert={true}
+				content={emailValue}
+				insert={
+					<Insert
+						defaultValue='Insert'
+						selectedValue={selectedOption}
+						handleChange={handleEmailSelectChange}
+						options={[
+							{ label: "first name", value: "{{firstName}}" },
+							{ label: "last name", value: "{{lastName}}" },
+						]}
+					/>
+				}
 			>
 				<CampaignItemInput
 					placeholder='Email Subject'
 					name='email'
-					handleChange={handleChange}
+					value={emailValue}
+					handleChange={handleEmailChange}
 				/>
 			</CampaignItems>
 
@@ -94,10 +124,10 @@ const CreateCampaign = ({ handleClick }) => {
 				header='From'
 				subHeader='Who is sending this campaign?'
 				linkText='Add sender'
-				content={formData.from}
+				content={fromContent}
 			>
-				<div className='flex w-full space-x-[20px]'>
-					<div className='w-[50%]'>
+				<div className='flex flex-col sm:flex-row w-full sm:space-x-[20px] space-y-[12px] sm:space-y-0 '>
+					<div className='w-full sm:w-[50%]'>
 						<LabelSearchInput
 							label='Name'
 							handleChange={handleChange}
@@ -106,7 +136,7 @@ const CreateCampaign = ({ handleClick }) => {
 							fullWidth
 						/>
 					</div>
-					<div className='w-[50%]'>
+					<div className='w-full sm:w-[50%]'>
 						<LabelSearchInput
 							width='w-[40%]'
 							label='Email Address'
@@ -124,18 +154,20 @@ const CreateCampaign = ({ handleClick }) => {
 				subHeader='Who will this campaign  be sent to?'
 				linkText='Select recipients'
 			>
-				<div className='flex flex-col w-full space-y-[20px]'>
+				<div className='flex flex-col w-full space-y-[12px] sm:space-y-[20px]'>
 					<LabelSelect
 						label='Locations'
 						defaultValue='Select locations'
-						selectedValue=''
-						option={[""]}
+                        name="locationSelect"
+                        handleChange={handleChange}
+						selectedValue={formData.locationSelect}
+						option={[{text:"Location 1", value:"location1"}, {text:"Location 2", value:"location2"}]}
 					/>
 
-					<div className='flex space-x-[20px]'>
-						<div className='w-[50%]'>
+					<div className='flex flex-col sm:flex-row w-full sm:space-x-[20px] space-y-[12px] sm:space-y-0 '>
+						<div className='w-full sm:w-[50%]'>
 							<LabelSelect
-								width='w-[40%]'
+								width='w-[60%] xl:w-[40%]'
 								label='Use date joined'
 								defaultValue='Select date'
 								selectedValue=''
@@ -143,9 +175,9 @@ const CreateCampaign = ({ handleClick }) => {
 							/>
 						</div>
 
-						<div className='w-[50%]'>
+						<div className='w-full sm:w-[50%]'>
 							<LabelSelect
-								width='w-[40%]'
+								width='w-[60%] xl:w-[40%]'
 								label='Use last order date'
 								selectedValue=''
 								defaultValue='Select date'
@@ -160,7 +192,7 @@ const CreateCampaign = ({ handleClick }) => {
 				header='Schedule'
 				subHeader='When will this campaign be sent to customers?'
 				linkText='Set Schedule'
-                content={scheduleContent}
+				content={scheduleContent}
 			>
 				<div className='flex flex-col w-full space-y-[20px] '>
 					<div className='w-[20%] '>
@@ -182,27 +214,41 @@ const CreateCampaign = ({ handleClick }) => {
 					</div>
 
 					{formData.scheduleSelect === "Later" && (
-						<div className='flex space-x-[20px]'>
-							<div className='w-[50%]'>
+						<div className='flex flex-col sm:flex-row w-full sm:space-x-[20px] space-y-[12px] sm:space-y-0 '>
+							<div className='w-full sm:w-[50%]'>
 								<LabelInput
 									width='w-[40%]'
-									label='Date'
+									label={
+										<h1 className='text-black sodo700 tracking-[-0.52px] text-[0.81em] '>
+											Date
+										</h1>
+									}
 									padding='13px 0px 14px 16px'
 								>
 									<div className='flex items-center justify-between'>
-										<DatePicker handleDateChange={handleDateChange} color='black' />
+										<DatePicker
+											handleDateChange={handleDateChange}
+											color='black'
+										/>
 										<span className='mr-[22px]'> {dateIconBlue} </span>
 									</div>
 								</LabelInput>
 							</div>
-							<div className='w-[50%]'>
+							<div className='w-full sm:w-[50%]'>
 								<LabelInput
 									width='w-[40%]'
-									label='Date'
+									label={
+										<h1 className='text-black sodo700 tracking-[-0.52px] text-[0.81em] '>
+											Date
+										</h1>
+									}
 									padding='13px 0px 14px 16px'
 								>
 									<div className='flex items-center justify-between'>
-										<TimePicker handleTimeChange={handleTimeChange} color='black' />
+										<TimePicker
+											handleTimeChange={handleTimeChange}
+											color='black'
+										/>
 										<span className='mr-[22px]'> {clockBlueIcon} </span>
 									</div>
 								</LabelInput>

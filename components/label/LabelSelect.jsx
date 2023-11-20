@@ -22,11 +22,13 @@ const LabelSelect = ({
 	selectedValue,
 	defaultValue,
     width,
+    name,
 }) => {
 	return (
 		<LabelInput width={width} label={<Label label={label} />} padding='13px 0px 14px 16px'>
 			<Select
 				displayEmpty
+                name={name}
 				IconComponent={() => <Icon />}
 				inputProps={{ "aria-label": "Without label" }}
 				value={selectedValue}

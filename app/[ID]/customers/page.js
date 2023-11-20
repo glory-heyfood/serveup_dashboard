@@ -3,7 +3,7 @@ import CustomSearch from "@/components/CustomSearch";
 import CustomSelect from "@/components/CustomSelect";
 import DashLayout from "@/components/Dashboard/DashLayout";
 import { customerData, options } from "@/data";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomerItems from "./CustomerItems";
 import CustomerSideBar from "./CustomerSideBar";
 import EmptyState from "@/components/EmptyState";
@@ -25,6 +25,7 @@ const Page = () => {
 		setShow(true);
 		setSelectedItem(item);
 	};
+
 	return (
 		<DashLayout>
 			{empty ? (
@@ -46,10 +47,10 @@ const Page = () => {
 				</div>
 			) : (
                 // Using negative margin cause i didnt want to disrupt the entire layout
-				<div className='flex flex-col  ml-[-32px] mr-[-32px] '>
+				<div className='flex flex-col  lg:ml-[-32px] lg:mr-[-32px] '>
 					<div>
 						{/* Dont forget to change this when integration starts */}
-						<div className='flex space-x-4 items-start justify-between pl-[32px] pr-[32px]'>
+						<div className='flex space-x-4 items-start justify-between lg:pl-[32px] lg:pr-[32px]'>
 							<h1 className='dashHeader'>Customers</h1>
 
 							<Button
@@ -61,8 +62,9 @@ const Page = () => {
 							</Button>
 						</div>
 
-						<div className='flex space-x-[0.75em] w-[50%] pl-[32px]'>
-							<CustomSelect
+						<div className='flex flex-col md:flex-row space-y-[24px] md:space-y-0 md:space-x-[0.75em] lg:w-[70%] xl:w-[50%] lg:pl-[32px]'>
+							<div className="flex space-x-[0.75em]  ">
+                            <CustomSelect
 								options={options}
 								defaultValue='All Join dates'
 								selectedValue={selectedDate}
@@ -75,6 +77,7 @@ const Page = () => {
 								selectedValue={selectedDate}
 								handleChange={(e) => setSelectedDate(e.target.value)}
 							/>
+                            </div>
 
 							<CustomSearch
 								placeholder='Search name, phone,email...'
@@ -83,9 +86,9 @@ const Page = () => {
 							/>
 						</div>
 
-						<hr className='h-[0.5px] w-[94%] bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] ml-[32px] mr-[32px] ' />
+						<hr className='h-[0.5px] w-full lg:w-[94%] hidden md:block bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] lg:ml-[32px] lg:mr-[32px] ' />
 
-						<div className='w-full overflow-auto scroll-hidden h-[65vh] flex-grow'>
+						<div className='w-full  flex-grow mt-[1.25em]  md:mt-0'>
 							{customerData.map((data, i) => (
 								<CustomerItems
 									key={i}

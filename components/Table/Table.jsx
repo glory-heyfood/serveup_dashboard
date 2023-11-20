@@ -12,9 +12,16 @@ import CustomSelect from "../CustomSelect";
 import TableSelect from "./TableSelect";
 import { sendCampaignData } from "@/data";
 
-export default function TableComponent({ TableTab, column, row, setData, tab, length }) {
+export default function TableComponent({
+	TableTab,
+	column,
+	row,
+	setData,
+	tab,
+	length,
+}) {
 	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);	
+	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [jumpToPage, setJumpToPage] = React.useState("");
 
 	const columns = column;
@@ -34,17 +41,16 @@ export default function TableComponent({ TableTab, column, row, setData, tab, le
 		setPage(event.target.value - 1);
 	};
 
-
 	React.useEffect(() => {
 		const dat = sendCampaignData(page, rowsPerPage, tab);
-		setData(dat.data);		
+		setData(dat.data);
 	}, [page, rowsPerPage]);
 
 	return (
 		<Paper sx={{ width: "100%", overflow: "hidden" }}>
 			<div className='flex items-start justify-between border border-transparent border-b-[#E6E6E6] w-full'>
-				{TableTab}
-				<div className='flex items-center  space-x-[12px]'>
+				<div className="w-full sm:w-fit" >{TableTab}</div>
+				<div className='sm:flex items-center hidden   space-x-[12px]'>
 					<h3 className='tracking-[-0.24px] '>Showing&nbsp;</h3>
 					<CustomSelect
 						selectedValue={rowsPerPage}
@@ -56,13 +62,10 @@ export default function TableComponent({ TableTab, column, row, setData, tab, le
 							{ value: 100, label: 100 },
 						]}
 					/>
-					<h3 className='tracking-[-0.24px] '>&nbsp; per page</h3>
+					<h3 className='tracking-[-0.24px] w-full '>&nbsp; per page</h3>
 				</div>
 			</div>
-			<TableContainer
-				sx={{ maxHeight: 350, border: "none" }}
-				className='scroll-hidden'
-			>
+			<TableContainer sx={{ border: "none" }} className='scroll-hidden'>
 				<Table
 					sx={{
 						border: "none",
@@ -151,8 +154,8 @@ export default function TableComponent({ TableTab, column, row, setData, tab, le
 				</Table>
 			</TableContainer>
 
-			<div className='flex items-center justify-between mt-[24px] '>
-				<div className='flex items-center justify-center space-x-[4px]'>
+			<div className='flex flex-col space-y-[24px] sm:space-y-0 sm:flex-row sm:items-center justify-between mt-[24px] '>
+				<div className='flex items-center sm:justify-center space-x-[4px]'>
 					{Array.from(
 						{ length: Math.ceil(length / rowsPerPage) },
 						(_, index) => {

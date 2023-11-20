@@ -4,7 +4,7 @@ import React from "react";
 const CustomerItems = ({ data, handleClick, isSelected }) => {
 	return (
 		<div
-			className={`flex space-x-[0.85em] pt-[0.813em] pb-[0.813em] hover:bg-[#F0F3FC] pl-[32px]  animate03s cursor-pointer ${
+			className={`flex space-x-[0.85em] pt-[0.813em] pb-[0.813em] hover:bg-[#F0F3FC] lg:pl-[32px]  animate03s cursor-pointer ${
 				isSelected && "bg-[#F0F3FC]"
 			} `}
 			onClick={() => {

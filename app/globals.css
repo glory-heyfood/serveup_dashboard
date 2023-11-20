@@ -71,23 +71,21 @@ h3 {
 	font-family: soDoSans-reg;
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
+	.padd {
+		padding: 0px !important;
+	}
 
-    .padd{
-        padding: 0px !important;
-    }
+	h2 {
+		font-size: 16px;
+		color: black;
+	}
 
-    h2 {
-        font-size: 16px;
-        color: black;
-    }
-
-    h3 {
-        font-size: 14px;
-        color: black;
-        font-family: soDoSans-reg;
-    }
-    
+	h3 {
+		font-size: 14px;
+		color: black;
+		font-family: soDoSans-reg;
+	}
 }
 
 .scroll-hidden::-webkit-scrollbar {
@@ -105,87 +103,120 @@ h3 {
 	margin-bottom: 1.1em;
 }
 
-.animate05s{
-    transition: all 0.5s ease-in;
+.animate05s {
+	transition: all 0.5s ease-in;
 }
 
-.animate03s{
-    transition: all 0.3s ease-in;
+.animate03s {
+	transition: all 0.3s ease-in;
 }
 
-.animate005s{
-    transition: all 0.05s ease-in;
+.animate005s {
+	transition: all 0.05s ease-in;
 }
 
 /* Styling mui drop down */
 .MuiPaper-root {
 	box-shadow: none !important;
-    border:0.5px solid rgb(233, 233, 233);    
+	border: 0.5px solid rgb(233, 233, 233);
 }
 
-.MuiPaper-elevation1{
-    border: none !important;    
+.MuiPaper-elevation1 {
+	border: none !important;
 }
 
-.MuiMenuItem-gutters{
-    padding: 16px 0px 16px 12px !important;    
+/* .MuiMenuItem-gutters {
+	padding: 16px 0px 16px 12px !important;
+} */
+
+.MuiTableCell-root {
+	border-bottom: 0.5px solid #f0f0f0 !important ;
+	color: black !important;
+	font-size: 12px !important;
+	font-family: SodoSans-SemiBold !important;
+	letter-spacing: -0.24px !important;
+	padding: 12px 0px !important;
 }
 
-.MuiTableCell-root{
-    border-bottom: 0.5px solid #F0F0F0 !important ;  
-    color: black !important;  
-    font-size: 12px !important;
-    font-family: SodoSans-SemiBold !important;
-    letter-spacing: -0.24px !important;
-    padding: 12px 0px !important;
-}
-
-.MuiTableCell-stickyHeader{
-    border-bottom: 0.5px solid #F0F0F0 !important ;  
-    color: black !important;  
-    font-size: 12px !important;
-    font-family: SodoSans-Bold !important;
-    letter-spacing: -0.24px !important;
-    padding: 12px 0px !important;
+.MuiTableCell-stickyHeader {
+	border-bottom: 0.5px solid #f0f0f0 !important ;
+	color: black !important;
+	font-size: 12px !important;
+	font-family: SodoSans-Bold !important;
+	letter-spacing: -0.24px !important;
+	padding: 12px 0px !important;
 }
 
 /* Styling the date popup picker */
-.MuiPickersToolbar-root, .MuiPickersToolbarText-root{
-    background-color:#072A85 !important;   
-    color:white !important;
-    text-align: center !important;
-    font-family: SodoSans-SemiBold !important; 
+.MuiPickersToolbar-root,
+.MuiPickersToolbarText-root {
+	background-color: #072a85 !important;
+	color: white !important;
+	text-align: center !important;
+	font-family: SodoSans-SemiBold !important;
 }
-.MuiTypographyOverline , .MuiTypography-overline  {
-    color:white !important;
-    text-align: center !important;
-    font-family: SodoSans-SemiBold !important;
+.MuiTypographyOverline,
+.MuiTypography-overline {
+	color: white !important;
+	text-align: center !important;
+	font-family: SodoSans-SemiBold !important;
 }
-.MuiPaper-elevation24,.MuiDialog-paper{
-    border:none !important;
-}
-
-.css-1g7nc1s-MuiPickersLayout-root, .css-1lugbff-MuiPickersLayout-root{
-    display: flex !important;
-    flex-direction: column !important;
+.MuiPaper-elevation24,
+.MuiDialog-paper {
+	border: none !important;
 }
 
-.css-1m5r8g7-MuiTimePickerToolbar-amPmSelection{
-    flex-direction: column !important;
-}
-.css-1dakek4-MuiPickersToolbar-content{
-    flex-wrap: nowrap !important;
+.css-1g7nc1s-MuiPickersLayout-root,
+.css-1lugbff-MuiPickersLayout-root {
+	display: flex !important;
+	flex-direction: column !important;
 }
 
+.css-1m5r8g7-MuiTimePickerToolbar-amPmSelection {
+	flex-direction: column !important;
+}
+.css-1dakek4-MuiPickersToolbar-content {
+	flex-wrap: nowrap !important;
+}
+
+.MuiStack-root{
+    padding-top: 0px;
+}
 
 /* Styling priceCard height in onboarding page */
-@media (max-width:567px) {
-        .priceCard{
-        height: fit-content !important;
-    }
+@media (max-width: 567px) {
+	.priceCard {
+		height: fit-content !important;
+	}
 }
 
-*:focus {
-    outline: none !important;
-    border:none;
-  }
+@media (min-width: 900px) {
+	.sidebar {
+		position: static;
+		background-color: transparent;
+		transform: translateX(0);
+		z-index: 0;
+		height: 100%;
+		padding-top: 88px;
+	}
+
+	.sideXIcon {
+		display: none;
+	}
+
+}
+
+@media (max-width: 899px) {
+	.sidebar {
+		padding-top: 32px !important;
+	}
+
+    .customerSidebar{
+        padding-top: 0px;
+        z-index:60;
+    }
+    
+    .sidebarCont{
+        display: block;
+    }
+}

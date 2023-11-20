@@ -23,8 +23,8 @@ export default function DatePicker({ color, handleDateChange }) {
 	];
 
 	return (
-		<LocalizationProvider dateAdapter={AdapterDayjs}>
-			<DemoContainer components={["MobileDatePicker"]}>
+		<LocalizationProvider dateAdapter={AdapterDayjs}  >
+			<DemoContainer components={["MobileDatePicker"]} >
 				<DemoItem label=''>
 					<MobileDatePicker
 						onAccept={(e) => {
@@ -34,6 +34,7 @@ export default function DatePicker({ color, handleDateChange }) {
                             handleDateChange(`${day[e.$W]},${months[e.$M]} ${e.$D} ${e.$y}`)
 						}}
 						sx={{
+                            marginTop:"-8px !important",
 							"& .MuiInputBase-root": {
 								outline: "none",
 								border: "none",

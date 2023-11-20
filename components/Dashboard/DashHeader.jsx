@@ -1,8 +1,12 @@
 import { buildingIcon, dropDownBlueIcon, menuIcon } from "@/SVGs";
+import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const DashHeader = ({ handleSideBar }) => {
+const DashHeader = ({ handleSideBar }) => {    
+    const dispatch = useDispatch()
+
 	return (
 		<div
 			className='flex justify-between h-[56px] items-center fixed top-0 left-0 w-full z-50 bg-white px-[20px] md:pt-[15px] md:pr-[40px] md:pb-[16px] md:pl-[24px]  '
@@ -13,7 +17,7 @@ const DashHeader = ({ handleSideBar }) => {
 			<div className='flex space-x-[24px] items-center'>
 				<span
 					onClick={() => {
-						handleSideBar();
+						dispatch(toggleSidebar(false))
 					}}
 				>
 					{menuIcon}

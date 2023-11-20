@@ -22,7 +22,7 @@ import React from "react";
 		},
 	];
 	return (
-		<div className='flex space-x-[40px]'>
+		<div className='flex  w-full justify-between sm:justify-start sm:space-x-[24px] md:space-x-[40px]'>
 			{selectedArray.map((data, i) => (
 				<div
 					key={i}

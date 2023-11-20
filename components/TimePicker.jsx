@@ -4,19 +4,19 @@ import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const TimePicker = ({handleTimeChange, color}) => {
+const TimePicker = ({ handleTimeChange, color, disabled }) => {
 	return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-		<div>
-			<MobileTimePicker          
-            onAccept={(e)=>{
-                const time = e.$H > 12 ? `${e.$H - 12}:${e.$m} PM ` : `${e.$H}:${e.$m} AM `
-                console.log("accepted");
-                console.log(e.$H, e)
-                console.log(time)
-                handleTimeChange(time)
-
-            }}
+		<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<MobileTimePicker
+				disabled={disabled}
+				onAccept={(e) => {
+					const time =
+						e.$H > 12 ? `${e.$H - 12}:${e.$m} PM ` : `${e.$H}:${e.$m} AM `;
+					console.log("accepted");
+					console.log(e.$H, e);
+					console.log(time);
+					handleTimeChange(time);
+				}}
 				sx={{
 					"& .MuiInputBase-root": {
 						outline: "none",
@@ -31,7 +31,7 @@ const TimePicker = ({handleTimeChange, color}) => {
 						},
 					"& .MuiInputBase-input": {
 						padding: "0px",
-                        border:"none",
+						border: "none",
 						cursor: "pointer",
 						fontSize: "0.81em",
 						fontFamily: "SodoSans-SemiBold",
@@ -41,8 +41,7 @@ const TimePicker = ({handleTimeChange, color}) => {
 				}}
 				defaultValue={dayjs("2022-04-17T15:30")}
 			/>
-		</div>
-        </LocalizationProvider>
+		</LocalizationProvider>
 	);
 };
 

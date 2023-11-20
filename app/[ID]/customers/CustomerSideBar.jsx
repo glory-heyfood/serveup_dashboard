@@ -60,7 +60,7 @@ const CustomerSideBar = ({ handleClose }) => {
 	];
 	return (
 		<div
-			className='absolute top-0 right-0 w-[35%] h-screen pt-[3.5em] bg-white'
+			className='fixed top-0 right-0 w-[35%] min-w-[350px] customerSidebar z-30 h-screen pt-[3.5em] bg-white'
 			style={{
 				boxShadow: "0px 4px 24px 0px #E6E6E6",
 			}}

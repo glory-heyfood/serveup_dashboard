@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { MenuItem, Select } from "@mui/material";
 import { dropDownBlueIcon } from "@/SVGs";
 
-const Icon = () => {
-	return <span className='ml-[8px]'>{dropDownBlueIcon}</span>;
+const Icon = ({ setOpen }) => {
+	return (
+		<span
+			onClick={() => {
+				console.log("Call");
+
+				setOpen(true);
+			}}
+            style={{
+                padding:"15px 12px 16px 0px"
+            }}
+			className=' cursor-pointer'
+		>
+			{dropDownBlueIcon}
+		</span>
+	);
 };
 
 const CampaignItemSelect = ({
@@ -13,13 +27,17 @@ const CampaignItemSelect = ({
 	handleChange,
 	selectedValue,
 }) => {
+	const [open, setOpen] = useState(false);
 	return (
 		<Select
 			displayEmpty
-			IconComponent={() => <Icon />}
+			IconComponent={() => <Icon setOpen={setOpen} />}
 			inputProps={{ "aria-label": "Without label" }}
 			value={selectedValue}
 			name={name}
+			open={open}
+			onClose={() => setOpen(false)}
+			onOpen={() => setOpen(true)}
 			onChange={(e) => {
 				handleChange(e);
 			}}
@@ -38,7 +56,6 @@ const CampaignItemSelect = ({
 				backgroundColor: "#fff",
 				border: "1px solid #E6E6E6",
 				outline: "none",
-				padding: "15px 26px 16px 16px",
 				"&:focus": {
 					// border: "none",
 				},
@@ -49,7 +66,8 @@ const CampaignItemSelect = ({
 					fontFamily: "sodoSans-reg",
 					letterSpacing: "-0.52px",
 					fontSize: "0.81em",
-					padding: "0px !important",
+					width: "100%",
+					padding: "15px 12px 16px 16px !important",
 				},
 
 				boxShadow: "none",

@@ -54,8 +54,11 @@ const Insert = ({options, defaultValue, handleChange, selectedValue}) => {
 			</MenuItem>
 			{options?.map((option, i) => (
 				<MenuItem
+                sx={{
+                    padding:"16px"
+                }}
 					key={i}
-					className='text-black tracking-[-0.24px] text-[0.75em]'
+					className='text-black tracking-[-0.24px] text-[0.75em] p-[16px]'
 					value={option.value}
 				>
 					{option.label}
