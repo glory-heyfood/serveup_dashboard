@@ -113,66 +113,71 @@ export const Pricing = [
 	},
 ];
 
+
+
 // Data for side bar dashboard
+
+export const ID = "id"  // mock id
+
 export const sidebarData = [
 	{
 		icon: bellIcon,
 		text: "New orders",
-		href: "/id",
+		href: `/${ID}`,
 	},
 
 	{
 		icon: chartIcon,
 		text: "Analytics",
-		href: "/id/analytics",
+		href: `/${ID}/analytics`,
 	},
 
 	{
 		icon: storeIcon,
 		text: "Stores",
-		href: "/id/stores",
+		href: `/${ID}/stores`,
 	},
 
 	{
 		icon: userIcon,
 		text: "Customers",
-		href: "/id/customers",
+		href: `/${ID}/customers`,
 	},
 
 	{
 		icon: marketingIcon,
 		text: "Marketing",
-		href: "/id/marketing#/email",
+		href: `/${ID}/marketing#/email`,
 	},
 	{
 		icon: rewardIcon,
 		text: "Loyalty rewards",
-		href: "/id/loyalty",
+		href: `/${ID}/loyalty#/overview`,
 	},
 	{
 		icon: promotionICon,
 		text: "Promotions",
-		href: "/id/promotions",
+		href: `/${ID}/promotions`,
 	},
 	{
 		icon: briefcaseICon,
 		text: "Employees",
-		href: "/id/employees",
+		href: `/${ID}/employees`,
 	},
 	{
 		icon: websiteIcon,
 		text: "Website",
-		href: "/id/website",
+		href: `/${ID}/website`,
 	},
 	{
 		icon: mobileIcon,
 		text: "Mobile App",
-		href: "/id/mobile",
+		href: `/${ID}/mobile`,
 	},
 	{
 		icon: companyIcon,
 		text: "Business Settings",
-		href: "/id/business",
+		href: `/${ID}/business`,
 	},
 ];
 

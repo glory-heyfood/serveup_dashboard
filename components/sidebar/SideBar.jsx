@@ -16,9 +16,12 @@ const SideBar = ({ btn }) => {
 		<>
 			<div
 				className={`bg-[#00000096]  h-screen w-full fixed top-0 left-0 z-50 ${
-					showSidebar ? "hidden" : "sidebarCont"
+					showSidebar ? "hidden" : "sidebarCont hidden"
 				} `}
-			></div>
+			onClick={()=>{
+                dispatch(toggleSidebar(true))
+            }}
+            ></div>
 			<div
 				className={`bg-white  animate05s  h-screen pt-[32px]  fixed top-0 left-0 z-[60] sidebar pr-[21px] pl-[20px] w-full sm:w-[345px] max-w-[350px]   ${
 					showSidebar ? "translate-x-[-100%]" : "translate-x-0  "

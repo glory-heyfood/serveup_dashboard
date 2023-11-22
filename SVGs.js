@@ -431,6 +431,10 @@ export const plusIcon = (
 	</svg>
 );
 
+export const plusIconBlue = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+<path d="M4 8H12M8 4V12" stroke="#072A85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
 export const searchIcon = (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
@@ -631,4 +635,10 @@ export const dateIconBlue = <svg xmlns="http://www.w3.org/2000/svg" width="16" h
 
 export const clockIconDisabled = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
 <path d="M8 5.16667V8.5L9 10.1667M14 8.5C14 11.8137 11.3137 14.5 8 14.5C4.68629 14.5 2 11.8137 2 8.5C2 5.18629 4.68629 2.5 8 2.5C11.3137 2.5 14 5.18629 14 8.5Z" stroke="#A9ADB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+export const menuDotsBlue = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+<path d="M4.66667 8.00033C4.66667 8.73673 4.06971 9.33366 3.33333 9.33366C2.59695 9.33366 2 8.73673 2 8.00033C2 7.26393 2.59695 6.66699 3.33333 6.66699C4.06971 6.66699 4.66667 7.26393 4.66667 8.00033Z" fill="#072A85"/>
+<path d="M9.33366 8.00033C9.33366 8.73673 8.73673 9.33366 8.00033 9.33366C7.26393 9.33366 6.66699 8.73673 6.66699 8.00033C6.66699 7.26393 7.26393 6.66699 8.00033 6.66699C8.73673 6.66699 9.33366 7.26393 9.33366 8.00033Z" fill="#072A85"/>
+<path d="M13.9997 8.00033C13.9997 8.73673 13.4027 9.33366 12.6663 9.33366C11.9299 9.33366 11.333 8.73673 11.333 8.00033C11.333 7.26393 11.9299 6.66699 12.6663 6.66699C13.4027 6.66699 13.9997 7.26393 13.9997 8.00033Z" fill="#072A85"/>
 </svg>

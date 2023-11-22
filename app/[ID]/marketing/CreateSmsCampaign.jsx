@@ -139,28 +139,43 @@ const CreateSmsCampaign = ({ handleClick }) => {
 						/>
 					</div>
 
+					
 					{formData.scheduleSelect === "Later" && (
-						<div className='flex space-x-[20px]'>
-							<div className='w-[50%]'>
+						<div className='flex flex-col sm:flex-row w-full sm:space-x-[20px] space-y-[12px] sm:space-y-0 '>
+							<div className='w-full sm:w-[50%]'>
 								<LabelInput
 									width='w-[40%]'
-									label='Date'
+									label={
+										<h1 className='text-black sodo700 tracking-[-0.52px] text-[0.81em] '>
+											Date
+										</h1>
+									}
 									padding='13px 0px 14px 16px'
 								>
 									<div className='flex items-center justify-between'>
-										<DatePicker handleDateChange={handleDateChange} color='black' />
+										<DatePicker
+											handleDateChange={handleDateChange}
+											color='black'
+										/>
 										<span className='mr-[22px]'> {dateIconBlue} </span>
 									</div>
 								</LabelInput>
 							</div>
-							<div className='w-[50%]'>
+							<div className='w-full sm:w-[50%]'>
 								<LabelInput
 									width='w-[40%]'
-									label='Date'
+									label={
+										<h1 className='text-black sodo700 tracking-[-0.52px] text-[0.81em] '>
+											Time
+										</h1>
+									}
 									padding='13px 0px 14px 16px'
 								>
 									<div className='flex items-center justify-between'>
-										<TimePicker handleTimeChange={handleTimeChange} color='black' />
+										<TimePicker
+											handleTimeChange={handleTimeChange}
+											color='black'
+										/>
 										<span className='mr-[22px]'> {clockBlueIcon} </span>
 									</div>
 								</LabelInput>

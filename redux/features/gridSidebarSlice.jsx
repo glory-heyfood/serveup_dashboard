@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {		
-	showGridSidebar: true,
+	showMarketingGridSidebar: true,
+    showLoyaltyGridSidebar: true,
 };
 
 // The createAsyncThunk fetches the APIs from the backend
@@ -24,12 +25,13 @@ const gridSidebar = createSlice({
 	name: "gridSidebar",
 	initialState,
 	reducers: {
-		toggleGridSidebar: (state, action) => {
-			console.log("heyy");
-			console.log(action.payload);
-			state.showGridSidebar = action.payload;
+		toggleMarketingGridSidebar: (state, action) => {		
+			state.showMarketingGridSidebar = action.payload;
 		},
 		
+        toggleLoyaltyGridSidebar: (state, action) => {		
+			state.showLoyaltyGridSidebar = action.payload;
+		},
 	},
 
 	// extraReducers: (builder) => {
@@ -56,6 +58,6 @@ const gridSidebar = createSlice({
 	// },
 });
 
-export const { toggleGridSidebar } = gridSidebar.actions;
+export const { toggleMarketingGridSidebar, toggleLoyaltyGridSidebar } = gridSidebar.actions;
 // export const {} = gridSidebar.actions;
 export default gridSidebar.reducer;

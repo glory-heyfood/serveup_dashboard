@@ -201,13 +201,14 @@ const CreateCampaign = ({ handleClick }) => {
 							handleChange={handleChange}
 							selectedValue={formData.scheduleSelect}
 							option={[
-								{
-									value: "Later",
-									text: "Later",
-								},
+								
 								{
 									value: "Now",
 									text: "Now",
+								},
+                                {
+									value: "Later",
+									text: "Later",
 								},
 							]}
 						/>
@@ -239,7 +240,7 @@ const CreateCampaign = ({ handleClick }) => {
 									width='w-[40%]'
 									label={
 										<h1 className='text-black sodo700 tracking-[-0.52px] text-[0.81em] '>
-											Date
+											Time
 										</h1>
 									}
 									padding='13px 0px 14px 16px'

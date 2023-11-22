@@ -1,4 +1,4 @@
-import { toggleGridSidebar } from "@/redux/features/gridSidebarSlice";
+import { toggleLoyaltyGridSidebar, toggleMarketingGridSidebar } from "@/redux/features/gridSidebarSlice";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 import Link from "next/link";
 import React, { useEffect } from "react";
@@ -15,9 +15,14 @@ const SidebarItem = ({ icon, href, text, noClick }) => {
 				!noClick && dispatch(toggleSidebar(true));
 
 				if (text === "Marketing") {
-					dispatch(toggleGridSidebar(true));
+					dispatch(toggleMarketingGridSidebar(true));
+				}
+
+                if (text === "Loyalty rewards") {
+					dispatch(toggleLoyaltyGridSidebar(true));
 				}
 			}}
+
 		>
 			<div className='flex flex-col items-center space-y-[0.6em] '>
 				<div className='bg-[#F0F0F0] rounded-[8px] p-[0.75em]'>

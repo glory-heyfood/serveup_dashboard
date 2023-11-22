@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 const DashBtn = ({ text, padding, handleClick, disabled, icon }) => {
-	return text === "Cancel" ? (
+	return text === "Cancel" || text === "Discard" ? (
 		<Button
 			variant='contained'
 			disabled={disabled}
