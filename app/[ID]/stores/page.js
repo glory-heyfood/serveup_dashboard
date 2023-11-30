@@ -1,7 +1,7 @@
 "use client";
 import { plusIcon, shieldIcon } from "@/SVGs";
 import CustomSearch from "@/components/CustomSearch";
-import DashBtn from "@/components/Dashboard/DashBtn";
+import DashBtn from "@/components/buttons/DashBtn";
 import DashLayout from "@/components/Dashboard/DashLayout";
 import React, { useState } from "react";
 import StoresItem from "./StoresItem";

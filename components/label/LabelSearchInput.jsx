@@ -8,6 +8,7 @@ const LabelSearchInput = ({
 	name,
 	inputFont,
 	fontweight,
+    value,
 	icon,
 	...props
 }) => {
@@ -31,6 +32,7 @@ const LabelSearchInput = ({
 				type='text'
 				placeholder={placeholder}
 				name={name}
+                value= {value && value}
 				className={`w-full placeholder:text-[#A9ADB5] placeholder:text-[13px] border-none outline-none  tracking-[-0.52px] bg-transparent p-0 text-[13px] text-[#000] ${
 					inputFont ? inputFont : "sodo300"
 				}`}

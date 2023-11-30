@@ -167,7 +167,7 @@ export const sidebarData = [
 	{
 		icon: websiteIcon,
 		text: "Website",
-		href: `/${ID}/website`,
+		href: `/${ID}/website#/theme`,
 	},
 	{
 		icon: mobileIcon,
@@ -443,5 +443,84 @@ export const AddStoreLabeDateInputData = [
 	},
 	{
 		label: "Sunday",
+	},
+];
+
+
+export const rewardOptions = [
+    {
+        value: "10 ",
+        description: "10 naira off your order",
+        discount:"10",
+        discountType:"Amount",
+        rewardType:"orderDiscount"
+    },
+    {
+        value: "20 ",
+        description: "20% off your order",
+        discount:"20",
+        discountType:"Percent",
+        rewardType:"orderDiscount"
+    },
+    {
+        value: "30 ",
+        description: "30% off your order",
+        discount:"30",
+        discountType:"Percent",
+        rewardType:"orderDiscount"
+    },
+    {
+        value: "40 ",
+        description: "free delivery",
+        discount:"100",
+        discountType:"Percent",
+        rewardType:"deliveryDiscount"
+    },
+]
+
+export const EmployeeData = [
+	{
+		name: "Katherine Alariko",
+		role: "Admin",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
+	},
+	{
+		name: "Katherine Alariko",
+		role: "Employee",
 	},
 ];

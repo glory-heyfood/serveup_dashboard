@@ -1,5 +1,5 @@
 "use client";
-import DashBtn from "@/components/Dashboard/DashBtn";
+import DashBtn from "@/components/buttons/DashBtn";
 import RadioCheck from "@/components/RadioCheck";
 import React, { useState } from "react";
 import Insert from "./Insert";

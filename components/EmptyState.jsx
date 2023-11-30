@@ -1,7 +1,7 @@
 import { plusIcon, shieldIcon } from "@/SVGs";
 import { Button } from "@mui/material";
 import React from "react";
-import DashBtn from "./Dashboard/DashBtn";
+import DashBtn from "./buttons/DashBtn";
 
 const EmptyState = ({ header, text, btnText, handleClick, icon }) => {
 	return (

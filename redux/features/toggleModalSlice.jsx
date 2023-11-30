@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	showModal: false,
 	showEarnModal: false,
+	showOuterModal: false,
 };
 
 const modal = createSlice({
@@ -10,10 +11,15 @@ const modal = createSlice({
 	initialState,
 	reducers: {
 		toggleModal: (state, action) => {
-			if (action.payload.modal === "earn") {
-				state.showEarnModal = action.payload.payload;
-			} else {
-				state.showModal = action.payload;
+			switch (action.payload.modal) {
+				case "earn":
+					state.showEarnModal = action.payload.payload;
+					break;
+                case "outer":
+                    state.showOuterModal = action.payload.payload
+                    break;
+				default:
+					state.showModal = action.payload;
 			}
 		},
 	},

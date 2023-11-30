@@ -5,7 +5,7 @@ import BreadCrumb from "@/components/BreadCrumb";
 import RuleTable from "./RuleTable";
 import RewardTable from "./RewardTable";
 import SelectLocations from "./SelectLocations";
-import DashBtn from "@/components/Dashboard/DashBtn";
+import DashBtn from "@/components/buttons/DashBtn";
 const Settings = () => {
 	
 	return (

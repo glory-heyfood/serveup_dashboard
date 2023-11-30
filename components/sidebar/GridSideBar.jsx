@@ -4,7 +4,11 @@ import SidebarItem from "./SidebarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 import { XIcon, menuGrid } from "@/SVGs";
-import { toggleGridSidebar, toggleLoyaltyGridSidebar, toggleMarketingGridSidebar } from "@/redux/features/gridSidebarSlice";
+import {
+	toggleGridSidebar,
+	toggleLoyaltyGridSidebar,
+	toggleMarketingGridSidebar,
+} from "@/redux/features/gridSidebarSlice";
 
 const GridSideBar = ({ btn, GridComponent }) => {
 	const [grid, setGrid] = useState(true);
@@ -12,34 +16,40 @@ const GridSideBar = ({ btn, GridComponent }) => {
 	const marketingGrid = useSelector(
 		(state) => state.gridSidebar.showMarketingGridSidebar,
 	);
-    const loyaltyGrid = useSelector(
+	const loyaltyGrid = useSelector(
 		(state) => state.gridSidebar.showLoyaltyGridSidebar,
 	);
-	
+
+    const websiteGrid = useSelector((state)=> state.gridSidebar.showWebsiteGridSidebar)
 
 	const showSidebar = useSelector((state) => state.sidebar.showSidebar);
 
 	const dispatch = useDispatch();
 
-    const handleClick = ()=>{
-        if (window.location.pathname === `/${ID}/marketing`) {
+	const handleClick = () => {
+		if (window.location.pathname === `/${ID}/marketing`) {
 			dispatch(toggleMarketingGridSidebar(false));
 		}
-        if (window.location.pathname === `/${ID}/loyalty`) {
+		if (window.location.pathname === `/${ID}/loyalty`) {
 			dispatch(toggleLoyaltyGridSidebar(false));
 		}
-    }
+        if (window.location.pathname === `/${ID}/website`) {
+			dispatch(toggleWebsiteGridSidebar(false));
+		}
+	};
 
 	useEffect(() => {
-
 		if (window.location.pathname === `/${ID}/marketing`) {
 			setGrid(marketingGrid);
 		}
 
-        if (window.location.pathname === `/${ID}/loyalty`) {
+		if (window.location.pathname === `/${ID}/loyalty`) {
 			setGrid(loyaltyGrid);
 		}
-	}, [marketingGrid, loyaltyGrid]);
+        if (window.location.pathname === `/${ID}/website`) {
+			setGrid(websiteGrid)
+		}
+	}, [marketingGrid, loyaltyGrid, websiteGrid]);
 
 	return (
 		<>
@@ -66,9 +76,7 @@ const GridSideBar = ({ btn, GridComponent }) => {
 						<div className='flex items-center justify-between'>
 							<div
 								className='bg-[#F0F0F0] w-fit rounded-[4px] p-[8px] ml-[24px] cursor-pointer'
-								onClick={
-								handleClick	
-								}
+								onClick={handleClick}
 							>
 								{menuGrid}
 							</div>
@@ -101,8 +109,17 @@ const GridSideBar = ({ btn, GridComponent }) => {
 						<div className=' grid grid-cols-4 md:grid-cols-3 gap-x-[32px] md:gap-x-[1.5em] gap-y-[50px] md:gap-y-[1.5em] ml-[20.2px]'>
 							{sidebarData.map((data, i) => (
 								<SidebarItem
-									noClick={data.text === "Marketing" || data.text === "Loyalty rewards" ? true : false}
-									href={data.href}
+									noClick={
+										data.text === "Marketing" || data.text === "Loyalty rewards" || data.text === "Website"
+											? true
+											: false
+									}
+									href={
+										// data.text === "Marketing" || data.text === "Loyalty rewards"
+										// 	? window.location.href
+										// 	: data.href
+                                        data.href
+									}
 									icon={data.icon}
 									text={data.text}
 									key={i}

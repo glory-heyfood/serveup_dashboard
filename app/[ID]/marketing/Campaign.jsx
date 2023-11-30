@@ -1,5 +1,5 @@
 import CustomSearch from "@/components/CustomSearch";
-import DashBtn from "@/components/Dashboard/DashBtn";
+import DashBtn from "@/components/buttons/DashBtn";
 import React, { useEffect, useState } from "react";
 import StickyHeadTable from "./Table";
 import { plusIcon } from "@/SVGs";

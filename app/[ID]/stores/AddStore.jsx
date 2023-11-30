@@ -5,7 +5,7 @@ import LabelSearchInput from "@/components/label/LabelSearchInput";
 import React, { useState } from "react";
 import LabelDateInput from "./LabelDateInput";
 import LabelSelect from "@/components/label/LabelSelect";
-import DashBtn from "@/components/Dashboard/DashBtn";
+import DashBtn from "@/components/buttons/DashBtn";
 
 import TimePicker from "@/components/TimePicker";
 import { AddStoreLabeDateInputData } from "@/data";

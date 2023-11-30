@@ -2,8 +2,8 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const DashBtn = ({ text, padding, handleClick, disabled, icon }) => {
-	return text === "Cancel" || text === "Discard" ? (
+const DashBtn = ({ text, padding, handleClick, disabled, icon, lightTheme, font }) => {
+	return text === "Cancel" || text === "Discard" || lightTheme === true ? (
 		<Button
 			variant='contained'
 			disabled={disabled}
@@ -16,10 +16,11 @@ const DashBtn = ({ text, padding, handleClick, disabled, icon }) => {
 				backgroundColor: `${!disabled && "#F2F2F2 !important"} `,
 				padding: `${padding}`,
 				width: "100%",
+                borderRadius:'4px',
 			}}
 		>
 			<h1
-				className={`text-[12px] sodo600 ml-[-4px] mt-[1px] tracking-[-0.48px] normal-case text-black `}
+				className={`text-[12px] ${font ? font : "sodo600"}  ml-[-4px] mt-[1px] tracking-[-0.48px] normal-case text-black `}
 			>
 				{text}
 			</h1>
@@ -37,6 +38,7 @@ const DashBtn = ({ text, padding, handleClick, disabled, icon }) => {
 				backgroundColor: `${!disabled && "#072A85 !important"} `,
 				padding: `${padding}`,
 				width: "100%",
+                borderRadius:'4px',
 			}}
 		>
 			<h1

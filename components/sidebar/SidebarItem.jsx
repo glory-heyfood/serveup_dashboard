@@ -1,11 +1,24 @@
 import { toggleLoyaltyGridSidebar, toggleMarketingGridSidebar } from "@/redux/features/gridSidebarSlice";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const SidebarItem = ({ icon, href, text, noClick }) => {
 	const dispatch = useDispatch();
+    const [url, setUrl] = useState('')
+
+    // useEffect(()=>{
+    //     if(!noClick){
+    //         if (text === "Marketing") {
+    //             dispatch(toggleMarketingGridSidebar(true));
+    //         }
+
+    //         if (text === "Loyalty rewards") {
+    //             setUrl(window.location.href)
+    //         }
+    //     }
+    // },[])
 
 	return (
 		<Link

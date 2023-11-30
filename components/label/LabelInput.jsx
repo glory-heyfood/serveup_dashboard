@@ -23,7 +23,7 @@ const LabelInput = ({
 					padding: padding,
 				}}
 			>
-				{label}
+			{label}
 			</div>
 			<div className={`flex-grow ${childWidth && childWidth}`}>{children}</div>
 		</div>
