@@ -4,6 +4,7 @@ const initialState = {
 	showMarketingGridSidebar: true,
     showLoyaltyGridSidebar: true,
     showWebsiteGridSidebar :true,
+    showMobileAppGridSidebar:true
 };
 
 // The createAsyncThunk fetches the APIs from the backend
@@ -36,7 +37,11 @@ const gridSidebar = createSlice({
 
         toggleWebsiteGridSidebar: (state, action) => {		
 			state.showWebsiteGridSidebar = action.payload;
-		},    },
+		},   
+        toggleMobileAppGridSidebar: (state, action) => {		
+			state.showMobileAppGridSidebar = action.payload;
+		},   
+     },
 
 	// extraReducers: (builder) => {
 	// 	builder
@@ -62,6 +67,6 @@ const gridSidebar = createSlice({
 	// },
 });
 
-export const { toggleMarketingGridSidebar, toggleLoyaltyGridSidebar,toggleWebsiteGridSidebar } = gridSidebar.actions;
+export const { toggleMarketingGridSidebar, toggleLoyaltyGridSidebar,toggleWebsiteGridSidebar, toggleMobileAppGridSidebar } = gridSidebar.actions;
 // export const {} = gridSidebar.actions;
 export default gridSidebar.reducer;

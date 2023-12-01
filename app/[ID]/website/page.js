@@ -29,9 +29,7 @@ const Page = () => {
 		};
 	}, []);
 
-	const renderContent = () => {
-		console.log(subRoute);
-		console.log("Calls  ");
+	const renderContent = () => {				
 		switch (subRoute) {
 			case "/theme":
 				return <ThemePage />;

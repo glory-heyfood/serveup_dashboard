@@ -172,7 +172,7 @@ export const sidebarData = [
 	{
 		icon: mobileIcon,
 		text: "Mobile App",
-		href: `/${ID}/mobile`,
+		href: `/${ID}/mobile#/overview`,
 	},
 	{
 		icon: companyIcon,

@@ -8,6 +8,8 @@ import {
 	toggleGridSidebar,
 	toggleLoyaltyGridSidebar,
 	toggleMarketingGridSidebar,
+    toggleMobileAppGridSidebar,
+    toggleWebsiteGridSidebar,
 } from "@/redux/features/gridSidebarSlice";
 
 const GridSideBar = ({ btn, GridComponent }) => {
@@ -21,6 +23,7 @@ const GridSideBar = ({ btn, GridComponent }) => {
 	);
 
     const websiteGrid = useSelector((state)=> state.gridSidebar.showWebsiteGridSidebar)
+    const mobileAppGrid = useSelector((state)=> state.gridSidebar.showMobileAppGridSidebar)
 
 	const showSidebar = useSelector((state) => state.sidebar.showSidebar);
 
@@ -36,6 +39,9 @@ const GridSideBar = ({ btn, GridComponent }) => {
         if (window.location.pathname === `/${ID}/website`) {
 			dispatch(toggleWebsiteGridSidebar(false));
 		}
+        if (window.location.pathname === `/${ID}/mobile`) {
+			dispatch(toggleMobileAppGridSidebar(false));
+		}
 	};
 
 	useEffect(() => {
@@ -49,7 +55,10 @@ const GridSideBar = ({ btn, GridComponent }) => {
         if (window.location.pathname === `/${ID}/website`) {
 			setGrid(websiteGrid)
 		}
-	}, [marketingGrid, loyaltyGrid, websiteGrid]);
+        if (window.location.pathname === `/${ID}/mobile`) {
+			setGrid(mobileAppGrid)
+		}
+	}, [marketingGrid, loyaltyGrid, websiteGrid, mobileAppGrid]);
 
 	return (
 		<>
@@ -110,7 +119,7 @@ const GridSideBar = ({ btn, GridComponent }) => {
 							{sidebarData.map((data, i) => (
 								<SidebarItem
 									noClick={
-										data.text === "Marketing" || data.text === "Loyalty rewards" || data.text === "Website"
+										data.text === "Marketing" || data.text === "Loyalty rewards" || data.text === "Website" || data.text=== "Mobile App"
 											? true
 											: false
 									}

@@ -25,60 +25,64 @@ const Homepage = () => {
 				<div className='mt-[32px] flex flex-col space-y-[48px] md:w-[70%] max-w-[600px] '>
 					<CustomLabel
 						header='Banner Image'
-						subHeader='To display your custom branding please upload your logo, '
+						subHeader='Add a background image for your homepage '
 					>
 						<UploadImage />
 					</CustomLabel>
 
 					<CustomLabel
 						header='Title and Description'
-						subHeader='ask him what should be here'
+						subHeader='Add title and description text to your homepage'
 					>
-						<LabelSearchInput
-							label='Title'
-							placeholder='Homepage title'
-							fontweight='sodo700'
-						/>
-						<LabelTextarea
-							label='Description'
-							placeholder='Homepage description '
-						/>
+						<div>
+							<LabelSearchInput
+								label='Title'
+								placeholder='Homepage title'
+								fontweight='sodo700'
+							/>
+							<LabelTextarea
+								label='Description'
+								placeholder='Homepage description '
+							/>
+						</div>
 					</CustomLabel>
 
 					<CustomLabel
 						header='Footer'
-						subHeader='Manage your business details and information'
+						subHeader='Manage your social media and contact information'
 					>
-						<LabelTextInputEdit
-							label='Whatsapp'
-							icon={whatsappIcon}
-							placeholder='Enter URL'
-						/>
-						<LabelTextInputEdit
-							label='Twitter'
-							icon={twitterIcon}
-							placeholder='Enter URL'
-						/>
-						<LabelTextInputEdit
-							label='Facebook'
-							icon={FBIcon}
-							placeholder='Enter URL'
-						/>
-						<LabelTextInputEdit
-							label='Instagram'
-							icon={IGIcon}
-							placeholder='Enter URL'
-						/>
-						<LabelTextInputEdit
-							label='Tiik Tok'
-							icon={tiktokIcon}
-							placeholder='Enter URL'
-						/>
-						<LabelTextInputEdit
-							label='LinkedIn'
-							icon={linkedInIcon}
-							placeholder='Enter URL'
-						/>
+						<div>
+							<LabelTextInputEdit
+								label='Whatsapp'
+								icon={whatsappIcon}
+								placeholder='Enter URL'
+							/>
+							<LabelTextInputEdit
+								label='Twitter'
+								icon={twitterIcon}
+								placeholder='Enter URL'
+							/>
+							<LabelTextInputEdit
+								label='Facebook'
+								icon={FBIcon}
+								placeholder='Enter URL'
+							/>
+							<LabelTextInputEdit
+								label='Instagram'
+								icon={IGIcon}
+								placeholder='Enter URL'
+							/>
+							<LabelTextInputEdit
+								label='Tiik Tok'
+								icon={tiktokIcon}
+								placeholder='Enter URL'
+							/>
+							<LabelTextInputEdit
+								label='LinkedIn'
+								icon={linkedInIcon}
+								placeholder='Enter URL'
+							/>
+						</div>
 					</CustomLabel>
 				</div>
 
