@@ -3,9 +3,12 @@ import { XIcon, plusIcon, deleteRedIcon } from "@/SVGs";
 import DashBtn from "@/components/buttons/DashBtn";
 import React, { useState } from "react";
 import EmployeeSidebarTableItem from "./EmployeeSidebarTableItem";
+import InvitaitonSentLabel from "./invitaitonSentLabel";
+import { useDispatch } from "react-redux";
+import { deleteEmployeeAsync } from "@/redux/features/business/employeeSlice";
 
-const EmployeeSideBar = ({ handleClose }) => {
-	const data = [
+const EmployeeSideBar = ({ handleClose, data }) => {
+	const storeData = [
 		{
 			store: "Tosties - Ikeja",
 			role: "Manager",
@@ -20,6 +23,7 @@ const EmployeeSideBar = ({ handleClose }) => {
 		},
 	];
 
+	const dispatch = useDispatch();
 	return (
 		<div
 			className='fixed top-0 right-0 w-[35%] min-w-[350px] customerSidebar z-30 h-screen pt-[3.5em] bg-white'
@@ -30,12 +34,16 @@ const EmployeeSideBar = ({ handleClose }) => {
 			<div className='pt-[2em] pl-[2.5em] pr-[1.5em]'>
 				<div className='flex items-start justify-between mb-[1em]'>
 					<div>
-						<h1 className='dashHeader tracking-[-0.8px] !mb-[0px]'>
-							{" "}
-							Jaelyn Emmanuel
-						</h1>
+						<div className='flex items-center space-x-[0.5rem]'>
+							<h1 className='dashHeader tracking-[-0.8px] !mb-[0px]'>
+								{data.employeeType === "Admin"
+									? data.email
+									: `${data.first_name} ${data.last_name}`}
+							</h1>{" "}
+							{data.invitation === "sent" && <InvitaitonSentLabel />}
+						</div>
 						<h3 className='text-[#5F6370] ext-[14px] sodo400 tracking-[-0.28px] '>
-							Employee
+							{data.employeeType}
 						</h3>
 					</div>
 					<span
@@ -48,13 +56,13 @@ const EmployeeSideBar = ({ handleClose }) => {
 				<div className='flex items-center space-x-[0.75em] mb-[40px]'>
 					<div className='bg-[#F0F3FC] cursor-pointer rounded-[4px] flex items-center  justify-center py-[0.5em] px-[0.75em] '>
 						<h3 className='text-[#072A85] text-[0.75em] sodo400 tracking-[-0.24px]'>
-							Kattryko@gmail.com
+							{data.email}
 						</h3>
 					</div>
 
 					<div className='bg-[#F0F3FC] cursor-pointer rounded-[4px] flex items-center  justify-center py-[0.5em] px-[0.75em] '>
 						<h3 className='text-[#072A85] text-[0.75em] sodo400 tracking-[-0.24px]'>
-							+2348064578212
+							{data.phone_number}
 						</h3>
 					</div>
 				</div>
@@ -77,7 +85,12 @@ const EmployeeSideBar = ({ handleClose }) => {
 				<span className='w-fit'>
 					<DashBtn text='Add to store' icon={plusIcon} padding='10px 24px' />
 				</span>
-				<div className='flex items-center space-x-[4px] py-[10px] px-[12px]'>
+				<div
+					className='flex items-center space-x-[4px] py-[10px] px-[12px]'
+					onClick={() => {
+						dispatch(deleteEmployeeAsync(data.id));
+					}}
+				>
 					<span> {deleteRedIcon} </span>
 					<h3 className='text-[#F01C1C] sodo700 text-[12px] tracking-[-0.48px] '>
 						{" "}
@@ -91,7 +104,7 @@ const EmployeeSideBar = ({ handleClose }) => {
 					data={{ store: "Store", role: "Role" }}
 					bold={true}
 				/>
-				{data?.map((data, i) => (
+				{storeData?.map((data, i) => (
 					<EmployeeSidebarTableItem key={i} data={data} />
 				))}
 			</div>

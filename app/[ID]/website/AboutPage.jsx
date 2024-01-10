@@ -1,4 +1,4 @@
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React from "react";
 import GridComponent from "./GridComponent";
 import BreadCrumb from "@/components/BreadCrumb";
@@ -9,7 +9,7 @@ import SaveDiscardBtn from "@/components/buttons/Save&DiscardBtn";
 
 const AboutPage = () => {
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			<div className='md:w-[70%] max-w-[600px] '>
 				<BreadCrumb main='Website' link='About Us' />
 
@@ -28,7 +28,7 @@ const AboutPage = () => {
 
 				<SaveDiscardBtn padding='py-[74px]' />
 			</div>
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

@@ -2,27 +2,86 @@
 import AuthBtn from "@/components/Auth/AuthBtn";
 
 import Input from "@/components/Input";
-import { Button, TextField } from "@mui/material";
+import { ID } from "@/data";
+import { signupAsync } from "@/redux/features/business/businessSlice";
+import { verifyEmployeeUrlAsync } from "@/redux/features/business/employeeSlice";
+import { isPasswordStrong } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import isEmail from "validator/lib/isEmail";
-import isStrongPassword from "validator/lib/isStrongPassword"
 
 const Home = () => {
 	const [email, setEmail] = useState("");
 	const [ismail, setIsmail] = useState(true);
-	const [password, setPassword] = useState("");   
-    const [isPassword, setIsPassword]  = useState(true)
+	const [password, setPassword] = useState("");
+	const [isPassword, setIsPassword] = useState(true);
 	const [number, setNumber] = useState("");
 	const [disabled, setDisabled] = useState(true);
 	const [check, setCheck] = useState(false);
 	const router = useRouter();
+	const searchParams = useSearchParams();
+	const dispatch = useDispatch();
+	const businessLoading = useSelector((state) => state.business.loading);
+    const employeeLoading = useSelector((state) => state.employee.loading)
 
-	const handleClick = () => {
-		router.push("/signup/verify-email");
+    
+
+	// Find a way to reqrite this, it isnt good here
+
+	// this only works when you have a query
+	const otp = searchParams.get("otp");
+	const employeeId = searchParams.get("employeeId");
+	const userEmail = searchParams.get("email");
+    
+
+    const btnLoading = userEmail ? employeeLoading : businessLoading
+
+	const handleClick = async () => {
+		const data = {
+			email: email,
+			password: password,
+			phone_number: number,
+		};
+
+		dispatch(signupAsync(data))
+			.unwrap()
+			.then((res) => {
+				console.log(res);
+				if (res?.data?.error === false) {
+					router.push("/signup/verify-email");
+				}
+			});
 	};
+
+	// this is the function that is called when an employee tries to login
+	const handleVerifyClick = async () => {
+		const data = {
+			email: userEmail,
+			password: password,
+			phone_number: number,
+			employee_id: employeeId,
+		};
+
+		console.log(data);
+
+		dispatch(verifyEmployeeUrlAsync(data))
+			.unwrap()
+			.then((res) => {
+				console.log(res);
+				if (res?.data?.error === false) {
+					router.push(`/${ID}/`);
+				}
+			});
+	};
+
+	useEffect(() => {
+		if (userEmail !== null) {
+			setEmail(userEmail);
+		}
+	}, []);
 
 	useEffect(() => {
 		if (
@@ -79,22 +138,34 @@ const Home = () => {
 							}
 							onChange={(e) => {
 								setEmail(e.target.value);
-								setIsmail(isEmail(e.target.value));                                
 							}}
+							onBlur={(e) => {
+								console.log(isEmail(e.target.value));
+								setIsmail(isEmail(e.target.value));
+							}}
+							value={userEmail && userEmail}
 						/>
 						<Input
 							text='Enter your phone number'
 							onChange={(e) => setNumber(e.target.value)}
+							onBlur={(e) => {}}
 						/>
 						<Input
 							text='Create your password'
 							type='password'
-                            err = {(!isPassword && password.trim() !== "" ) && "Password must have at least 8 characters,at least one uppercase, at least one lowercase and at least one special symbol" }
+							err={
+								!isPassword &&
+								password.trim() !== "" &&
+								"Password must have at least 8 characters"
+							}
 							onChange={(e) => {
-                                setPassword(e.target.value)
-                                console.log(isStrongPassword(e.target.value))
-                                setIsPassword(isStrongPassword(e.target.value))
-                            }}
+								setPassword(e.target.value);
+							}}
+							onBlur={(e) => {
+								console.log(password);
+								setIsPassword(isPasswordStrong(password));
+								console.log(isPasswordStrong(password));
+							}}
 						/>
 					</div>
 
@@ -122,9 +193,10 @@ const Home = () => {
 					<div className='w-full !mt-[2em]'>
 						<AuthBtn
 							disabled={disabled}
+							loading={btnLoading}
 							text='Continue'
 							padding='16px 32px'
-							handleClick={handleClick}
+							handleClick={userEmail !== null ? handleVerifyClick : handleClick}
 						/>
 					</div>
 				</div>

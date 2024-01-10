@@ -4,6 +4,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
 @font-face {
 	font-family: "SoDoSans-bold";
 	src: url("../fonts/SoDoSans-Bold.woff2") format("woff2"),
@@ -39,6 +41,11 @@
 .inter600 {
 	font-family: "Inter", sans-serif;
 }
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
 .sodo300 {
 	font-family: SodoSans-light;
 }

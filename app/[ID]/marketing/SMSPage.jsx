@@ -2,7 +2,7 @@
 import { mailIcon } from "@/SVGs";
 import BreadCrumb from "@/components/BreadCrumb";
 import EmptyState from "@/components/EmptyState";
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React, { useState } from "react";
 import Campaign from "./Campaign";
 import GridComponent from "./GridComponent";
@@ -12,7 +12,7 @@ const SMSPage = () => {
 	const [showCampaign, setShowCampaign] = useState(false);
 	const [show, setShow] = useState(false);
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			{showCampaign ? (
 				<CreateSmsCampaign handleClick={() => setShowCampaign(false)} />
 			) : (
@@ -37,7 +37,7 @@ const SMSPage = () => {
 			<h1 className='text-[12px] cursor-pointer' onClick={() => setShow(!show)}>
 				Change Tabs
 			</h1>
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

@@ -1,13 +1,16 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const Input = ({ text, type, onChange, err }) => {
+const Input = ({ text, type, onChange, err, onBlur, value }) => {
 	return (
 		<div className='w-full'>
 			<TextField
 				fullWidth
+				autoComplete='off'
+				onBlur={(e) => onBlur(e)}
 				label={text}
 				type={type}
+				value={value && value}
 				sx={{
 					borderRadius: "6px",
 					"& input": {

@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const TimePicker = ({ handleTimeChange, color, disabled }) => {
+const TimePicker = ({ handleTimeChange, color, disabled, data }) => {
 	return (
 		<LocalizationProvider dateAdapter={AdapterDayjs}>
 			<MobileTimePicker
@@ -12,10 +12,7 @@ const TimePicker = ({ handleTimeChange, color, disabled }) => {
 				onAccept={(e) => {
 					const time =
 						e.$H > 12 ? `${e.$H - 12}:${e.$m} PM ` : `${e.$H}:${e.$m} AM `;
-					console.log("accepted");
-					console.log(e.$H, e);
-					console.log(time);
-					handleTimeChange(time);
+					handleTimeChange(time, data);					
 				}}
 				sx={{
 					"& .MuiInputBase-root": {

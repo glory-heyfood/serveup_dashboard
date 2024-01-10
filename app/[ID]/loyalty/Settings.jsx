@@ -1,4 +1,4 @@
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React from "react";
 import GridComponent from "./GridComponent";
 import BreadCrumb from "@/components/BreadCrumb";
@@ -9,7 +9,7 @@ import DashBtn from "@/components/buttons/DashBtn";
 const Settings = () => {
 	
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			<div className='mb-[32px]'>
 				<BreadCrumb main='Loyalty Rewards' link='Settings' />
 			</div>
@@ -33,7 +33,7 @@ const Settings = () => {
 				</div>
            </div>
            
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

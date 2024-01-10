@@ -29,10 +29,10 @@ const UploadImage = ({padding, border}) => {
 	};
 
 	return (
-		<div className='w-[210px]'>
+		<div className='w-full md:w-[210px]'>
 			<label
 				{...getRootProps()}
-				className={`  ${border ? border : "border border-[#E6E6E6] " }   rounded-[8px] cursor-pointer flex items-center justify-center w-[210px]  ${uploadedImage === '' ? (padding ? padding : "py-[40px]") : ''} `}
+				className={`  ${border ? border : "border border-[#E6E6E6] " }   rounded-[8px] cursor-pointer flex items-center justify-center w-full md:w-[210px]  ${uploadedImage === '' ? (padding ? padding : "py-[40px]") : ''} `}
 			>
 				<input {...getInputProps()} ref={fileInputRef} />
 				{uploadedImage ? (

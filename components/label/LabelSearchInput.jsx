@@ -8,6 +8,9 @@ const LabelSearchInput = ({
 	name,
 	inputFont,
 	fontweight,
+    border,
+    rounded,
+    width,
     value,
 	icon,
 	...props
@@ -15,6 +18,9 @@ const LabelSearchInput = ({
 	return (
 		<LabelInput
 			{...props}
+            rounded={rounded}
+            border={border}
+            width={width}
 			padding='13px 0px 14px 16px'
 			label={
 				<h2

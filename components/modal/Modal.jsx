@@ -4,7 +4,17 @@ import DashBtn from "../buttons/DashBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "@/redux/features/toggleModalSlice";
 
-const Modal = ({ btn, header, children, minHeight, maxWidth }) => {
+const Modal = ({
+	btn,
+	header,
+	children,
+	minHeight,
+	maxWidth,
+	handleClick,
+	btnLoading,
+	btnText,
+    btnColor,
+}) => {
 	const dispatch = useDispatch();
 
 	const handleOverlayClick = (e) => {
@@ -84,7 +94,15 @@ const Modal = ({ btn, header, children, minHeight, maxWidth }) => {
 				{!btn && (
 					<div className='flex  md:justify-end px-[20px] md:px-[40px] mt-[24px]'>
 						<div className='inline-block w-full md:w-fit'>
-							<DashBtn text='Save' padding='14px 32px' />
+							{btnText !== "none" && (
+								<DashBtn
+									text={btnText ? btnText : "Save"}
+                                    bgColor={btnColor}
+									padding='14px 32px'
+									handleClick={handleClick}
+									btnLoading={btnLoading}
+								/>
+							)}
 						</div>
 					</div>
 				)}

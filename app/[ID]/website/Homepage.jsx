@@ -1,4 +1,4 @@
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React from "react";
 import GridComponent from "./GridComponent";
 import BreadCrumb from "@/components/BreadCrumb";
@@ -19,7 +19,7 @@ import SaveDiscardBtn from "@/components/buttons/Save&DiscardBtn";
 
 const Homepage = () => {
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			<div>
 				<BreadCrumb main='Website' link='Homepage' />
 				<div className='mt-[32px] flex flex-col space-y-[48px] md:w-[70%] max-w-[600px] '>
@@ -88,7 +88,7 @@ const Homepage = () => {
 
 				<SaveDiscardBtn padding='py-[64px]' />
 			</div>
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

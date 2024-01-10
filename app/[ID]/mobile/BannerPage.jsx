@@ -1,5 +1,5 @@
 "use client";
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React, { useState } from "react";
 import GridComponent from "./GridComponent";
 import EmptyState from "@/components/EmptyState";
@@ -18,7 +18,7 @@ const BannerPage = () => {
 	const modal = useSelector((state) => state.modal.showModal);
 
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			<BreadCrumb main='Mobile App' link='Banners' />
 			{show ? (
 				<div className='mt-[32px]'>
@@ -90,7 +90,7 @@ const BannerPage = () => {
 				Toggle
 			</Button>
 			{modal && <BannerModal />}
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

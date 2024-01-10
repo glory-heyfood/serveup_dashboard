@@ -1,27 +1,29 @@
 import { sidebarData } from "@/data";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SidebarItem from "./SidebarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { XIcon } from "@/SVGs";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 
 const SideBar = ({ btn }) => {
-	const showSidebar = useSelector((state) => state.sidebar.showSidebar);
+    const showSidebar = useSelector((state) => state.sidebar.showSidebar);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		console.log(showSidebar);
 	}, []);
+
+	
 	return (
 		<>
 			<div
 				className={`bg-[#00000096]  h-screen w-full fixed top-0 left-0 z-50 ${
 					showSidebar ? "hidden" : "sidebarCont hidden"
 				} `}
-			onClick={()=>{
-                dispatch(toggleSidebar(true))
-            }}
-            ></div>
+				onClick={() => {
+					dispatch(toggleSidebar(true));
+				}}
+			></div>
 			<div
 				className={`bg-white  animate05s  h-screen pt-[32px]  fixed top-0 left-0 z-[60] sidebar pr-[21px] pl-[20px] w-full sm:w-[345px] max-w-[350px]   ${
 					showSidebar ? "translate-x-[-100%]" : "translate-x-0  "

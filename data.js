@@ -1,14 +1,22 @@
 import {
+	barCodeIcon,
 	bellIcon,
+	beverageIcon,
 	briefcaseICon,
 	chartIcon,
+	chartIconWhite,
 	companyIcon,
 	marketingIcon,
 	mobileIcon,
+	potIcon,
 	promotionICon,
+	promotionIconWhite,
 	rewardIcon,
+	settingsIcon,
+	shieldIconWhite,
 	storeIcon,
 	userIcon,
+	walletIconWhite,
 	websiteIcon,
 } from "./SVGs";
 import NewOrderCard from "./app/[ID]/NewOrderCard";
@@ -113,11 +121,13 @@ export const Pricing = [
 	},
 ];
 
-
-
 // Data for side bar dashboard
 
-export const ID = "id"  // mock id
+export const ID =
+	typeof window !== "undefined"
+		? JSON.parse(window.localStorage.getItem("serveup_business"))?.id
+		: "id";
+export const storeID = "3";
 
 export const sidebarData = [
 	{
@@ -178,6 +188,62 @@ export const sidebarData = [
 		icon: companyIcon,
 		text: "Business Settings",
 		href: `/${ID}/business`,
+	},
+];
+
+export const storeSideBarData = [
+	{
+		icon: potIcon,
+		text: "Kitchen",
+		href: `/${ID}/${storeID}/kitchen`,
+		bgColor: "#F01C1C",
+	},
+
+	{
+		icon: chartIconWhite,
+		text: "Analytics",
+		href: `/${ID}/${storeID}/analytics`,
+		bgColor: "#FF9800",
+	},
+
+	{
+		icon: beverageIcon,
+		text: "Menus",
+		href: `/${ID}/${storeID}/menus#/categories`,
+		bgColor: "#74006D",
+	},
+
+	{
+		icon: shieldIconWhite,
+		text: "Order history",
+		href: `/${ID}/${storeID}/order_history`,
+		bgColor: "#136FFB",
+	},
+
+	{
+		icon: barCodeIcon,
+		text: "Dine-in",
+		href: `/${ID}/${storeID}/dine_in#/sections`,
+		bgColor: "#06AE68",
+	},
+	{
+		icon: walletIconWhite,
+		text: "Payout",
+		href: `/${ID}/${storeID}/payout#/transactions`,
+		bgColor: "#F56412",
+	},
+	{
+		icon: promotionIconWhite,
+		text: "Promotions",
+		href: `/${ID}/${storeID}/promotions`,
+		bgColor: "#118507",
+	},
+
+	{
+		icon: settingsIcon,
+		text: "Settings",
+		href: `/${ID}/${storeID}/settings`,
+		bgColor: "#606B7C",
 	},
 ];
 
@@ -367,6 +433,637 @@ export const campaignData = [
 	},
 ];
 
+export const promotionData = [
+	{
+		Name: "Weekly Newsletter",
+		Discount: 10,
+		DateCreated: "Wed Oct 4, 2023 . 10:00 AM",
+		Usage: 224,
+		TotalCost: 34500,
+		Status: "Active",
+	},
+	{
+		Name: "Monthly Newsletter",
+		Discount: 15,
+		DateCreated: "Thu Oct 1, 2023 . 10:00 AM",
+		Usage: 224,
+		TotalCost: 29500,
+		Status: "Inactive",
+	},
+	{
+		Name: "Promotional Email",
+		Discount: 5,
+		DateCreated: "Fri Oct 20, 2023 . 3:30 PM",
+		Usage: 120,
+		TotalCost: 12500,
+		Status: "Active",
+	},
+	{
+		Name: "Product Announcement",
+		Discount: 20,
+		DateCreated: "Tue Oct 15, 2023 . 2:00 PM",
+		Usage: 300,
+		TotalCost: 15000,
+		Status: "Active",
+	},
+	{
+		Name: "New Campaign 1",
+		Discount: 10,
+		DateCreated: "Mon Oct 10, 2023 . 11:30 AM",
+		Usage: 150,
+		TotalCost: 20000,
+		Status: "Inactive",
+	},
+	{
+		Name: "Special Promotion",
+		Discount: 15,
+		DateCreated: "Sat Oct 5, 2023 . 1:45 PM",
+		Usage: 180,
+		TotalCost: 18000,
+		Status: "Active",
+	},
+	{
+		Name: "Black Friday Sale",
+		Discount: 25,
+		DateCreated: "Fri Nov 25, 2023 . 9:00 AM",
+		Usage: 250,
+		TotalCost: 22500,
+		Status: "Active",
+	},
+	{
+		Name: "Holiday Greetings",
+		Discount: 5,
+		DateCreated: "Wed Dec 20, 2023 . 3:30 PM",
+		Usage: 100,
+		TotalCost: 34500,
+		Status: "Inactive",
+	},
+	{
+		Name: "Year-End Recap",
+		Discount: 20,
+		DateCreated: "Sat Dec 30, 2023 . 11:00 AM",
+		Usage: 280,
+		TotalCost: 17500,
+		Status: "Active",
+	},
+	{
+		Name: "New Year Wishes",
+		Discount: 10,
+		DateCreated: "Sun Jan 1, 2024 . 12:01 AM",
+		Usage: 200,
+		TotalCost: 24500,
+		Status: "Active",
+	},
+	{
+		Name: "Valentine's Day Promo",
+		Discount: 5,
+		DateCreated: "Tue Feb 14, 2024 . 11:30 AM",
+		Usage: 80,
+		TotalCost: 12000,
+		Status: "Inactive",
+	},
+	{
+		Name: "Spring Sale",
+		Discount: 15,
+		DateCreated: "Fri Mar 20, 2024 . 10:00 AM",
+		Usage: 300,
+		TotalCost: 15000,
+		Status: "Active",
+	},
+	{
+		Name: "Easter Specials",
+		Discount: 10,
+		DateCreated: "Sun Apr 4, 2024 . 2:00 PM",
+		Usage: 120,
+		TotalCost: 20000,
+		Status: "Inactive",
+	},
+	{
+		Name: "Mother's Day Celebration",
+		Discount: 15,
+		DateCreated: "Sun May 12, 2024 . 3:30 PM",
+		Usage: 180,
+		TotalCost: 18000,
+		Status: "Active",
+	},
+	{
+		Name: "Summer Discounts",
+		Discount: 25,
+		DateCreated: "Fri Jun 21, 2024 . 12:00 PM",
+		Usage: 250,
+		TotalCost: 22500,
+		Status: "Active",
+	},
+	{
+		Name: "Independence Day Special",
+		Discount: 5,
+		DateCreated: "Thu Jul 4, 2024 . 9:00 AM",
+		Usage: 100,
+		TotalCost: 34500,
+		Status: "Inactive",
+	},
+	{
+		Name: "Back-to-School Offers",
+		Discount: 20,
+		DateCreated: "Mon Aug 26, 2024 . 10:30 AM",
+		Usage: 200,
+		TotalCost: 24500,
+		Status: "Active",
+	},
+	{
+		Name: "Autumn Preview",
+		Discount: 10,
+		DateCreated: "Tue Sep 10, 2024 . 2:30 PM",
+		Usage: 80,
+		TotalCost: 12000,
+		Status: "Inactive",
+	},
+];
+
+export const OrderHistoryData = [
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+	{
+		customer: "Weekly Newsletter",
+		status: "Completed",
+		netPayout: 224,
+		items: 138,
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+	},
+];
+
+export const menuItemsData = [
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+	{
+		name: "Oghenekevwe Olakunle",
+		price: "₦2,300",
+		category: "Intercontinental meals",
+		stock: "In Stock",
+	},
+];
+
+export const transactionsData = [
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Payout",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+    {
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+	{
+		amount: "₦150,000",
+		status: "Success",
+		type: "Withdrawal",		
+		date: "Wed Oct 4, 2023 . 10:00 AM",
+        initiatedBy:"Isaac Ademola"
+	},
+];
+
+export const sendMenuItemsData = (page, noOfRows) => {
+	return {
+		data: menuItemsData.slice(page * noOfRows, page * noOfRows + noOfRows),
+		length: menuItemsData.length,
+	};
+};
 export const sendCampaignData = (page, noOfRows, tab) => {
 	if (tab === "All") {
 		return {
@@ -418,65 +1115,145 @@ export const sendCampaignData = (page, noOfRows, tab) => {
 	}
 };
 
+export const sendTransactionData = (page, noOfRows, tab) =>{
+    if(tab === "Payouts") {
+        const newArr = [];
+		transactionsData.map((data) => {
+			if (data.type === "Payout") {
+				newArr.push(data);
+			}
+		});
+
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+    }
+
+    if(tab === "Withdrawals"){
+        const newArr = [];
+		transactionsData.map((data) => {
+			if (data.type === "Withdrawal") {
+				newArr.push(data);
+			}
+		});
+
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+    }
+}
+
 export const getCampaignDataLength = () => {
 	return campaignData.length;
+};
+
+export const sendPromotionsData = (page, noOfRows, tab) => {
+	if (tab === "Active") {
+		const newArr = [];
+		promotionData.map((data) => {
+			if (data.Status === "Active") {
+				newArr.push(data);
+			}
+		});
+
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+	}
+
+	if (tab === "Inactive") {
+		const newArr = [];
+		promotionData.map((data) => {
+			if (data.Status === "Inactive") {
+				newArr.push(data);
+			}
+		});
+
+		return {
+			data: newArr.slice(page * noOfRows, page * noOfRows + noOfRows),
+			length: newArr.length,
+		};
+	}
+};
+
+export const sendOrderHistory = (page, noOfRows) => {
+	return {
+		data: OrderHistoryData.slice(page * noOfRows, page * noOfRows + noOfRows),
+		length: OrderHistoryData.length,
+	};
 };
 
 export const AddStoreLabeDateInputData = [
 	{
 		label: "Monday",
+		status: "",
+		workingDays: false,
 	},
 	{
 		label: "Tuesday",
+		status: "",
+		workingDays: false,
 	},
 	{
 		label: "Wednesday",
+		status: "",
+		workingDays: false,
 	},
 	{
 		label: "Thursday",
+		status: "",
+		workingDays: false,
 	},
 	{
 		label: "Friday",
+		status: "",
+		workingDays: false,
 	},
 	{
 		label: "Saturday",
+		status: "",
+		workingDays: false,
 	},
 	{
 		label: "Sunday",
+		status: "",
+		workingDays: false,
 	},
 ];
 
-
 export const rewardOptions = [
-    {
-        value: "10 ",
-        description: "10 naira off your order",
-        discount:"10",
-        discountType:"Amount",
-        rewardType:"orderDiscount"
-    },
-    {
-        value: "20 ",
-        description: "20% off your order",
-        discount:"20",
-        discountType:"Percent",
-        rewardType:"orderDiscount"
-    },
-    {
-        value: "30 ",
-        description: "30% off your order",
-        discount:"30",
-        discountType:"Percent",
-        rewardType:"orderDiscount"
-    },
-    {
-        value: "40 ",
-        description: "free delivery",
-        discount:"100",
-        discountType:"Percent",
-        rewardType:"deliveryDiscount"
-    },
-]
+	{
+		value: "10 ",
+		description: "10 naira off your order",
+		discount: "10",
+		discountType: "Amount",
+		rewardType: "orderDiscount",
+	},
+	{
+		value: "20 ",
+		description: "20% off your order",
+		discount: "20",
+		discountType: "Percent",
+		rewardType: "orderDiscount",
+	},
+	{
+		value: "30 ",
+		description: "30% off your order",
+		discount: "30",
+		discountType: "Percent",
+		rewardType: "orderDiscount",
+	},
+	{
+		value: "40 ",
+		description: "free delivery",
+		discount: "100",
+		discountType: "Percent",
+		rewardType: "deliveryDiscount",
+	},
+];
 
 export const EmployeeData = [
 	{

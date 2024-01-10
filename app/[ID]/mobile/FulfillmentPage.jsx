@@ -1,4 +1,4 @@
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React from "react";
 import GridComponent from "./GridComponent";
 import BreadCrumb from "@/components/BreadCrumb";
@@ -6,7 +6,7 @@ import FulfillmentItems from "./FulfillmentItems";
 
 const FulfillmentPage = () => {
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			<div>
 				<BreadCrumb main='Mobile App' link='Fulfillment' />
 				<div className='flex space-y-[16px] flex-col mt-[40px]'>
@@ -24,7 +24,7 @@ const FulfillmentPage = () => {
 					/>
 				</div>
 			</div>
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

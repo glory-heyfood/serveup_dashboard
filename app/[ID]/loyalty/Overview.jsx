@@ -1,4 +1,4 @@
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React, { useState } from "react";
 import GridComponent from "./GridComponent";
 import BreadCrumb from "@/components/BreadCrumb";
@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 const Overview = () => {
 	const [show, setShow] = useState(false);
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			{show ? (
 				<>
 					<BreadCrumb main='Loyalty Rewards' link='Overview' />
@@ -88,7 +88,7 @@ const Overview = () => {
 			>
 				Toggle{" "}
 			</Button>
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

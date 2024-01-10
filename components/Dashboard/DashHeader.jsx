@@ -1,11 +1,16 @@
 import { buildingIcon, dropDownBlueIcon, menuIcon } from "@/SVGs";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const DashHeader = ({ handleSideBar }) => {    
     const dispatch = useDispatch()
+    const [data, setData] = useState()
+    useEffect(()=>{
+        const dat = JSON.parse(window.localStorage.getItem("serveup_business"))
+        setData(dat)
+    }, [])
 
 	return (
 		<div
@@ -28,8 +33,8 @@ const DashHeader = ({ handleSideBar }) => {
 			<div className='flex items-center space-x-[12px]'>
 				<div className='flex space-x-[5px] items-center'>
 					<span> {buildingIcon} </span>
-					<h1 className=' text-[#072A85] text-[14px] leading-[15px] sodo600 tracking-[-0.56px]  '>
-						Toasties
+					<h1 className=' text-[#072A85] text-[14px] capitalize leading-[15px] sodo600 tracking-[-0.56px]  '>
+						{data?.name}
 					</h1>
 					<span>{dropDownBlueIcon}</span>
 				</div>
@@ -41,7 +46,7 @@ const DashHeader = ({ handleSideBar }) => {
 					}}
 				>
 					<h1 className='text-[#FF8A00] text-[10px] sodo600 tracking-[-0.1px] '>
-						STARTER
+						{data?.subscription_plan}
 					</h1>
 				</div>
 			</div>

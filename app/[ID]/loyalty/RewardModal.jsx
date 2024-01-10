@@ -3,6 +3,7 @@ import LabelInput from "@/components/label/LabelInput";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
 import LabelSelect from "@/components/label/LabelSelect";
 import React, { useEffect, useState } from "react";
+import LabelDiscount from "@/components/label/LabelDiscount";
 
 const Label = ({ label }) => {
 	return <h1 className='text-[13px] sodo700 tracking-[-0.52px]  '>{label}</h1>;
@@ -37,6 +38,13 @@ const RewardModal = ({ data }) => {
 			setSelectedValue(data.rewardType);
 		}
 	}, [data]);
+
+    const handleDiscountClick = (type) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            ["discountType"]: type,
+        }));
+    }
 
 	return (
 		<>
@@ -79,70 +87,7 @@ const RewardModal = ({ data }) => {
 									</span>
 								</div>
 							</LabelInput>
-							<LabelInput
-								label={<Label label='Discount' />}
-								padding='13px 0px 14px 16px'
-							>
-								<div className='flex pr-[16px]'>
-									<input
-										type='text'
-										placeholder='0'
-										name='discount'
-                                        value={formData.discount}
-										onChange={(e) => handleChange(e)}
-										className='outline-none flex-grow sodo400 tracking-[-0.52px] text-[13px]'
-									/>
-									<div className=' flex space-x-[2px] '>
-										<div
-											className={`${
-												formData?.discountType === "Amount"
-													? "border-[1.5px] border-[#4971D9] "
-													: ""
-											} rounded-[4px] px-[9px] py-[7px] bg-[#F0F0F0] cursor-pointer`}
-											onClick={() => {
-												setFormData((prevData) => ({
-													...prevData,
-													["discountType"]: "Amount",
-												}));
-											}}
-										>
-											<h3
-												className={`${
-													formData?.discountType === "Amount"
-														? "text-[#072A85] "
-														: "text-black"
-												} tracking-[-0.48px] text-[12px] sodo700 flex space-x-[4px]`}
-											>
-												<span className='sodo700'>₦</span> <span>Amount</span>
-											</h3>
-										</div>
-
-										<div
-											className={`${
-												formData?.discountType === "Percent"
-													? "border-[1.5px] border-[#4971D9] "
-													: ""
-											} rounded-[4px] px-[9px] py-[7px] bg-[#F0F0F0] cursor-pointer`}
-											onClick={() => {
-												setFormData((prevData) => ({
-													...prevData,
-													["discountType"]: "Percent",
-												}));
-											}}
-										>
-											<h3
-												className={`${
-													formData?.discountType === "Percent"
-														? "text-[#072A85] "
-														: "text-black"
-												} tracking-[-0.48px] text-[12px] sodo600 flex space-x-[4px]`}
-											>
-												<span className='sodo700'>%</span> <span>Percent</span>
-											</h3>
-										</div>
-									</div>
-								</div>
-							</LabelInput>
+						<LabelDiscount value={formData.discount} handleChange={handleChange} discountType={formData.discountType} handleClick={handleDiscountClick} />
 						</div>
 					)}
 

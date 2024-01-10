@@ -2,13 +2,13 @@ import React from "react";
 import LabelText from "./LabelText";
 import LabelInput from "./LabelInput";
 
-const LabelTextarea = ({ label, placeholder, rows,width }) => {
+const LabelTextarea = ({ label, placeholder, rows,width, fontweight }) => {
 	return (
 		<LabelInput
         width={width}
 			padding='16px 0px 16px 16px'
 			stretch={true}
-			label={<LabelText label={label} />}
+			label={<LabelText label={label} fontWeight={fontweight} />}
 		>
 			<textarea
 				placeholder={placeholder}

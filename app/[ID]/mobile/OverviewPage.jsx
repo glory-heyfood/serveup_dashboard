@@ -1,13 +1,13 @@
-import MarketingLayout from "@/components/MarketingLayout";
+import GridLayout from "@/components/GridLayout";
 import React from "react";
 import GridComponent from "./GridComponent";
 import BreadCrumb from "@/components/BreadCrumb";
 
 const OverviewPage = () => {
 	return (
-		<MarketingLayout GridComponent={<GridComponent />}>
+		<GridLayout GridComponent={<GridComponent />}>
 			<BreadCrumb main='Mobile App' link='Overview' />
-		</MarketingLayout>
+		</GridLayout>
 	);
 };
 

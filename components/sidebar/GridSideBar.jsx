@@ -1,6 +1,7 @@
-import { ID, sidebarData } from "@/data";
+import { ID, sidebarData, storeID, storeSideBarData } from "@/data";
 import React, { useEffect, useState } from "react";
 import SidebarItem from "./SidebarItem";
+import StoreSideBarItem from "./StoreSideBarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
 import { XIcon, menuGrid } from "@/SVGs";
@@ -8,11 +9,14 @@ import {
 	toggleGridSidebar,
 	toggleLoyaltyGridSidebar,
 	toggleMarketingGridSidebar,
-    toggleMobileAppGridSidebar,
-    toggleWebsiteGridSidebar,
+	toggleMobileAppGridSidebar,
+	toggleWebsiteGridSidebar,
+	toggleMenusGridSidebar,
+    togglePayoutGridSidebar,
+    toggleDineInGridSidebar,
 } from "@/redux/features/gridSidebarSlice";
 
-const GridSideBar = ({ btn, GridComponent }) => {
+const GridSideBar = ({ btn, GridComponent, type }) => {
 	const [grid, setGrid] = useState(true);
 
 	const marketingGrid = useSelector(
@@ -22,8 +26,21 @@ const GridSideBar = ({ btn, GridComponent }) => {
 		(state) => state.gridSidebar.showLoyaltyGridSidebar,
 	);
 
-    const websiteGrid = useSelector((state)=> state.gridSidebar.showWebsiteGridSidebar)
-    const mobileAppGrid = useSelector((state)=> state.gridSidebar.showMobileAppGridSidebar)
+	const websiteGrid = useSelector(
+		(state) => state.gridSidebar.showWebsiteGridSidebar,
+	);
+	const mobileAppGrid = useSelector(
+		(state) => state.gridSidebar.showMobileAppGridSidebar,
+	);
+	const menusGrid = useSelector(
+		(state) => state.gridSidebar.showMenusGridSidebar,
+	);
+    const payoutGrid = useSelector(
+		(state) => state.gridSidebar.showPayoutGridSidebar,
+	);
+    const dineInGrid = useSelector(
+		(state) => state.gridSidebar.showDineInGridSidebar,
+	);
 
 	const showSidebar = useSelector((state) => state.sidebar.showSidebar);
 
@@ -36,11 +53,20 @@ const GridSideBar = ({ btn, GridComponent }) => {
 		if (window.location.pathname === `/${ID}/loyalty`) {
 			dispatch(toggleLoyaltyGridSidebar(false));
 		}
-        if (window.location.pathname === `/${ID}/website`) {
+		if (window.location.pathname === `/${ID}/website`) {
 			dispatch(toggleWebsiteGridSidebar(false));
 		}
-        if (window.location.pathname === `/${ID}/mobile`) {
+		if (window.location.pathname === `/${ID}/mobile`) {
 			dispatch(toggleMobileAppGridSidebar(false));
+		}
+		if (window.location.pathname === `/${ID}/${storeID}/menus`) {
+			dispatch(toggleMenusGridSidebar(false));
+		}
+        if (window.location.pathname === `/${ID}/${storeID}/payout`) {
+			dispatch(togglePayoutGridSidebar(false));            
+		}
+        if (window.location.pathname === `/${ID}/${storeID}/dine_in`) {
+			dispatch(toggleDineInGridSidebar(false))
 		}
 	};
 
@@ -52,13 +78,22 @@ const GridSideBar = ({ btn, GridComponent }) => {
 		if (window.location.pathname === `/${ID}/loyalty`) {
 			setGrid(loyaltyGrid);
 		}
-        if (window.location.pathname === `/${ID}/website`) {
-			setGrid(websiteGrid)
+		if (window.location.pathname === `/${ID}/website`) {
+			setGrid(websiteGrid);
 		}
-        if (window.location.pathname === `/${ID}/mobile`) {
-			setGrid(mobileAppGrid)
+		if (window.location.pathname === `/${ID}/mobile`) {
+			setGrid(mobileAppGrid);
 		}
-	}, [marketingGrid, loyaltyGrid, websiteGrid, mobileAppGrid]);
+		if (window.location.pathname === `/${ID}/${storeID}/menus`) {
+			setGrid(menusGrid);
+		}
+        if (window.location.pathname === `/${ID}/${storeID}/payout`) {
+			setGrid(payoutGrid);
+		}
+        if (window.location.pathname === `/${ID}/${storeID}/dine_in`) {
+			setGrid(dineInGrid);
+		}
+	}, [marketingGrid, loyaltyGrid, websiteGrid, mobileAppGrid, menusGrid, payoutGrid, dineInGrid]);
 
 	return (
 		<>
@@ -116,24 +151,38 @@ const GridSideBar = ({ btn, GridComponent }) => {
 							{XIcon}
 						</span>
 						<div className=' grid grid-cols-4 md:grid-cols-3 gap-x-[32px] md:gap-x-[1.5em] gap-y-[50px] md:gap-y-[1.5em] ml-[20.2px]'>
-							{sidebarData.map((data, i) => (
-								<SidebarItem
-									noClick={
-										data.text === "Marketing" || data.text === "Loyalty rewards" || data.text === "Website" || data.text=== "Mobile App"
-											? true
-											: false
-									}
-									href={
-										// data.text === "Marketing" || data.text === "Loyalty rewards"
-										// 	? window.location.href
-										// 	: data.href
-                                        data.href
-									}
-									icon={data.icon}
-									text={data.text}
-									key={i}
-								/>
-							))}
+							{type === "store"
+								? storeSideBarData.map((data, i) => (
+										<StoreSideBarItem
+                                        noClick={data.text === "Menus" || data.text === "Payout" || data.text === "Dine-in"}
+											href={data.href}
+											icon={data.icon}
+											text={data.text}
+											key={i}
+                                            bgColor={data.bgColor}
+										/>
+								  ))
+								: sidebarData.map((data, i) => (
+										<SidebarItem
+											noClick={
+												data.text === "Marketing" ||
+												data.text === "Loyalty rewards" ||
+												data.text === "Website" ||
+												data.text === "Mobile App"
+													? true
+													: false
+											}
+											href={
+												// data.text === "Marketing" || data.text === "Loyalty rewards"
+												// 	? window.location.href
+												// 	: data.href
+												data.href
+											}
+											icon={data.icon}
+											text={data.text}
+											key={i}
+										/>
+								  ))}
 						</div>
 					</div>
 				)}

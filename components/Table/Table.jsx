@@ -11,6 +11,7 @@ import { Box, Button, MenuItem, Select, TextField } from "@mui/material";
 import CustomSelect from "../CustomSelect";
 import TableSelect from "./TableSelect";
 import { sendCampaignData } from "@/data";
+import InStock from "../InStock";
 
 export default function TableComponent({
 	TableTab,
@@ -19,6 +20,7 @@ export default function TableComponent({
 	setData,
 	tab,
 	length,
+    arr,
 }) {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -27,6 +29,7 @@ export default function TableComponent({
 	const columns = column;
 
 	const rows = row;
+    
 
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
@@ -42,8 +45,9 @@ export default function TableComponent({
 	};
 
 	React.useEffect(() => {
-		const dat = sendCampaignData(page, rowsPerPage, tab);
-		setData(dat.data);
+		const dat = arr(page, rowsPerPage, tab);
+        console.log(page, rowsPerPage, tab)
+		setData(dat?.data);        
 	}, [page, rowsPerPage]);
 
 	return (
@@ -87,12 +91,12 @@ export default function TableComponent({
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows.map((row) => {
+						{rows?.map((row) => {
 							return (
 								<TableRow role='checkbox' tabIndex={-1} key={row.code}>
-									{columns.map((column) => {
+									{columns.map((column, i) => {
 										const value = row[column.id];
-										if (value === "Sent") {
+										if (value === "Sent" || value === 'Active' || value === "Success") {
 											return (
 												<TableCell key={column.id} align={column.align}>
 													<div
@@ -107,7 +111,7 @@ export default function TableComponent({
 													</div>
 												</TableCell>
 											);
-										} else if (value === "Pending") {
+										} else if (value === "Pending" || value === "Inactive") {
 											return (
 												<TableCell key={column.id} align={column.align}>
 													<div
@@ -137,7 +141,12 @@ export default function TableComponent({
 													</div>
 												</TableCell>
 											);
-										} else {
+										} else if (value === "In Stock") {
+											return (
+												<InStock key={i} />
+											);
+										} 
+                                         else {
 											return (
 												<TableCell key={column.id} align={column.align}>
 													{column.format && typeof value === "number"

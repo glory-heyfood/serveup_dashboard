@@ -2,22 +2,41 @@
 import AuthHeader from "@/components/Auth/AuthHeader";
 import PriceCard from "@/components/PriceCard";
 import { Pricing } from "@/data";
+import { updateSubscriptionPlanAsync } from "@/redux/features/business/businessSlice";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const Page = () => {
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [disabled, setDisabled] = useState(true);
-	const router = useRouter();
+    const [data, setData] = useState()
+	const router = useRouter();        
+    const dispatch = useDispatch()
 
 	const handleClick = () => {
-		router.push("/id");
+        const payload = {
+            subscription_plan: selectedCard.name,
+            id:data.id
+        }
+        dispatch(updateSubscriptionPlanAsync(payload)).unwrap().then((res)=>{
+            console.log(res)
+            if(res){
+                router.push(`/${data.id}`);
+            }
+        })
 	};
 
 	const handleCardClick = (card) => {
+        console.log(card)
 		setDisabled(false);
 		setSelectedCard(card);
 	};
+
+     useEffect(()=>{
+        const dat = JSON.parse(window.localStorage.getItem("serveup_business"))
+        setData(dat)
+    }, [])
 	return (
 		<div>
 			<AuthHeader disabled={disabled} handleClick={handleClick} />

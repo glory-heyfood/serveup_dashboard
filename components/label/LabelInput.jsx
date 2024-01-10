@@ -5,12 +5,16 @@ const LabelInput = ({
 	padding,
 	children,
 	width,
+    rounded,
 	stretch,
+    border,
 	childWidth,
 }) => {
 	return (
 		<div
-			className={`border border-[#E6E6E6] py-[14px] px-[16px] md:p-0 flex flex-col space-y-[12px] md:space-y-0 md:flex-row md:space-x-[0.94em]   rounded-[4px] ${
+			className={`${
+				rounded ? rounded : " rounded-[4px] " 
+			}  ${border ? border : "border border-[#E6E6E6]"} py-[14px] px-[16px] md:p-0 flex flex-col space-y-[12px] md:space-y-0 md:flex-row md:space-x-[0.94em]  ${
 				stretch ? "md:items-stretch" : "md:items-center"
 			} `}
 		>
@@ -23,7 +27,7 @@ const LabelInput = ({
 					padding: padding,
 				}}
 			>
-			{label}
+				{label}
 			</div>
 			<div className={`flex-grow ${childWidth && childWidth}`}>{children}</div>
 		</div>

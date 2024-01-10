@@ -4,7 +4,6 @@ import { campaignData, sendCampaignData } from "@/data";
 import * as React from "react";
 import TableTab from "./TableTab";
 
-
 export default function StickyHeadTable() {
 	const [data, setData] = React.useState([]);
 	const [selected, setSelected] = React.useState("All");
@@ -67,6 +66,7 @@ export default function StickyHeadTable() {
 		return (
 			<TableComponent
 				setData={setData}
+				arr={sendCampaignData}
 				TableTab={
 					<TableTab
 						setData={setData}

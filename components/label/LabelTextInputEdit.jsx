@@ -21,6 +21,7 @@ const LabelTextInputEdit = ({
 	inputFont,
 	placeholder,
 	icon,
+    readOnly,
 }) => {
 	const [inputValue, setInputValue] = useState(initialValue);
 	const [isEditing, setIsEditing] = useState(false);
@@ -39,6 +40,7 @@ const LabelTextInputEdit = ({
 				<input
 					type='text'
 					value={inputValue}
+                    readOnly={readOnly && true}
 					placeholder={placeholder}
 					className={`w-full placeholder:text-[#A9ADB5] placeholder:text-[13px] border-none outline-none  tracking-[-0.52px] bg-transparent p-0 text-[13px] text-[#000] ${
 						inputFont ? inputFont : "sodo300"

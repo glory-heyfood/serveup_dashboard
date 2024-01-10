@@ -5,15 +5,18 @@ import CustomSelect from "@/components/CustomSelect";
 import DashLayout from "@/components/Dashboard/DashLayout";
 import EmptyState from "@/components/EmptyState";
 import { Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmployeesItems from "./EmployeesItems";
 import EmployeeSideBar from "./EmployeeSideBar";
-import { EmployeeData, options } from "@/data";
+import { EmployeeData, ID, options } from "@/data";
 import DashBtn from "@/components/buttons/DashBtn";
 import AddEmployee from "./AddEmployee";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "@/redux/features/toggleModalSlice";
 import ManageRoles from "./ManageRoles";
+import { getAllEmployeesAsync } from "@/redux/features/business/employeeSlice";
+import EmployeeAndCustomerLoader from "@/components/loaders/EmployeeAndCustomerLoader";
+import { searchArrayforEmployeeAndCustomer } from "@/utils";
 
 const Page = () => {
 	const [show, setShow] = useState(false);
@@ -22,16 +25,44 @@ const Page = () => {
 	const [selectedLocation, setSelectedLocation] = useState("");
 	const modal = useSelector((state) => state.modal.showModal);
 	const dispatch = useDispatch();
+	const loader = useSelector((state) => state.employee.loading);
+    const store = useSelector((state) => state.stores.data);
+    console.log(store)
 	const [showManageRoles, setShowManageRoles] = useState(false);
+	const [data, setData] = useState();
+	const [filteredData, setFilteredData] = useState();
 
-	const handleChange = (e) => {
-		console.log(e.target.value);
+	const handleChange = (e) => {		
+		const searchedData = searchArrayforEmployeeAndCustomer(
+			data,
+			e.target.value.trim(),
+		);
+		setFilteredData(searchedData);
 	};
 
 	const handleItemClick = (item) => {
 		setShow(true);
 		setSelectedItem(item);
 	};
+
+	const getAllEmployees = () => {
+		if (ID) {
+			dispatch(getAllEmployeesAsync(ID))
+				.unwrap()
+				.then((res) => {				
+					setData(res.data[0]);
+					setFilteredData(res.data[0]);
+				});
+		}
+	};
+
+	useEffect(() => {
+        // i added this condition so that when a user add an employee, our getEmployee function is called immediately
+		if (modal === false) {
+			getAllEmployees();
+		}
+	}, [modal]);
+
 	if (showManageRoles) {
 		return <ManageRoles setShowManageRoles={setShowManageRoles} />;
 	} else {
@@ -126,18 +157,24 @@ const Page = () => {
 								<hr className='h-[0.5px] w-full lg:w-[94%] hidden md:block bg-[#F0F0F0] mt-[1.25em] mb-[0.75em] lg:ml-[32px] lg:mr-[32px] ' />
 
 								<div className='w-full  flex-grow mt-[1.25em]  md:mt-0'>
-									{EmployeeData.map((data, i) => (
-										<EmployeesItems
-											key={i}
-											data={data}
-											handleClick={handleItemClick}
-											isSelected={selectedItem === data}
-										/>
-									))}
+									{loader
+										? EmployeeData.map((data, i) => (
+												<EmployeeAndCustomerLoader key={i} />
+										  ))
+										: filteredData?.map((data, i) => (
+												<EmployeesItems
+													key={i}
+													data={data}
+                                                    getAllEmployees={getAllEmployees}
+													handleClick={handleItemClick}
+													isSelected={selectedItem === data}
+												/>
+										  ))}
 								</div>
 
 								{show && (
 									<EmployeeSideBar
+										data={selectedItem}
 										handleClose={() => {
 											setShow(false);
 											setSelectedItem(null);

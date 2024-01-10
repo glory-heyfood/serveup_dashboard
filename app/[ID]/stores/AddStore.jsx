@@ -3,15 +3,19 @@ import ComponentModalLayout from "@/components/ComponentModalLayout";
 import CustomLabel from "@/components/label/CustomLabel";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
 import React, { useState } from "react";
-import LabelDateInput from "./LabelDateInput";
+import LabelDateInput from "../../../components/label/LabelDateInput";
 import LabelSelect from "@/components/label/LabelSelect";
 import DashBtn from "@/components/buttons/DashBtn";
 
 import TimePicker from "@/components/TimePicker";
-import { AddStoreLabeDateInputData } from "@/data";
+import { AddStoreLabeDateInputData, ID } from "@/data";
+import { useDispatch, useSelector } from "react-redux";
+import { createStoreAsync } from "@/redux/features/business/storeSlice";
 
 const AddStore = ({ handleClose }) => {
 	const [selectedValue, setSelectedValue] = useState("");
+    const dispatch = useDispatch()
+    const btnLoading = useSelector((state)=> state.stores.loading)
 	const [disabledDays, setDisabledDays] = useState({
 		Monday: true,
 		Tuesday: true,
@@ -25,8 +29,46 @@ const AddStore = ({ handleClose }) => {
 	const [formData, setFormData] = useState({
 		storeName: "",
 		storeAddress: "",
-		phoneNumer: "",
+		phoneNumber: "",
 		email: "",
+        business_hours: {
+            Monday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+            Tuesday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+            Wednesday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+            Thursday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+            Friday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+            Saturday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+            Sunday: {
+                open: '',
+                close: '',
+                workingDays: false,
+            },
+                      
+          },
 	});
 
 	const handleChange = (e) => {
@@ -34,16 +76,26 @@ const AddStore = ({ handleClose }) => {
 		setFormData((prevFormData) => ({
 			...prevFormData,
 			[name]: value,
-		}));
-		console.log(name, value);
+		}));		
 	};
 
 	const handleSelectChange = (e) => {
 		setSelectedValue(e.target.value);
 	};
 
-	const handleTimeChange = (e) => {
-		console.log(e.target);
+	const handleTimeChange = (time, data) => {				
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            business_hours: {
+              ...prevFormData.business_hours,
+              [data.label]: {
+                ...prevFormData.business_hours[data.label],
+                [data.status.toLowerCase()]: time,
+                ["workingDays"]: data.workingDays
+              },
+              
+            },
+          }));
 	};
 
 	const handleDayClick = (day) => {
@@ -51,6 +103,23 @@ const AddStore = ({ handleClose }) => {
 			...prevDisabledDays,
 			[day]: !prevDisabledDays[day],
 		}));
+	};
+
+	// Function to handle the submission
+	const handleSaveClick = () => {
+		const payload = {
+			name: formData.storeName,
+			address: formData.storeAddress,
+			phone_number: formData.phoneNumber,
+			email: formData.email,
+			business_id: ID,
+			business_hours: JSON.stringify(formData.business_hours),
+		};
+        console.log(payload)
+
+        dispatch(createStoreAsync(payload)).unwrap().then((res)=>{
+
+        })
 	};
 
 	return (
@@ -100,10 +169,12 @@ const AddStore = ({ handleClose }) => {
 							{AddStoreLabeDateInputData.map((data) => (
 								<LabelDateInput
 									key={data.label}
+                                    data={data}
 									handleClick={handleDayClick}
 									disabled={disabledDays[data.label]}
 									time={
 										<TimePicker
+											data={data}
 											disabled={disabledDays[data.label]}
 											handleTimeChange={handleTimeChange}
 										/>
@@ -137,7 +208,7 @@ const AddStore = ({ handleClose }) => {
 				</div>
 
 				<div className='block md:inline-block mt-[2.5em] mb-[5em]'>
-					<DashBtn padding='12px 37px' text='Save' />
+					<DashBtn padding='12px 37px' text='Save' handleClick={handleSaveClick} btnLoading={btnLoading} />
 				</div>
 			</div>
 		</ComponentModalLayout>

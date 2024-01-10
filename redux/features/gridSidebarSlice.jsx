@@ -4,23 +4,14 @@ const initialState = {
 	showMarketingGridSidebar: true,
     showLoyaltyGridSidebar: true,
     showWebsiteGridSidebar :true,
-    showMobileAppGridSidebar:true
+    showMobileAppGridSidebar:true,
+    showMenusGridSidebar:true,
+    showPayoutGridSidebar:true,
+    showDineInGridSidebar: true,
+    showKitchenSidebar: true,
 };
 
-// The createAsyncThunk fetches the APIs from the backend
-// This is where i consumed the APIs
 
-// export const getFoodTabAsync = createAsyncThunk(
-// 	"foodTab/getFoodTabAsync",
-// 	async (payload, { rejectWithValue }) => {
-// 		try {
-// 			const response = await axios.get(`${BASE_URL}/api/foodTab/`);
-// 			return response.data;
-// 		} catch (error) {
-// 			return rejectWithValue(error.response.data);
-// 		}
-// 	},
-// );
 
 
 const gridSidebar = createSlice({
@@ -40,7 +31,19 @@ const gridSidebar = createSlice({
 		},   
         toggleMobileAppGridSidebar: (state, action) => {		
 			state.showMobileAppGridSidebar = action.payload;
-		},   
+		}, 
+        toggleMenusGridSidebar : (state,action) => {
+            state.showMenusGridSidebar = action.payload;
+        },
+        togglePayoutGridSidebar : (state,action) => {            
+            state.showPayoutGridSidebar = action.payload;
+        },
+        toggleDineInGridSidebar: (state, action) => {
+            state.showDineInGridSidebar = action.payload;
+        },
+        toggleKitchenSidebar: (state, action)=>{
+            state.showKitchenSidebar = action.payload
+        }
      },
 
 	// extraReducers: (builder) => {
@@ -67,6 +70,6 @@ const gridSidebar = createSlice({
 	// },
 });
 
-export const { toggleMarketingGridSidebar, toggleLoyaltyGridSidebar,toggleWebsiteGridSidebar, toggleMobileAppGridSidebar } = gridSidebar.actions;
+export const { toggleMarketingGridSidebar, toggleLoyaltyGridSidebar,toggleWebsiteGridSidebar, toggleMobileAppGridSidebar, toggleMenusGridSidebar, togglePayoutGridSidebar, toggleDineInGridSidebar, toggleKitchenSidebar } = gridSidebar.actions;
 // export const {} = gridSidebar.actions;
 export default gridSidebar.reducer;

@@ -5,12 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [disabled, setDisabled] = useState(false);
 	const router = useRouter();
+    const dispatch = useDispatch()
+    // const btnLoader = 
 	const handleClick = () => {
 		console.log("clicked");
 		router.push("/");

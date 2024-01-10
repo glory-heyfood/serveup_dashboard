@@ -3,36 +3,59 @@ import { plusIcon, shieldIcon } from "@/SVGs";
 import CustomSearch from "@/components/CustomSearch";
 import DashBtn from "@/components/buttons/DashBtn";
 import DashLayout from "@/components/Dashboard/DashLayout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StoresItem from "./StoresItem";
 import { Button } from "@mui/material";
 import EmptyState from "@/components/EmptyState";
 import AddStore from "./AddStore";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllStoresAsync } from "@/redux/features/business/storeSlice";
+import { ID } from "@/data";
+import { searchArrayForStores } from "@/utils";
 
 const Page = () => {
-	const [showState, setShowState] = useState(true);
 	const [showStore, setShowStore] = useState(false);
-    const handleOpenStore = () => {
-        setShowStore(true)
-    }
+	const dispatch = useDispatch();
+	const data = useSelector((state) => state.stores.data);
+	const [filteredData, setFilteredData] = useState();
+	const handleOpenStore = () => {
+		setShowStore(true);
+	};
 
-    const handleCloseStore = () => {
-        setShowStore(false)
-    }
+	const handleCloseStore = () => {
+		setShowStore(false);
+	};
 
-   const handleChange = (e) => {
-        console.log(e.target.value)
-    }
+	const handleChange = (e) => {		
+		const newArr = searchArrayForStores(data, e.target.value);
+		setFilteredData(newArr);
+	};
+
+	const getAllStores = () => {
+		dispatch(getAllStoresAsync(ID))
+			.unwrap()
+			.then((res) => {
+				console.log(res);
+			});
+	};
+
+	useEffect(() => {
+		setFilteredData(data);
+	}, [data]);
+
+	useEffect(() => {
+		getAllStores();
+	}, []);
 
 	return showStore ? (
 		<AddStore handleClose={handleCloseStore} />
 	) : (
 		<DashLayout btn={true}>
-			{showState ? (
+			{data?.length === 0 ? (
 				<div>
 					<h1 className='dashHeader'>Stores</h1>
 					<EmptyState
-                        handleClick = {handleOpenStore}
+						handleClick={handleOpenStore}
 						btnText='Add new store'
 						header='No Stores'
 						text='You have not added any store'
@@ -45,7 +68,7 @@ const Page = () => {
 						<h1 className='dashHeader !mb-[0px]'>Stores</h1>
 						<div className='inline-block w-fit'>
 							<DashBtn
-                                handleClick={handleOpenStore}
+								handleClick={handleOpenStore}
 								icon={plusIcon}
 								padding='7px 15px'
 								text='Add new store'
@@ -53,26 +76,19 @@ const Page = () => {
 						</div>
 					</div>
 
-					<CustomSearch placeholder='Search' fullWidth handleChange={handleChange} />
+					<CustomSearch
+						placeholder='Search'
+						fullWidth
+						handleChange={handleChange}
+					/>
 
 					<div className='flex flex-col mt-[0.75em]'>
-						<StoresItem text='Toasties - Ikeja' />
-						<StoresItem text='Toasties - Ikoyi' />
-						<StoresItem text='Toasties - Oniru' />
-						<StoresItem text='Toasties - Victoria Island' />
-						<StoresItem text='Toasties - Lekki' />
+						{filteredData?.map((data, i) => (
+							<StoresItem text={data.name} key={i} />
+						))}
 					</div>
 				</>
 			)}
-
-			<Button
-				variant='text'
-				onClick={() => {
-					setShowState(!showState);
-				}}
-			>
-				Click on me to toggle between states
-			</Button>
 		</DashLayout>
 	);
 };
