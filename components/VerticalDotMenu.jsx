@@ -2,7 +2,7 @@ import { verticalDotIconPlain } from "@/SVGs";
 import { Button } from "@mui/material";
 import React, { useState } from "react";
 
-const VerticalDotMenu = ({ handleEdit, handleDelete, index, name }) => {
+const VerticalDotMenu = ({ handleEdit, handleDelete, index, name, data }) => {
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [disabled, setDisabled] = useState(false);
@@ -31,7 +31,7 @@ const VerticalDotMenu = ({ handleEdit, handleDelete, index, name }) => {
 			>
 				<Button
 					onClick={() => {
-						handleEdit(index, name);
+						handleEdit(index, data);
 						setIsClicked(false);
 					}}
 					sx={{
@@ -81,6 +81,9 @@ const VerticalDotMenu = ({ handleEdit, handleDelete, index, name }) => {
 						width: "100%",
 						justifyContent: "flex-start",
 						textTransform: "capitalize",
+					}}
+					onClick={() => {
+						handleDelete(index);
 					}}
 				>
 					Delete

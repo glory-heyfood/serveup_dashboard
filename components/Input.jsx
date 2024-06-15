@@ -2,12 +2,17 @@ import { TextField } from "@mui/material";
 import React from "react";
 
 const Input = ({ text, type, onChange, err, onBlur, value }) => {
+    const handleBlur = (e) => {
+        if(onBlur){
+            onBlur(e)
+        }
+    }
 	return (
 		<div className='w-full'>
 			<TextField
 				fullWidth
 				autoComplete='off'
-				onBlur={(e) => onBlur(e)}
+				onBlur={(e) =>{handleBlur}}
 				label={text}
 				type={type}
 				value={value && value}

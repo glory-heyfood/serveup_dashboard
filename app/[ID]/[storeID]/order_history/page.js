@@ -21,7 +21,7 @@ const Page = () => {
 				<div className='flex flex-col md:flex-row md:items-center justify-between w-full lg:w-[70%]  '>
 					<InterTextComp header='Total number of orders' text='1,875' />
 					<hr className='h-[51px] w-[0.5px] hidden md:block bg-[#E6E6E6]  ' />
-					<div className="flex items-center justify-between mt-[1.5rem] md:mt-0">
+					<div className="flex items-center justify-between mt-[1.5rem] md:mt-0 w-[60%] ">
                     <InterTextComp header='Total Earnings' text='₦ 4,815,000' />
 					<hr className='h-[51px] w-[0.5px] hidden md:block bg-[#E6E6E6]  ' />
 					<InterTextComp header='Average Order Value' text='₦ 2,568' />

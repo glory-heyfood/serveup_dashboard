@@ -1,35 +1,43 @@
-// InStock.js
 import React, { useEffect, useState } from "react";
-import { Switch } from "@mui/material";
 import Modal from "./modal/Modal";
 import RadioCheck from "./RadioCheck";
 import SetTime from "./SetTime";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "@/redux/features/toggleModalSlice";
 import DashBtn from "./buttons/DashBtn";
-import { XIcon } from "@/SVGs";
+import { XIcon, doorClosedIcon } from "@/SVGs";
 import {
 	updateItemStock,
 	updateItemStockWeb,
 } from "@/redux/features/stores/menuSlice";
 import { checkItemStock } from "@/utils";
+import {
+	updateStoreIsOpenObj,
+	updateStoreIsOpenObjWeb,	
+} from "@/redux/features/business/storeSlice";
 
-const InStock = ({
+const StoreStatus = ({
 	data,
 	setClearSelectedData,
 	type,
 	setSelectedData,
 	clearSelectedData,
 	selectedData,
+	isOpen,
+	setIsOpen,
+	name,
+	setMessage,
+	showModal,
+	setShowModal,
 }) => {
-	const [isInStock, setIsInStock] = useState(true);
-	const showModal = useSelector((state) => state.modal.showModal);
+	const [open, setOpen] = useState(true);
+
 	const [referenceDate, setReferenceDate] = useState();
 	const [messageToShow, setMessageToShow] = useState("");
 	const [selectedOption, setSelectedOption] = useState();
 	const [updatedData, setUpdatedData] = useState();
 	const dispatch = useDispatch();
-	const btnLoading = useSelector((state) => state.menu.loading);
+	const [loading, setLoading] = useState(false);
 
 	const handleSelectOption = (name) => {
 		setSelectedOption(name);
@@ -71,6 +79,8 @@ const InStock = ({
 				setClearSelectedData(!clearSelectedData);
 			}
 			dispatch(toggleModal(false));
+			setShowModal(false);
+			setSelectedOption();
 			dispatch(
 				toggleModal({
 					modal: "earn",
@@ -88,132 +98,38 @@ const InStock = ({
 	const setEndOfDay = () => {
 		const endOfDay = new Date();
 		endOfDay.setHours(23, 59, 59, 999);
-		setMessageToShow("Until tomorrow");
+		setMessageToShow("Your store is closed for the day");
 		setReferenceDate(endOfDay);
 	};
 
 	const setIndefinitedly = () => {
 		setReferenceDate("");
-		setMessageToShow("Indefinitely");
+		setMessageToShow("Your store is closed indefinitely");
 	};
 
 	const handleApply = () => {
-		const payload = {
-			in_stock_obj: {
-				status: false,
-				reference_date: referenceDate,
-				message: messageToShow,
-			},
-			item_id: selectedData.id,
-		};
-		if (data === selectedData) {
-			setIsInStock(false);
-		}
-		console.log(payload, selectedData);
-		setUpdatedData(payload);
+		setLoading(true);
 
-		dispatch(updateItemStock(payload))
+		const payload ={
+            isOpen: {
+                status: false,
+                referenceDate: referenceDate,
+                message: messageToShow,
+            },
+            id: JSON.parse(window.localStorage.getItem("serveup_store"))?.id,
+        }
+
+		dispatch(updateStoreIsOpenObj(payload))
 			.unwrap()
 			.then((res) => {
-				if (res) {
-					dispatch(
-						updateItemStockWeb({
-							id: selectedData.id,
-							in_stock_obj: payload.in_stock_obj,
-						}),
-					);
-					dispatch(toggleModal(false));
-					dispatch(
-						toggleModal({
-							modal: "earn",
-							payload: false,
-						}),
-					);
-					if (setClearSelectedData) {
-						setClearSelectedData(!clearSelectedData);
-					}
-					setSelectedOption();
-				}
+				dispatch(updateStoreIsOpenObjWeb(payload.isOpen));
+				setLoading(false);
+				setShowModal(false);
 			});
 	};
 
-	// const handleAppyForOption = () => {
-	// 	console.log("heyy");
-	// 	const in_stock_obj = {
-	// 		status: false,
-	// 		reference_date: referenceDate,
-	// 		message: messageToShow,
-	// 	};
-	// 	console.log(in_stock_obj);
-	// 	setIsInStock(false);
-
-	// 	setSelectedData({
-	// 		name: selectedData.name,
-	// 		id: selectedData.id,
-	// 		in_stock: in_stock_obj,
-	// 	});
-	// 	setUpdatedData({
-	// 		name: selectedData.name,
-	// 		id: selectedData.id,
-	// 		in_stock_obj: in_stock_obj,
-	// 	});
-
-	// 	console.log(data);
-
-	// 	console.log({
-	// 		name: selectedData.name,
-	// 		id: selectedData.id,
-	// 		in_stock: in_stock_obj,
-	// 	});
-	// 	dispatch(toggleModal(false));
-	// 	dispatch(
-	// 		toggleModal({
-	// 			modal: "earn",
-	// 			payload: false,
-	// 		}),
-	// 	);
-	// };
-
-	console.log(data);
-
-	useEffect(() => {
-		const message = checkItemStock(data?.in_stock);
-		if (message === "In stock") {
-			setIsInStock(true);
-		} else {
-			setIsInStock(data?.in_stock?.status);
-		}
-	}, [data]);
-
 	return (
 		<div className='flex items-center space-x-2 stock'>
-			<label className='flex items-center cursor-pointer stock'>
-				<Switch
-					className='stock'
-					checked={isInStock}
-					onChange={handleSwitchChange}
-					sx={{
-						"& .MuiSwitch-thumb": {
-							color: isInStock ? "#4CAF50 !important" : "#FF0000", // Thumb (circle) color
-						},
-						"& .MuiSwitch-track": {
-							backgroundColor: isInStock ? "#4CAF50 !important" : "#FF0000", // Track (rectangle) color
-						},
-					}}
-				/>
-				<span
-					className={`ml-2 text-[0.75rem] sodo400 tracking-[-0.48px] stock ${
-						isInStock ? "text-green-500" : "text-red-500"
-					}`}
-				>
-					{checkItemStock(
-						updatedData?.id === data?.id
-							? updatedData?.in_stock_obj
-							: data.in_stock,
-					)}
-				</span>
-			</label>
-
 			{showModal && (
 				<div
 					className='w-screen h-screen fixed top-0 left-0  z-[355] flex item-center justify-center bg-[#00000023] !ml-[0px] md:pt-[2rem]  overlay'
@@ -231,9 +147,14 @@ const InStock = ({
 								boxShadow: "0px 1px 0px 0px #E6E6E6",
 							}}
 						>
-							<h1 className='text-black text-[18px] sodo700 tracking-[-0.72px]'>
-								How long should {selectedData?.name} be out of stock
-							</h1>
+							<div>
+								<h3 className='sodo400 text-[0.825rem] tracking-[-0.28px] mb-[0.75rem] '>
+									{name}
+								</h3>
+								<h1 className='text-black text-[18px] sodo700 tracking-[-0.72px]'>
+									How long should this store be closed
+								</h1>
+							</div>
 
 							<span
 								className=' flex items-center justify-center h-[32px] w-[32px] cursor-pointer '
@@ -242,7 +163,9 @@ const InStock = ({
 										console.log("sseel");
 										setClearSelectedData(!clearSelectedData);
 									}
+									setSelectedOption();
 									dispatch(toggleModal(false));
+									setShowModal(false);
 									dispatch(
 										toggleModal({
 											modal: "earn",
@@ -256,25 +179,6 @@ const InStock = ({
 						</div>
 
 						<div className='px-[1.5rem]'>
-							<div
-								className='flex items-center justify-between py-[1.5rem] '
-								style={{
-									boxShadow: "0px 0.5px 0px 0px #E6E6E6",
-								}}
-								onClick={() => {
-									setSelectedOption("Set time");
-								}}
-							>
-								<div className='flex items-center space-x-2'>
-									{" "}
-									<RadioCheck isChecked={"Set time" === selectedOption} />
-									<h2 className='text-black sodo400 tracking-[-0.28px] text-[0.825rem]'>
-										Set time
-									</h2>
-								</div>
-								<SetTime handleTime={setTime} />
-							</div>
-
 							<div
 								className='flex items-center justify-between py-[1.5rem] cursor-pointer'
 								style={{
@@ -293,7 +197,7 @@ const InStock = ({
 									</h2>
 								</div>
 								<h2 className='text-black sodo400 tracking-[-0.28px] text-[0.825rem]'>
-									Until tomorrow
+									Until next opening time
 								</h2>
 							</div>
 
@@ -315,6 +219,25 @@ const InStock = ({
 									Unitl manually reactivated
 								</h2>
 							</div>
+
+							<div
+								className='flex items-center justify-between py-[1.5rem] '
+								style={{
+									boxShadow: "0px 0.5px 0px 0px #E6E6E6",
+								}}
+								onClick={() => {
+									setSelectedOption("Set time");
+								}}
+							>
+								<div className='flex items-center space-x-2'>
+									{" "}
+									<RadioCheck isChecked={"Set time" === selectedOption} />
+									<h2 className='text-black sodo400 tracking-[-0.28px] text-[0.825rem]'>
+										Set time
+									</h2>
+								</div>
+								<SetTime handleTime={setTime} type='store' />
+							</div>
 						</div>
 						<div className='flex  md:justify-end px-[20px] md:px-[24px] mt-[24px] mb-[2.5rem]'>
 							<div className='inline-block w-full md:w-fit'>
@@ -322,7 +245,7 @@ const InStock = ({
 									text='Apply'
 									padding='14px 32px'
 									handleClick={handleApply}
-									btnLoading={btnLoading}
+									btnLoading={loading}
 								/>
 							</div>
 						</div>
@@ -334,4 +257,4 @@ const InStock = ({
 	);
 };
 
-export default InStock;
+export default StoreStatus;

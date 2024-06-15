@@ -13,19 +13,13 @@ const Modal = ({
 	handleClick,
 	btnLoading,
 	btnText,
-    btnColor,
+	btnColor,
 }) => {
 	const dispatch = useDispatch();
 
 	const handleOverlayClick = (e) => {
 		if (e.target.classList.contains("overlay")) {
 			dispatch(toggleModal(false));
-			dispatch(
-				toggleModal({
-					modal: "earn",
-					payload: false,
-				}),
-			);
 		}
 	};
 
@@ -97,7 +91,7 @@ const Modal = ({
 							{btnText !== "none" && (
 								<DashBtn
 									text={btnText ? btnText : "Save"}
-                                    bgColor={btnColor}
+									bgColor={btnColor}
 									padding='14px 32px'
 									handleClick={handleClick}
 									btnLoading={btnLoading}

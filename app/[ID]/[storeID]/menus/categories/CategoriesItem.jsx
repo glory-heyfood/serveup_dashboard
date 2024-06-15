@@ -6,9 +6,8 @@ import CustomLabel from "@/components/label/CustomLabel";
 import { Button } from "@mui/material";
 import { toggleModal } from "@/redux/features/toggleModalSlice";
 
-const CategoriesItem = ({ name, i, handleEdit }) => {
-	const showModal = useSelector((state) => state.modal.showEarnModal);
-	const [data, setData] = useState({});
+const CategoriesItem = ({ name, i, handleEdit, handleDelete, id, data }) => {
+	const showModal = useSelector((state) => state.modal.showEarnModal);	
 	const dispatch = useDispatch();
 	// const handleEdit = (index, data) => {
     //     setData({})
@@ -28,7 +27,7 @@ const CategoriesItem = ({ name, i, handleEdit }) => {
 		<div className='py-[1rem] items-center justify-between flex border-[0.5px] border-transparent border-b-[#E6E6E6] '>
 			<h2 className='sodo400 text-[0.75rem] tracking-[-0.24px]  '>{name}</h2>
 
-			<VerticalDotMenu handleEdit={handleEdit} index={i} name={name} />
+			<VerticalDotMenu handleEdit={handleEdit} index={id} name={name} handleDelete={handleDelete} data={data} />
 
 			
 		</div>

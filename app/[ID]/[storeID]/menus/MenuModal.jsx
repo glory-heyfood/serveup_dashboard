@@ -93,7 +93,7 @@ const MenuModal = ({
 				<div className='mt-[40px]'>{children}</div>
 			</div>
 
-			{showOuterModal && <DiscountSelectItemsModal />}
+			{showOuterModal && <DiscountSelectItemsModal name={header} />}
 		</div>
 	);
 };

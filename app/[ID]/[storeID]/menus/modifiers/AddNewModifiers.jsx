@@ -3,26 +3,79 @@ import ComponentModalLayout from "@/components/ComponentModalLayout";
 import DashBtn from "@/components/buttons/DashBtn";
 import CustomLabel from "@/components/label/CustomLabel";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import RadioDiscountPicker from "@/components/discount/RadioDiscountPicker";
 import SwitchPicker from "@/components/SwitchPicker";
+import InStock from "@/components/InStock";
+import {
+	createModifier,
+	updateModifier,
+} from "@/redux/features/stores/menuSlice";
+import { data } from "autoprefixer";
+import OptionInStock from "@/components/OptionInStock";
+import { Switch } from "@mui/material";
+import { generateId } from "@/utils";
 
-const AddNewModifiers = ({ handleClose, data }) => {
+const AddNewModifiers = ({ handleClose, editData }) => {
 	const showModal = useSelector((state) => state.modal.showModal);
-	const [modifierSelected, setModifierSelected] = useState();
+	const [modifierSelected, setModifierSelected] = useState("");
 	const [customerChoiceSelected, setCustomerChoiceSelected] = useState();
 	const [selectionLimitChecked, setSelectionLimitChecked] = useState(false);
+	const [selectedData, setSelectedData] = useState();
+	const [clearSelectedData, setClearSelectedData] = useState(false);
+	const btnLoading = useSelector((state) => state.menu.loading);
 	const dispatch = useDispatch();
+	const [formData, setFormData] = useState({
+		name: editData ? editData.name : "",
+		selection_limit: editData ? editData.selection_limit : null,
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[name]: value,
+		}));
+	};
+
 	const [options, setOptions] = useState([
-		{ name: "", price: "", stock: "In Stock" },
+		{
+			id:"",
+			option_name: "",
+			price: "",
+			in_stock: {
+				status: true,
+				reference_date: "",
+				message: "In stock",
+			},
+			multiple_selection: false,
+		},
 	]);
 
 	const handleAddOption = () => {
 		setOptions((prevOptions) => [
 			...prevOptions,
-			{ name: "", price: "", stock: "In Stock" },
+			{
+				id: generateId(),
+				option_name: "",
+				price: "",
+				in_stock: {
+					status: true,
+					reference_date: "",
+					message: "In stock",
+				},
+				multiple_selection: false,
+			},
 		]);
+	};
+
+	const handleRemoveOption = (index) => {
+		setOptions((prevOptions) => {
+			const newOptions = [...prevOptions];
+			newOptions.splice(index, 1); // Remove the option at the specified index
+			return newOptions;
+		});
 	};
 
 	const handleOptionChange = (index, field, value) => {
@@ -35,17 +88,98 @@ const AddNewModifiers = ({ handleClose, data }) => {
 		console.log(options);
 	};
 
+	const handleCreateModifier = () => {
+		const menu_id = JSON.parse(
+			window.localStorage.getItem("serveup_store"),
+		)?.menu_id;
+		const payload = {
+			name: formData.name,
+			status: modifierSelected,
+			choice: customerChoiceSelected,
+			selection_limit: formData.selection_limit,
+			options: options,
+			menu_id: menu_id,
+		};
+		// console.log(payload);
+		dispatch(createModifier(payload));
+	};
+
+	const handleEditModifier = () => {
+		const menu_id = JSON.parse(
+			window.localStorage.getItem("serveup_store"),
+		)?.menu_id;
+		const payload = {
+			id: editData.id,
+			name: formData.name,
+			status: modifierSelected,
+			choice: customerChoiceSelected,
+			selection_limit: formData.selection_limit,
+			options: options,
+			menu_id: menu_id,
+		};
+		dispatch(updateModifier(payload));
+	};
+
+	const handleOutOfStock = (obj, data) => {
+		setOptions((prevOptions) => {
+			return prevOptions.map((option) => {
+				if (option.option_name === data?.option_name) {
+					return {
+						...option,
+						in_stock: obj,
+					};
+				}
+				return option;
+			});
+		});
+	};
+
+	const handleSwitchChange = (check, name) => {
+		setOptions((prevData) => {
+			return prevData.map((option) => {
+				if (option.option_name === name) {
+					return {
+						...option,
+						multiple_selection: check,
+					};
+				}
+				return option;
+			});
+		});
+	};
+
+	useEffect(() => {
+		if (editData) {
+			console.log(editData);
+			setModifierSelected(editData.status);
+			setOptions(editData.options);
+			setFormData({
+				name: editData.name,
+				selection_limit: editData.selection_limit,
+			}),
+				setCustomerChoiceSelected(editData.choice);
+			editData.choice === "Multiple Choice" && setSelectionLimitChecked(true);
+		}
+	}, [editData]);
+
+	useEffect(() => {
+		setSelectedData();
+	}, [clearSelectedData]);
+
 	return (
 		<ComponentModalLayout handleClose={handleClose}>
 			<div className='w-full px-[20px] pb-[32px] flex flex-col space-y-[2rem]'>
 				<h1 className='dashHeader ml-[44px] md:ml-0'>
 					{" "}
-					{data ? "Edit" : "Create new"} modifier
+					{editData ? "Edit" : "Create new"} modifier
 				</h1>
 
 				<LabelSearchInput
 					fontweight='sodo700'
 					label='Modifier set name'
+					value={formData.name}
+					name='name'
+					handleChange={handleChange}
 					placeholder='Modifier set name - example: Protein, Extra Portion, Toppings'
 				/>
 
@@ -79,6 +213,10 @@ const AddNewModifiers = ({ handleClose, data }) => {
 							itemSelected={customerChoiceSelected}
 							handleItemClick={(selected) => {
 								setCustomerChoiceSelected(selected);
+								setFormData((prevFormData) => ({
+									...prevFormData,
+									selection_limit: 0,
+								}));
 							}}
 						/>
 						<RadioDiscountPicker
@@ -97,6 +235,7 @@ const AddNewModifiers = ({ handleClose, data }) => {
 					<div className='border border-[#E6E6E6] rounded-[8px]'>
 						<SwitchPicker
 							border='border-none'
+							checked={selectionLimitChecked}
 							handleChange={(checked) => {
 								console.log(checked);
 								setSelectionLimitChecked(checked);
@@ -109,7 +248,10 @@ const AddNewModifiers = ({ handleClose, data }) => {
 								fontweight='sodo700'
 								border='border border-t-[#E6E6E6] border-transparent '
 								rounded='rounded-none'
+								handleChange={handleChange}
+								value={formData.selection_limit}
 								label='Selection limit'
+								name='selection_limit'
 								placeholder='0'
 							/>
 						)}
@@ -120,7 +262,7 @@ const AddNewModifiers = ({ handleClose, data }) => {
 					header='Options'
 					subHeader='Add option items to this modifier . Example: Beef, Chicken, Plantain'
 				>
-					<div className='w-full hidden md:block'>
+					<div className='w-[120%] hidden md:block'>
 						<table className='w-full'>
 							<thead className='w-full'>
 								<tr className='w-full py-[0.75rem] '>
@@ -134,6 +276,9 @@ const AddNewModifiers = ({ handleClose, data }) => {
 									<th className='text-black  py-[0.75rem]  text-start  sodo600 tracking-[-0.24px] text-[0.75rem] '>
 										{" "}
 										Stock{" "}
+									</th>
+									<th className='text-black  py-[0.75rem]  text-start  sodo600 tracking-[-0.24px] text-[0.75rem] '>
+										Allow multiple selection
 									</th>
 									<th> </th>{" "}
 								</tr>
@@ -177,9 +322,13 @@ const AddNewModifiers = ({ handleClose, data }) => {
 											<input
 												className='border-none outline-none placeholder:text-[#A9ADB5] text-[0.75rem] sodo300 tracking-[-0.24px] text-black'
 												placeholder='Option Name'
-												value={option.name}
+												value={option.option_name}
 												onChange={(e) =>
-													handleOptionChange(index, "name", e.target.value)
+													handleOptionChange(
+														index,
+														"option_name",
+														e.target.value,
+													)
 												}
 											/>
 										</td>
@@ -202,12 +351,58 @@ const AddNewModifiers = ({ handleClose, data }) => {
 										</td>
 
 										{/* Stock */}
-										<td className='text-[#06AE68] text-[0.75rem] sodo300 tracking-[-0.24px] py-[0.75rem] '>
-											{option.stock}
+										<td
+											className='text-[#06AE68] text-[0.75rem] sodo300 tracking-[-0.24px] py-[0.75rem] '
+											onClick={() => {
+												setSelectedData((prevSelectedData) => {
+													if (prevSelectedData) {
+														return prevSelectedData;
+													}
+													let dataSelected = options.find(
+														(data) => data.option_name === option.option_name,
+													);
+
+													let index = options.findIndex(
+														(data) => data.option_name === option.option_name,
+													);
+
+													return dataSelected;
+												});
+											}}
+										>
+											{/* {option.stock} */}
+											<OptionInStock
+												clearSelectedData={clearSelectedData}
+												setClearSelectedData={setClearSelectedData}
+												setSelectedData={setSelectedData}
+												data={options}
+												optionData={option}
+												handleOutOfStock={handleOutOfStock}
+												selectedData={selectedData}
+											/>
+										</td>
+
+										<td>
+											<Switch
+												checked={option.multiple_selection}                                                
+												onChange={(e) => {
+													handleSwitchChange(
+														e.target.checked,
+														option.option_name,
+													);
+												}}
+											/>
 										</td>
 
 										{/* Delete Option */}
-										<td className='py-[0.75rem]'>{XIconRed}</td>
+										<td className='py-[0.75rem]'>
+											<button
+												onClick={() => handleRemoveOption(index)}
+												className='text-red-500 hover:text-red-700'
+											>
+												{XIconRed}
+											</button>
+										</td>
 									</tr>
 								))}
 							</tbody>
@@ -230,15 +425,19 @@ const AddNewModifiers = ({ handleClose, data }) => {
 						</div>
 
 						<div className='mt-[2.5rem] w-fit'>
-							<DashBtn text='Save' padding="11px 70px" />
+							<DashBtn
+								text='Save'
+								padding='11px 70px'
+								handleClick={
+									editData ? handleEditModifier : handleCreateModifier
+								}
+								btnLoading={btnLoading}
+							/>
 						</div>
 					</div>
 
-
-                    {/* Mobile */}
-                    <div>
-                        
-                    </div>
+					{/* Mobile */}
+					<div></div>
 				</CustomLabel>
 			</div>
 		</ComponentModalLayout>

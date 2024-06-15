@@ -79,7 +79,7 @@ const LabelSelect = ({
 				>
 					{defaultValue}
 				</MenuItem>
-				{option.map((option, i) => (
+				{option?.map((option, i) => (
 					<MenuItem
 						key={i}
 						className='text-black tracking-[-0.26px] sudo700 p-4 text-[0.9em]'

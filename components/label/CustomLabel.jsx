@@ -1,11 +1,11 @@
 import React from "react";
 
-const CustomLabel = ({children, header, subHeader, label}) => {
+const CustomLabel = ({children, header, subHeader, label, headerFontAndSize}) => {
 	return (
 		<div className='flex flex-col space-y-[1em]'>
 			<div>
 				<div className='flex space-x-[12px]'>
-                <h1 className='text-[14px] sodo700 tracking-[-0.56px]'>{header}</h1>
+                <h1 className={`${headerFontAndSize ? headerFontAndSize : "text-[14px] sodo700"} tracking-[-0.56px]`}>{header}</h1>
                 {label}
                 </div>
 				{subHeader && (

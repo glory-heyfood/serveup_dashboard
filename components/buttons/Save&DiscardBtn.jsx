@@ -4,6 +4,7 @@ import DashBtn from "./DashBtn";
 const SaveDiscardBtn = ({
 	handleSaveClick,
 	handleDiscardClick,
+	btnLoading,
 	justify,
 	padding,
 }) => {
@@ -14,7 +15,12 @@ const SaveDiscardBtn = ({
 			} ${padding ? padding : "py-[40px]"}`}
 		>
 			<span className='w-full md:w-fit'>
-				<DashBtn text='Save' padding='9px 70px' handleClick={handleSaveClick} />
+				<DashBtn
+					text='Save'
+					padding='9px 70px'
+					handleClick={handleSaveClick}
+					btnLoading={btnLoading}
+				/>
 			</span>
 			<span className='w-full md:w-fit'>
 				<DashBtn

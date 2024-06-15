@@ -8,19 +8,24 @@ const RadioDiscountPicker = ({
 	subHeader,
 	headerClass,
 	subHeaderClass,
+	absolute,
 	handleItemClick,
 	children,
 }) => {
 	return (
 		<div
-			className={`w-full border border-[#E6E6E6] rounded-[4px] p-[16px] ${
-				itemSelected === header ? "" : "cursor-pointer"
-			}`}
+			className={`w-full border border-[#E6E6E6] rounded-[4px] ${
+				!absolute && " p-[16px]"
+			}  relative ${itemSelected === header ? "" : "cursor-pointer"}`}
 			onClick={() => {
 				handleItemClick(header);
 			}}
 		>
-			<div className={`flex space-x-[16px] cursor-pointer `}>
+			<div
+				className={`flex space-x-[16px] cursor-pointer ${
+					absolute && " p-[16px]"
+				} items-center  `}
+			>
 				<RadioCheck isChecked={itemSelected === header} />
 				<div>
 					<h2
@@ -34,20 +39,25 @@ const RadioDiscountPicker = ({
 					>
 						{header}
 					</h2>
-					<h3
-						className={
-							subHeaderClass
-								? subHeaderClass
-								: `text-[#5F6370] text-[12px] tracking-[-0.24px] sodo400  `
-						}
-					>
-						{subHeader}
-					</h3>
-					{itemSelected === header && (
-						<div className='mt-[1rem]'>{children}</div>
+					{subHeader && (
+						<h3
+							className={
+								subHeaderClass
+									? subHeaderClass
+									: `text-[#5F6370] text-[12px] tracking-[-0.24px] sodo400  `
+							}
+						>
+							{subHeader}
+						</h3>
+					)}
+					{children && !absolute && itemSelected === header && (
+						<div className='mt-[1rem] '>{children}</div>
 					)}
 				</div>
 			</div>
+			{children && absolute && itemSelected === header && (
+				<div className='  w-full  '>{children}</div>
+			)}
 		</div>
 	);
 };

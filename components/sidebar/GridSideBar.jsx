@@ -1,4 +1,4 @@
-import { ID, sidebarData, storeID, storeSideBarData } from "@/data";
+import { sidebarData, storeSideBarData } from "@/data";
 import React, { useEffect, useState } from "react";
 import SidebarItem from "./SidebarItem";
 import StoreSideBarItem from "./StoreSideBarItem";
@@ -12,11 +12,13 @@ import {
 	toggleMobileAppGridSidebar,
 	toggleWebsiteGridSidebar,
 	toggleMenusGridSidebar,
-    togglePayoutGridSidebar,
-    toggleDineInGridSidebar,
+	togglePayoutGridSidebar,
+	toggleDineInGridSidebar,
 } from "@/redux/features/gridSidebarSlice";
 
 const GridSideBar = ({ btn, GridComponent, type }) => {
+	const [ID, setID] = useState();
+	const [storeId, setStoreId] = useState();
 	const [grid, setGrid] = useState(true);
 
 	const marketingGrid = useSelector(
@@ -35,10 +37,10 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
 	const menusGrid = useSelector(
 		(state) => state.gridSidebar.showMenusGridSidebar,
 	);
-    const payoutGrid = useSelector(
+	const payoutGrid = useSelector(
 		(state) => state.gridSidebar.showPayoutGridSidebar,
 	);
-    const dineInGrid = useSelector(
+	const dineInGrid = useSelector(
 		(state) => state.gridSidebar.showDineInGridSidebar,
 	);
 
@@ -59,14 +61,14 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
 		if (window.location.pathname === `/${ID}/mobile`) {
 			dispatch(toggleMobileAppGridSidebar(false));
 		}
-		if (window.location.pathname === `/${ID}/${storeID}/menus`) {
+		if (window.location.pathname === `/${ID}/${storeId}/menus`) {
 			dispatch(toggleMenusGridSidebar(false));
 		}
-        if (window.location.pathname === `/${ID}/${storeID}/payout`) {
-			dispatch(togglePayoutGridSidebar(false));            
+		if (window.location.pathname === `/${ID}/${storeId}/payout`) {
+			dispatch(togglePayoutGridSidebar(false));
 		}
-        if (window.location.pathname === `/${ID}/${storeID}/dine_in`) {
-			dispatch(toggleDineInGridSidebar(false))
+		if (window.location.pathname === `/${ID}/${storeId}/dine_in`) {
+			dispatch(toggleDineInGridSidebar(false));
 		}
 	};
 
@@ -84,16 +86,33 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
 		if (window.location.pathname === `/${ID}/mobile`) {
 			setGrid(mobileAppGrid);
 		}
-		if (window.location.pathname === `/${ID}/${storeID}/menus`) {
+		if (window.location.pathname === `/${ID}/${storeId}/menus`) {
 			setGrid(menusGrid);
 		}
-        if (window.location.pathname === `/${ID}/${storeID}/payout`) {
+		if (window.location.pathname === `/${ID}/${storeId}/payout`) {
 			setGrid(payoutGrid);
 		}
-        if (window.location.pathname === `/${ID}/${storeID}/dine_in`) {
+		if (window.location.pathname === `/${ID}/${storeId}/dine_in`) {
 			setGrid(dineInGrid);
 		}
-	}, [marketingGrid, loyaltyGrid, websiteGrid, mobileAppGrid, menusGrid, payoutGrid, dineInGrid]);
+	}, [
+		marketingGrid,
+		loyaltyGrid,
+		websiteGrid,
+		mobileAppGrid,
+		menusGrid,
+		payoutGrid,
+		dineInGrid,
+	]);
+
+	useEffect(() => {
+		const id = window.location.pathname;
+		console.log(id);
+		let [empty, ID, storeId] = id.split("/");
+		console.log(ID, storeId);
+		setID(ID);
+		setStoreId(storeId);
+	}, []);
 
 	return (
 		<>
@@ -154,12 +173,16 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
 							{type === "store"
 								? storeSideBarData.map((data, i) => (
 										<StoreSideBarItem
-                                        noClick={data.text === "Menus" || data.text === "Payout" || data.text === "Dine-in"}
-											href={data.href}
+											noClick={
+												data.text === "Menus" ||
+												data.text === "Payout" ||
+												data.text === "Dine-in"
+											}
+											href={`/${ID}/${storeId}${data.href}`}
 											icon={data.icon}
 											text={data.text}
 											key={i}
-                                            bgColor={data.bgColor}
+											bgColor={data.bgColor}
 										/>
 								  ))
 								: sidebarData.map((data, i) => (
@@ -172,12 +195,10 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
 													? true
 													: false
 											}
-											href={
-												// data.text === "Marketing" || data.text === "Loyalty rewards"
-												// 	? window.location.href
-												// 	: data.href
-												data.href
-											}
+											// data.text === "Marketing" || data.text === "Loyalty rewards"
+											// 	? window.location.href
+											// 	: data.href
+											href={`/${ID}${data.href}`}
 											icon={data.icon}
 											text={data.text}
 											key={i}

@@ -19,9 +19,12 @@ const LabelTextInputEdit = ({
 	label,
 	initialValue,
 	inputFont,
+	handleChange,
+	name,
 	placeholder,
 	icon,
-    readOnly,
+	readOnly,
+	rounded,
 }) => {
 	const [inputValue, setInputValue] = useState(initialValue);
 	const [isEditing, setIsEditing] = useState(false);
@@ -34,18 +37,20 @@ const LabelTextInputEdit = ({
 	return (
 		<LabelInput
 			label={<Label icon={icon} label={label} />}
+			rounded={rounded}
 			padding='13px 0px 14px 16px'
 		>
-			<div className='flex items-center justify-between'>				
+			<div className='flex items-center justify-between'>
 				<input
 					type='text'
-					value={inputValue}
-                    readOnly={readOnly && true}
+					name={name}
+					value={initialValue && initialValue}
+					readOnly={readOnly && true}
 					placeholder={placeholder}
 					className={`w-full placeholder:text-[#A9ADB5] placeholder:text-[13px] border-none outline-none  tracking-[-0.52px] bg-transparent p-0 text-[13px] text-[#000] ${
-						inputFont ? inputFont : "sodo300"
+						inputFont ? inputFont : "sodo400"
 					}`}
-					onChange={(e) => setInputValue(e.target.value)}
+					onChange={(e) => handleChange(e)}
 				/>
 			</div>
 		</LabelInput>

@@ -1,14 +1,14 @@
 "use client";
 import DashHeader from "@/components/Dashboard/DashHeader";
 import GridLayout from "@/components/GridLayout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import DashBtn from "@/components/buttons/DashBtn";
 import StoreHeader from "@/components/StoreHeader";
 import InterTextComp from "@/components/InterTextComp";
 import TextComp from "./TextComp";
 import {
-    backArrowIcon,
+	backArrowIcon,
 	bellIcon,
 	bellIconBlue,
 	calenderIconBlack,
@@ -28,12 +28,27 @@ import CustomLabel from "@/components/label/CustomLabel";
 import LabelInput from "@/components/label/LabelInput";
 import LabelText from "@/components/label/LabelText";
 import LabelTextarea from "@/components/label/LabelTextarea";
+import LabelSearchInput from "@/components/label/LabelSearchInput";
+import { riderData } from "@/data";
 
 const Page = () => {
 	const [tab, setTab] = useState("Needs Action");
 	const showModal = useSelector((state) => state.modal.showModal);
 	const [readyOrderTime, setReadyOrderTime] = useState("");
 	const [modalToShow, setModalToShow] = useState("");
+	const [driver, setDriver] = useState();
+	const [formData, setFormData] = useState({
+		riderName: "",
+		riderNumber: "",
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+	};
 
 	const dispatch = useDispatch();
 
@@ -41,13 +56,16 @@ const Page = () => {
 		setReadyOrderTime(text);
 	};
 
+	const Numb = () => {
+		<h2 className='text-black text-[13px] sodo400'>+234</h2>;
+	};
+
 	return (
 		<GridLayout type='store' gridType='kitchen' tab={tab} setTab={setTab}>
 			<div className='pb-[2rem]'>
-
-                <span className="md:hidden bg-[#F0F0F0] h-[32px] w-[32px] rounded-[4px] flex items-center justify-center mb-[2rem]  ">
-                    {backArrowIcon}
-                </span>
+				<span className='md:hidden bg-[#F0F0F0] h-[32px] w-[32px] rounded-[4px] flex items-center justify-center mb-[2rem]  '>
+					{backArrowIcon}
+				</span>
 				<div className='flex items-center justify-between w-full'>
 					<h1 className='text-black text-[1.25rem] sodo600 tracking-[-0.8px]'>
 						Esther Sanusi
@@ -109,7 +127,7 @@ const Page = () => {
 						/>
 					</div>
 
-					<div className="w-full md:w-fit order-4 md:order-2">
+					<div className='w-full md:w-fit order-4 md:order-2'>
 						<div
 							className='bg-[#FF5F00] flex items-center  space-x-[6px] py-[6px] px-[8px] '
 							style={{
@@ -136,8 +154,8 @@ const Page = () => {
 						</div>
 					</div>
 
-                        {/* Buttons for mobile */}
-                    <div className='flex items-center md:hidden order-3 w-full md:w-fit space-x-[0.75rem]  '>
+					{/* Buttons for mobile */}
+					<div className='flex items-center md:hidden order-3 w-full md:w-fit space-x-[0.75rem]  '>
 						<div className='w-fit'>
 							<DashBtn
 								lightTheme={true}
@@ -288,20 +306,29 @@ const Page = () => {
 					</div>
 
 					<div>
-						<DashBtn
-							text={
-								tab === "Needs Action"
-									? "I am making this order"
-									: tab === "Preparing"
-									? "This order is ready"
-									: "This order has been delivered"
-							}
-							padding='12px 12px'
-							handleClick={() => {
-								setModalToShow("ready_order");
-								dispatch(toggleModal(true));
-							}}
-						/>
+						{tab !== "Ready" && (
+							<DashBtn
+								text={
+									tab === "Needs Action"
+										? "I am making this order"
+										: tab === "Preparing"
+										? "This order is ready"
+										: "This order has been delivered"
+								}
+								padding='12px 12px'
+								handleClick={
+									tab === "Needs Action"
+										? () => {
+												setModalToShow("ready_order");
+												dispatch(toggleModal(true));
+										  }
+										: () => {
+												setModalToShow("rider");
+												dispatch(toggleModal(true));
+										  }
+								}
+							/>
+						)}
 					</div>
 				</div>
 
@@ -420,6 +447,77 @@ const Page = () => {
 								</div>
 
 								<LabelTextarea label='Reason' placeholder='Reason for refund' />
+							</div>
+						</Modal>
+					) : modalToShow === "rider" ? (
+						<Modal header='Delivery rider' btnText='none'>
+							<div className='mt-[-1rem]'>
+								<h1 className='text-[0.825rem] sodo600 tracking-[-0.28px] text-black'>
+									Enter the contact details of the delivery rider
+								</h1>
+								<h3 className='text-[#5F6370] sodo400 text-[0.75rem] '>
+									This will be provided to the customer
+								</h3>
+
+								<div className='flex flex-col space-y-[1rem] mt-[1.25rem] '>
+									<LabelSearchInput
+										label='Name'
+										placeholder='Name'
+										name='riderName'
+										value={formData.riderName}
+										handleChange={handleChange}
+									/>
+									<LabelSearchInput
+										value={formData.riderNumber}
+										name='riderNumber'
+										handleChange={handleChange}
+										label='Phone number'
+										icon={<Numb />}
+										placeholder='Phone number'
+									/>
+								</div>
+
+								<div className='border-[0.78px] border-transparent border-t-[#E6E6E6]  pt-[1.25rem] mt-[1.5rem] '>
+									<h2 className='text-black sodo600 text-[0.75rem] tracking-[-0.24px] mb-[0.5rem]'>
+										Previously used
+									</h2>
+
+									<div className=' w-fit grid grid-cols-2 gap-[0.5rem]'>
+										{riderData.map((data) => (
+											<div
+												className={`py-[0.5rem] px-[0.75rem] ${
+													driver === data ? "bg-[#072A85]" : "bg-[#F2F2F2]"
+												} rounded-[4px] w-[175px] cursor-pointer capitalize `}
+												onClick={() => {
+													setDriver(data);
+													setFormData((prevData) => ({
+														...prevData,
+														riderName: data.name,
+														riderNumber: data.number,
+													}));
+												}}
+											>
+												<h1
+													className={`text-[10px] sodo400 tracking-[-0.2px] ${
+														driver === data ? "text-white" : "text-black"
+													} `}
+												>
+													{data.name} . {data.number}
+												</h1>
+											</div>
+										))}
+									</div>
+								</div>
+
+								<div className='mt-[2.5rem]'>
+									<DashBtn
+										text='Continue'
+										disabled={
+											formData.riderName === "" || formData.riderNumber === ""
+										}
+										padding='11px 15px'
+									/>
+								</div>
 							</div>
 						</Modal>
 					) : (

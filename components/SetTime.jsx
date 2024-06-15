@@ -1,9 +1,9 @@
 import { minusIcon, plusTimeIcon } from "@/SVGs";
-import React, { useState } from "react";
+import { getTimeFromDate } from "@/utils";
+import React, { useEffect, useState } from "react";
 
-const SetTime = () => {
+const SetTime = ({ handleTime, type }) => {
 	const [time, setTime] = useState(0);
-	const [inputValue, setInputValue] = useState(null);
 	const convertToTime = (minutes) => {
 		if (minutes < 60) {
 			return `${minutes}mins`;
@@ -19,6 +19,21 @@ const SetTime = () => {
 		}
 	};
 
+	//  const minutesFromMidnight = (dateObj: Date) => {
+	//     const hours = dateObj.getHours();
+	//     const minutes = dateObj.getMinutes();
+	//     return hours * 60 + minutes;
+	// };
+
+	useEffect(() => {
+		const date = new Date(Date.now() + time * 60 * 1000);
+		const message =
+			type === "store"
+				? `Your store is closed until ${getTimeFromDate(date)}`
+				: `Out of stock until ${getTimeFromDate(date)}`;
+		// console.log(date, message);
+		handleTime(date, message);
+	}, [time]);
 
 	const timeFormat = convertToTime(time);
 	return (
@@ -26,7 +41,6 @@ const SetTime = () => {
 			<div
 				className='bg-[#F0F0F0] p-[6px] rounded-[4px] cursor-pointer  '
 				onClick={() => {
-					setInputValue();
 					const t = time - 5;
 					if (t <= 0) {
 						setTime(0);
@@ -38,11 +52,13 @@ const SetTime = () => {
 				{minusIcon}
 			</div>
 
-			<h1 className=" text-[0.825rem] w-fit tracking-[-0.56px] sodo400 text-black text-center" > {timeFormat} </h1>
+			<h1 className=' text-[0.825rem] w-fit tracking-[-0.56px] sodo400 text-black text-center'>
+				{" "}
+				{timeFormat}{" "}
+			</h1>
 			<div
 				className='bg-[#F0F0F0] p-[6px] rounded-[4px] cursor-pointer  '
 				onClick={() => {
-					setInputValue();
 					const t = time + 5;
 					setTime(t);
 				}}

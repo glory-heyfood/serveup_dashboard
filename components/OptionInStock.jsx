@@ -14,11 +14,14 @@ import {
 } from "@/redux/features/stores/menuSlice";
 import { checkItemStock } from "@/utils";
 
-const InStock = ({
+const OptionInStock = ({
 	data,
 	setClearSelectedData,
 	type,
+	optionData,
 	setSelectedData,
+	setData,
+	handleOutOfStock,
 	clearSelectedData,
 	selectedData,
 }) => {
@@ -35,33 +38,48 @@ const InStock = ({
 		setSelectedOption(name);
 	};
 
-	const handleSwitchChange = () => {
+	const handleSwitchChange = (isInStock) => {
 		// setIsInStock((prev) => !prev);
-		if (isInStock === true) {
+		const message = checkItemStock(selectedData?.in_stock);
+
+		// console.log(selectedData);
+
+		// console.log(message);
+
+        console.log(isInStock)
+
+		if (isInStock) {
 			dispatch(toggleModal(true));
 		} else {
-			const payload = {
-				in_stock_obj: {
-					status: true,
-					reference_date: "",
-					message: "In Stock",
-				},
-				item_id: data.id,
+			// const payload = {
+			// 	in_stock_obj: {
+			// 		status: true,
+			// 		reference_date: "",
+			// 		message: "In Stock",
+			// 	},
+			// };
+			const in_stock = {
+				status: true,
+				reference_date: "",
+				message: "In Stock",
 			};
-			setUpdatedData(payload);
-			dispatch(updateItemStock(payload))
-				.unwrap()
-				.then((res) => {
-					if (res) {
-						setIsInStock((prev) => !prev);
-						dispatch(
-							updateItemStockWeb({
-								id: data?.id,
-								in_stock_obj: payload.in_stock_obj,
-							}),
-						);
-					}
-				});
+
+			handleOutOfStock(in_stock, selectedData);
+			setUpdatedData(in_stock);
+			setClearSelectedData(!clearSelectedData);
+			// dispatch(updateItemStock(payload))
+			// 	.unwrap()
+			// 	.then((res) => {
+			// 		if (res) {
+			// 			setIsInStock((prev) => !prev);
+			// 			dispatch(
+			// 				updateItemStockWeb({
+			// 					id: data?.id,
+			// 					in_stock_obj: payload.in_stock_obj,
+			// 				}),
+			// 			);
+			// 		}
+			// 	});
 		}
 	};
 
@@ -98,92 +116,77 @@ const InStock = ({
 	};
 
 	const handleApply = () => {
-		const payload = {
-			in_stock_obj: {
-				status: false,
-				reference_date: referenceDate,
-				message: messageToShow,
-			},
-			item_id: selectedData.id,
-		};
-		if (data === selectedData) {
-			setIsInStock(false);
-		}
-		console.log(payload, selectedData);
-		setUpdatedData(payload);
+		// const payload = {
+		// in_stock_obj: {
+		// 	status: false,
+		// 	reference_date: referenceDate,
+		// 	message: messageToShow,
+		// },
+		// 	item_id: selectedData.id,
+		// };
+		// if (data === selectedData) {
+		// 	setIsInStock(false);
+		// }
+		// console.log(payload, selectedData);
+		// setUpdatedData(payload);
+		// dispatch(updateItemStock(payload))
+		// 	.unwrap()
+		// 	.then((res) => {
+		// 		if (res) {
+		// 			dispatch(
+		// 				updateItemStockWeb({
+		// 					id: selectedData.id,
+		// 					in_stock_obj: payload.in_stock_obj,
+		// 				}),
+		// 			);
+		// dispatch(toggleModal(false));
+		// dispatch(
+		// 	toggleModal({
+		// 		modal: "earn",
+		// 		payload: false,
+		// 	}),
+		// );
+		// 			if (setClearSelectedData) {
+		// 				setClearSelectedData(!clearSelectedData);
+		// 			}
+		// 			setSelectedOption();
+		// 		}
+		// 	});
 
-		dispatch(updateItemStock(payload))
-			.unwrap()
-			.then((res) => {
-				if (res) {
-					dispatch(
-						updateItemStockWeb({
-							id: selectedData.id,
-							in_stock_obj: payload.in_stock_obj,
-						}),
-					);
-					dispatch(toggleModal(false));
-					dispatch(
-						toggleModal({
-							modal: "earn",
-							payload: false,
-						}),
-					);
-					if (setClearSelectedData) {
-						setClearSelectedData(!clearSelectedData);
-					}
-					setSelectedOption();
-				}
-			});
+		const in_stock_obj = {
+			status: false,
+			reference_date: referenceDate,
+			message: messageToShow,
+		};
+
+		console.log(in_stock_obj, selectedData.option_name);
+
+		handleOutOfStock(in_stock_obj, selectedData);
+
+		setUpdatedData({
+			in_stock: in_stock_obj,
+			option_name: selectedData.option_name,
+		});
+
+		setClearSelectedData(!clearSelectedData);
+
+		dispatch(toggleModal(false));
+		dispatch(
+			toggleModal({
+				modal: "earn",
+				payload: false,
+			}),
+		);
 	};
 
-	// const handleAppyForOption = () => {
-	// 	console.log("heyy");
-	// 	const in_stock_obj = {
-	// 		status: false,
-	// 		reference_date: referenceDate,
-	// 		message: messageToShow,
-	// 	};
-	// 	console.log(in_stock_obj);
-	// 	setIsInStock(false);
-
-	// 	setSelectedData({
-	// 		name: selectedData.name,
-	// 		id: selectedData.id,
-	// 		in_stock: in_stock_obj,
-	// 	});
-	// 	setUpdatedData({
-	// 		name: selectedData.name,
-	// 		id: selectedData.id,
-	// 		in_stock_obj: in_stock_obj,
-	// 	});
-
-	// 	console.log(data);
-
-	// 	console.log({
-	// 		name: selectedData.name,
-	// 		id: selectedData.id,
-	// 		in_stock: in_stock_obj,
-	// 	});
-	// 	dispatch(toggleModal(false));
-	// 	dispatch(
-	// 		toggleModal({
-	// 			modal: "earn",
-	// 			payload: false,
-	// 		}),
-	// 	);
-	// };
-
-	console.log(data);
-
 	useEffect(() => {
-		const message = checkItemStock(data?.in_stock);
+		const message = checkItemStock(optionData?.in_stock);
 		if (message === "In stock") {
 			setIsInStock(true);
 		} else {
-			setIsInStock(data?.in_stock?.status);
+			setIsInStock(optionData?.in_stock?.status);
 		}
-	}, [data]);
+	}, [optionData]);
 
 	return (
 		<div className='flex items-center space-x-2 stock'>
@@ -191,7 +194,9 @@ const InStock = ({
 				<Switch
 					className='stock'
 					checked={isInStock}
-					onChange={handleSwitchChange}
+					onChange={() => {
+						handleSwitchChange(isInStock);
+					}}
 					sx={{
 						"& .MuiSwitch-thumb": {
 							color: isInStock ? "#4CAF50 !important" : "#FF0000", // Thumb (circle) color
@@ -207,9 +212,9 @@ const InStock = ({
 					}`}
 				>
 					{checkItemStock(
-						updatedData?.id === data?.id
-							? updatedData?.in_stock_obj
-							: data.in_stock,
+						updatedData?.option_name === optionData?.option_name
+							? updatedData?.in_stock
+							: optionData?.in_stock,
 					)}
 				</span>
 			</label>
@@ -232,7 +237,7 @@ const InStock = ({
 							}}
 						>
 							<h1 className='text-black text-[18px] sodo700 tracking-[-0.72px]'>
-								How long should {selectedData?.name} be out of stock
+								How long should {selectedData?.option_name} be out of stock
 							</h1>
 
 							<span
@@ -334,4 +339,4 @@ const InStock = ({
 	);
 };
 
-export default InStock;
+export default OptionInStock;

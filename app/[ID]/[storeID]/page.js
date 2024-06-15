@@ -5,10 +5,11 @@ import SetUpItem from "./SetUpItem";
 import { bankIcon, deliveryBikeIcon, fastFoodIcon } from "@/SVGs";
 
 const page = () => {
+    
 	return (
 		<StoreDashLayout>
 			<div className='w-full flex items-center justify-center'>
-				<div className='w-full sm:w-[70%] md:w-[50%]'>
+				<div className='w-full sm:w-[70%] lg:w-[70%] xl:w-[50%] '>
 					<h1 className='text-black sodo700 text-[1.25rem] tacking-[-0.8px] mb-[1.5rem]'>
 						Setup Guide
 					</h1>

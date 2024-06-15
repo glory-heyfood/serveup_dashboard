@@ -6,8 +6,8 @@ import LabelText from "./LabelText";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
-const LabelSwitchSelect = ({ labelFontweight, data, textLabel, labelHeader, labelHeaderFontWeight, labelWidth }) => {
-	const [checkedData, setCheckedData] = useState({});
+const LabelSwitchSelect = ({ labelFontweight, data, textLabel, labelHeader, labelHeaderFontWeight, labelWidth, hideLabel }) => {
+	const [checkedData, setCheckedData] = useState({});	
 	const [checkAllData, setCheckAllData] = useState(false);
 
 	
@@ -35,6 +35,7 @@ const LabelSwitchSelect = ({ labelFontweight, data, textLabel, labelHeader, labe
 			stretch={true}
 			padding='16px 0px 16px 16px'
             width={labelWidth}
+			hideLabel={hideLabel}
 			label={<LabelText label={textLabel} labelFontWeight={labelFontweight} />}
 		>
 			<div className='py-[20px] flex flex-col space-y-[2px]'>

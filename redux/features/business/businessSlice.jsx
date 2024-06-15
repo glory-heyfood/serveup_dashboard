@@ -1,9 +1,11 @@
-import { handleAPI } from "@/utils";
+import { handleAPI, setItemWithEvent } from "@/utils";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
 	loading: false,
+	btnLoading: false,
+	data: [],
 };
 
 export const loginAsync = createAsyncThunk(
@@ -18,7 +20,7 @@ export const loginAsync = createAsyncThunk(
 		if (response) {
 			window.localStorage.setItem(
 				"serveup_user",
-				JSON.stringify(response.data),
+				JSON.stringify(response.data[0]),
 			);
 		}
 	},
@@ -78,7 +80,6 @@ export const resendEmailOTP = createAsyncThunk(
 export const createBusinessAsync = createAsyncThunk(
 	"business/create",
 	async (payload) => {
-	
 		const response = await handleAPI(
 			axios.post(
 				`${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/business/create`,
@@ -95,23 +96,54 @@ export const createBusinessAsync = createAsyncThunk(
 	},
 );
 
-
-
 export const updateSubscriptionPlanAsync = createAsyncThunk(
 	"business/updateSubscriptionPlan",
 	async (payload) => {
 		console.log(payload);
 		const response = await handleAPI(
-			axios.post(
+			axios.put(
 				`${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/business/pricing/update`,
 				payload,
 			),
 		);
-        if (response) {
+		if (response) {
+			setItemWithEvent("serveup_business", JSON.stringify(response.data[0]));
+		}
+		return response;
+	},
+);
+
+export const getBusinessById = createAsyncThunk(
+	"business/getBusinessById",
+	async (payload) => {
+		const response = await handleAPI(
+			axios.get(
+				`${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/business/${payload}`,
+				payload,
+			),
+		);
+		if (response) {
 			window.localStorage.setItem(
 				"serveup_business",
-				JSON.stringify(response.data),
+				JSON.stringify(response.data[0]),
 			);
+		}
+		return response;
+	},
+);
+
+export const updateBusinessById = createAsyncThunk(
+	"business/updateBusinessById",
+	async (payload) => {
+		console.log(payload);
+		const response = await handleAPI(
+			axios.put(
+				`${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/business/update`,
+				payload,
+			),
+		);
+		if (response) {
+			setItemWithEvent("serveup_business", JSON.stringify(response.data[0]));
 		}
 		return response;
 	},
@@ -156,9 +188,30 @@ const business = createSlice({
 			})
 			.addCase(updateSubscriptionPlanAsync.fulfilled, (state, action) => {
 				state.loading = false;
+				state.data = action.payload?.data[0];
 			})
 			.addCase(updateSubscriptionPlanAsync.rejected, (state, action) => {
 				state.loading = false;
+			})
+			.addCase(getBusinessById.pending, (state) => {
+				state.loading = true;
+			})
+			.addCase(getBusinessById.fulfilled, (state, action) => {
+				state.loading = false;
+				state.data = action.payload?.data[0];
+			})
+			.addCase(getBusinessById.rejected, (state, action) => {
+				state.loading = false;
+			})
+			.addCase(updateBusinessById.pending, (state) => {
+				state.btnLoading = true;
+			})
+			.addCase(updateBusinessById.fulfilled, (state, action) => {
+				state.btnLoading = false;
+				state.data = action.payload?.data[0];
+			})
+			.addCase(updateBusinessById.rejected, (state, action) => {
+				state.btnLoading = false;
 			});
 	},
 });

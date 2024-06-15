@@ -8,7 +8,7 @@ const DashHeader = ({ handleSideBar }) => {
     const dispatch = useDispatch()
     const [data, setData] = useState()
     useEffect(()=>{
-        const dat = JSON.parse(window.localStorage.getItem("serveup_business"))
+        const dat = JSON.parse(window.localStorage.getItem("serveup_business"))        
         setData(dat)
     }, [])
 

@@ -11,11 +11,17 @@ import TimePicker from "@/components/TimePicker";
 import { AddStoreLabeDateInputData, ID } from "@/data";
 import { useDispatch, useSelector } from "react-redux";
 import { createStoreAsync } from "@/redux/features/business/storeSlice";
+import { ClipLoader } from "react-spinners";
+import useLocationSuggestions from "@/hooks/useLocationSuggestions";
 
-const AddStore = ({ handleClose }) => {
+const AddStore = ({ handleClose, businessID }) => {
 	const [selectedValue, setSelectedValue] = useState("");
-    const dispatch = useDispatch()
-    const btnLoading = useSelector((state)=> state.stores.loading)
+	const dispatch = useDispatch();
+	const [loader, setLoader] = useState(false);
+	const [showModal, setShowModal] = useState(false);
+	const [inputValue, setInputValue] = useState("");
+	const [suggestions, setSuggestions] = useState([]);
+	const btnLoading = useSelector((state) => state.stores.loading);		
 	const [disabledDays, setDisabledDays] = useState({
 		Monday: true,
 		Tuesday: true,
@@ -25,84 +31,97 @@ const AddStore = ({ handleClose }) => {
 		Saturday: true,
 		Sunday: true,
 	});
+	
 
 	const [formData, setFormData] = useState({
 		storeName: "",
-		storeAddress: "",
+		storeAddress: {
+			longitude: 0,
+			latitude: 0,
+			address: "",
+		},
 		phoneNumber: "",
 		email: "",
-        business_hours: {
-            Monday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-            Tuesday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-            Wednesday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-            Thursday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-            Friday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-            Saturday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-            Sunday: {
-                open: '',
-                close: '',
-                workingDays: false,
-            },
-                      
-          },
+		business_hours: {
+			Monday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+			Tuesday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+			Wednesday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+			Thursday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+			Friday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+			Saturday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+			Sunday: {
+				open: "",
+				close: "",
+				workingDays: false,
+			},
+		},
 	});
+
+	const handleSuggestions = (suggestions) => {
+		console.log(suggestions);
+		setSuggestions(suggestions);
+		setLoader(false);
+	};
+
+	const { getSuggestions, getDetails } =
+		useLocationSuggestions(handleSuggestions);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData((prevFormData) => ({
 			...prevFormData,
 			[name]: value,
-		}));		
+		}));
 	};
 
 	const handleSelectChange = (e) => {
 		setSelectedValue(e.target.value);
 	};
 
-	const handleTimeChange = (time, data) => {				
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            business_hours: {
-              ...prevFormData.business_hours,
-              [data.label]: {
-                ...prevFormData.business_hours[data.label],
-                [data.status.toLowerCase()]: time,
-                ["workingDays"]: data.workingDays
-              },
-              
-            },
-          }));
+	const handleTimeChange = (time, data) => {
+		console.log(time);
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			business_hours: {
+				...prevFormData.business_hours,
+				[data.label]: {
+					...prevFormData.business_hours[data.label],
+					[data.status.toLowerCase()]: time,
+					["workingDays"]: data.workingDays,
+				},
+			},
+		}));
 	};
 
 	const handleDayClick = (day) => {
 		setDisabledDays((prevDisabledDays) => ({
 			...prevDisabledDays,
 			[day]: !prevDisabledDays[day],
-		}));
+		}));        
 	};
 
 	// Function to handle the submission
@@ -112,15 +131,52 @@ const AddStore = ({ handleClose }) => {
 			address: formData.storeAddress,
 			phone_number: formData.phoneNumber,
 			email: formData.email,
-			business_id: ID,
+			business_id: businessID,
+            use_business_delivery_settings:true,
+            notification:{
+                email:false,
+                sms:false
+            },
 			business_hours: JSON.stringify(formData.business_hours),
+			isOpen: JSON.stringify({
+				status: true,
+				message: "Your store is currently open",
+				referenceData: "",
+			}),
 		};
-        console.log(payload)
+		
 
-        dispatch(createStoreAsync(payload)).unwrap().then((res)=>{
-
-        })
+		dispatch(createStoreAsync(payload))
+			.unwrap()
+			.then((res) => {});
 	};
+
+	const handleInputChange = (inputValue) => {
+		if (inputValue) {
+			setLoader(true);
+			setShowModal(true);
+		} else {
+			setShowModal(false);
+		}
+		setInputValue(inputValue);
+		getSuggestions(inputValue);
+	};
+
+	const handleLocationSelect = async (placeId) => {
+		const locationDetails = await getDetails(placeId);
+		setInputValue(locationDetails.address);
+		setShowModal(false);
+		setFormData((prevData) => ({
+			...prevData,
+			storeAddress: {
+				longitude: locationDetails.longitude,
+				latitude: locationDetails.latitude,
+				address: locationDetails.address,
+			},
+		}));
+		console.log("Location Details:", locationDetails);
+	};
+
 
 	return (
 		<ComponentModalLayout handleClose={handleClose}>
@@ -130,7 +186,7 @@ const AddStore = ({ handleClose }) => {
 				</h1>
 				<div className='flex flex-col space-y-[2em]'>
 					<CustomLabel header='Store information'>
-						<div>
+						<div className='relative'>
 							<LabelSearchInput
 								placeholder='Store name'
 								label='Store name'
@@ -140,9 +196,43 @@ const AddStore = ({ handleClose }) => {
 							<LabelSearchInput
 								label='Store Address'
 								name='storeAddress'
+								value={inputValue}
 								placeholder='Search store address'
-								handleChange={handleChange}
+								handleChange={(e) => {
+									handleInputChange(e.target.value);
+								}}
 							/>
+
+							{showModal && (
+								<div
+									className='absolute  w-full h-fit min-h-[100px] flex flex-col items-start justify-center space-y-[1rem] bg-white  mt-[0.5rem] p-[1rem] cursor-pointer'
+									style={{
+										boxShadow: "0px 0px 4px 0px #C0C0C0",
+									}}
+								>
+									<div className='flex justify-start w-full mb-[1rem]'>
+										<img src='/images/gmap.png' />
+									</div>
+
+									{loader ? (
+										<div className='flex items-center justify-center w-full h-full'>
+											{" "}
+											<ClipLoader color='#2B50D6' size={25} />{" "}
+										</div>
+									) : (
+										suggestions.map((data) => (
+											<h1
+												className='sodo400 text-[0.825rem] tracking-[-0.28px]'
+												onClick={() => {
+													handleLocationSelect(data.googleMapsPlaceId);
+												}}
+											>
+												{data.address}
+											</h1>
+										))
+									)}
+								</div>
+							)}
 						</div>
 					</CustomLabel>
 
@@ -169,16 +259,16 @@ const AddStore = ({ handleClose }) => {
 							{AddStoreLabeDateInputData.map((data) => (
 								<LabelDateInput
 									key={data.label}
-                                    data={data}
+									data={data}
 									handleClick={handleDayClick}
 									disabled={disabledDays[data.label]}
-									time={
+									time={() => (
 										<TimePicker
 											data={data}
 											disabled={disabledDays[data.label]}
 											handleTimeChange={handleTimeChange}
 										/>
-									}
+									)}
 									label={data.label}
 								/>
 							))}
@@ -208,7 +298,12 @@ const AddStore = ({ handleClose }) => {
 				</div>
 
 				<div className='block md:inline-block mt-[2.5em] mb-[5em]'>
-					<DashBtn padding='12px 37px' text='Save' handleClick={handleSaveClick} btnLoading={btnLoading} />
+					<DashBtn
+						padding='12px 37px'
+						text='Save'
+						handleClick={handleSaveClick}
+						btnLoading={btnLoading}
+					/>
 				</div>
 			</div>
 		</ComponentModalLayout>

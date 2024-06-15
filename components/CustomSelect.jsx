@@ -12,7 +12,7 @@ const CustomSelect = ({
 }) => {
 	const Icon = () => {
 		return <span className='ml-[4px] mt-[-1px]'>{dropDownBlackIcon}</span>;
-	};
+	};	
 
 	return (
 		<Select

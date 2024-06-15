@@ -1,7 +1,7 @@
 import { Switch } from "@mui/material";
 import React from "react";
 
-const SwitchPicker = ({ header, text, handleChange, fontweight, border }) => {
+const SwitchPicker = ({ header, text, handleChange, fontweight, border, checked }) => {
 	return (
 		<div
 			className={`flex items-center space-x-[20px]${
@@ -9,6 +9,7 @@ const SwitchPicker = ({ header, text, handleChange, fontweight, border }) => {
 			}rounded-[8px] py-[18px] md:py-[21px] md:px-[24px] w-full px-[16px] `}
 		>
 			<Switch
+                checked={checked}        
 				onChange={(e) => {
 					handleChange(e.target.checked);
 				}}

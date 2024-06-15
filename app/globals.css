@@ -2,9 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* For Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+/* For Chrome, Safari, and Edge */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* For Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap");
 
 @font-face {
 	font-family: "SoDoSans-bold";
@@ -43,7 +62,7 @@
 }
 
 .poppins {
-    font-family: 'Poppins', sans-serif;
+	font-family: "Poppins", sans-serif;
 }
 
 .sodo300 {
@@ -186,8 +205,8 @@ h3 {
 	flex-wrap: nowrap !important;
 }
 
-.MuiStack-root{
-    padding-top: 0px;
+.MuiStack-root {
+	padding-top: 0px;
 }
 
 /* Styling priceCard height in onboarding page */
@@ -210,7 +229,6 @@ h3 {
 	.sideXIcon {
 		display: none;
 	}
-
 }
 
 @media (max-width: 899px) {
@@ -218,12 +236,12 @@ h3 {
 		padding-top: 32px !important;
 	}
 
-    .customerSidebar{
-        padding-top: 0px;
-        z-index:60;
-    }
-    
-    .sidebarCont{
-        display: block;
-    }
+	.customerSidebar {
+		padding-top: 0px;
+		z-index: 60;
+	}
+
+	.sidebarCont {
+		display: block;
+	}
 }

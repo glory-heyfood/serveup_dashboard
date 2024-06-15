@@ -4,16 +4,26 @@ import SidebarItem from "./SidebarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { XIcon } from "@/SVGs";
 import { toggleSidebar } from "@/redux/features/toggleSideBarSlice";
+import { listenForStorageChanges } from "@/utils";
 
 const SideBar = ({ btn }) => {
-    const showSidebar = useSelector((state) => state.sidebar.showSidebar);
+	const showSidebar = useSelector((state) => state.sidebar.showSidebar);
 	const dispatch = useDispatch();
+	const [id, setId] = useState();
+
+	const updateId = () => {
+		const ID = JSON.parse(window.localStorage.getItem("serveup_business"))?.id;
+		setId(ID);
+        console.log(ID, "servup")
+	};
+
+	listenForStorageChanges(updateId, "serveup_business");
 
 	useEffect(() => {
 		console.log(showSidebar);
+		updateId();
 	}, []);
 
-	
 	return (
 		<>
 			<div
@@ -44,7 +54,7 @@ const SideBar = ({ btn }) => {
 				<div className=' grid grid-cols-4 md:grid-cols-3 gap-x-[32px] md:gap-x-[1.5em] gap-y-[50px] md:gap-y-[1.5em]'>
 					{sidebarData.map((data, i) => (
 						<SidebarItem
-							href={data.href}
+							href={`/${id}${data.href}`}
 							icon={data.icon}
 							text={data.text}
 							key={i}

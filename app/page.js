@@ -8,83 +8,83 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const Home = () => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [disabled, setDisabled] = useState(false);
-	const router = useRouter();
-    const dispatch = useDispatch()
-    // const btnLoader = 
-	const handleClick = () => {
-		console.log("clicked");
-		router.push("/");
-	};
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  // const btnLoader =
+  const handleClick = () => {
+    console.log("clicked");
+    router.push("/1");
+  };
 
-	useEffect(() => {
-		if (email.trim() === "" || password === "") {
-			setDisabled(true);
-		} else {
-			setDisabled(false);
-		}
-	}, [email, password]);
+  useEffect(() => {
+    if (email.trim() === "" || password === "") {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [email, password]);
 
-	return (
-		<div className='flex'>
-			<div
-				className='md:w-[50%] lg:w-[60%]  h-screen hidden md:block'
-				style={{
-					backgroundImage: 'url("/images/sign-in-frame.png")',
-					backgroundSize: "cover",
-					backgroundPosition: "cover",
-				}}
-			></div>
-			<div className='flex flex-col px-[1em] lg:px-[3em] pt-[3em] md:pt-[5em] space-y-[3em] md:space-y-[6.2em] w-full md:w-[50%] lg:w-[40%]'>
-				<Image
-					src='/images/sign-in-logo.svg'
-					width={120}
-					height={24}
-					alt='logo'
-				/>
+  return (
+    <div className="flex">
+      <div
+        className="md:w-[50%] lg:w-[60%]  h-screen hidden md:block"
+        style={{
+          backgroundImage: 'url("/images/sign-in-frame.png")',
+          backgroundSize: "cover",
+          backgroundPosition: "cover",
+        }}
+      ></div>
+      <div className="flex flex-col px-[1em] lg:px-[3em] pt-[3em] md:pt-[5em] space-y-[3em] md:space-y-[6.2em] w-full md:w-[50%] lg:w-[40%]">
+        <Image
+          src="/images/sign-in-logo.svg"
+          width={120}
+          height={24}
+          alt="logo"
+        />
 
-				<div className='flex flex-col space-y-[1.5em] w-full'>
-					<div className='flex flex-col space-y-[1em]'>
-						<h1 className='sodo600 font-[900] tracking-[-0.96px] leading-normal text-[24px] '>
-							Sign in
-						</h1>
-						<h4 className='tracking-[-0.28px] sodo400  text-[0.875em]'>
-							New to Serveup?{" "}
-							<Link href='/signup' className='text-[#072A85] sodo600'>
-								Sign up
-							</Link>{" "}
-						</h4>
-					</div>
+        <div className="flex flex-col space-y-[1.5em] w-full">
+          <div className="flex flex-col space-y-[1em]">
+            <h1 className="sodo600 font-[900] tracking-[-0.96px] leading-normal text-[24px] ">
+              Sign in
+            </h1>
+            <h4 className="tracking-[-0.28px] sodo400  text-[0.875em]">
+              New to Serveup?{" "}
+              <Link href="/signup" className="text-[#072A85] sodo600">
+                Sign up
+              </Link>{" "}
+            </h4>
+          </div>
 
-					<div className='flex flex-col space-y-[1em]'>
-						<Input
-							text='Email address/phone number'
-							onChange={(e) => {
-								setEmail(e.target.value);
-								console.log(e.target.length);
-							}}
-						/>
-						<Input
-							text='Password'
-							type='password'
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-					</div>
+          <div className="flex flex-col space-y-[1em]">
+            <Input
+              text="Email address/phone number"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                console.log(e.target.length);
+              }}
+            />
+            <Input
+              text="Password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-					<div className='w-fit'>
-						<AuthBtn
-							text='Sign in'
-							padding='1.1em 2.5em'
-							handleClick={handleClick}
-							disabled={disabled}
-						/>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+          <div className="w-fit">
+            <AuthBtn
+              text="Sign in"
+              padding="1.1em 2.5em"
+              handleClick={handleClick}
+              disabled={disabled}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

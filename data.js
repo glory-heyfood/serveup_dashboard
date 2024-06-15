@@ -1,3 +1,5 @@
+export const loaderData = [1,2,3,4,5,5,6,7]
+
 import {
 	barCodeIcon,
 	bellIcon,
@@ -123,71 +125,70 @@ export const Pricing = [
 
 // Data for side bar dashboard
 
-export const ID =
-	typeof window !== "undefined"
-		? JSON.parse(window.localStorage.getItem("serveup_business"))?.id
-		: "id";
-export const storeID = "3";
+
+
+export const storeID = "1";
+export const menu_id = 3
 
 export const sidebarData = [
 	{
 		icon: bellIcon,
 		text: "New orders",
-		href: `/${ID}`,
+		href: ``,
 	},
 
 	{
 		icon: chartIcon,
 		text: "Analytics",
-		href: `/${ID}/analytics`,
+		href: `/analytics`,
 	},
 
 	{
 		icon: storeIcon,
 		text: "Stores",
-		href: `/${ID}/stores`,
+		href: `/stores`,
 	},
 
 	{
 		icon: userIcon,
 		text: "Customers",
-		href: `/${ID}/customers`,
+		href: `/customers`,
 	},
 
 	{
 		icon: marketingIcon,
 		text: "Marketing",
-		href: `/${ID}/marketing#/email`,
+		href: `/marketing#/email`,
 	},
 	{
 		icon: rewardIcon,
 		text: "Loyalty rewards",
-		href: `/${ID}/loyalty#/overview`,
+		href: `/loyalty#/overview`,
 	},
 	{
 		icon: promotionICon,
 		text: "Promotions",
-		href: `/${ID}/promotions`,
+		href: `/promotions`,
 	},
 	{
 		icon: briefcaseICon,
 		text: "Employees",
-		href: `/${ID}/employees`,
+		href: `/employees`,
 	},
 	{
 		icon: websiteIcon,
 		text: "Website",
-		href: `/${ID}/website#/theme`,
+		href: `/website#/theme`,
 	},
 	{
 		icon: mobileIcon,
 		text: "Mobile App",
-		href: `/${ID}/mobile#/overview`,
+		href: `/mobile#/overview`,
 	},
 	{
 		icon: companyIcon,
 		text: "Business Settings",
-		href: `/${ID}/business`,
+		href: `/business`,
 	},
 ];
 
@@ -195,54 +196,54 @@ export const storeSideBarData = [
 	{
 		icon: potIcon,
 		text: "Kitchen",
-		href: `/${ID}/${storeID}/kitchen`,
+		href: `/kitchen`,
 		bgColor: "#F01C1C",
 	},
 
 	{
 		icon: chartIconWhite,
 		text: "Analytics",
-		href: `/${ID}/${storeID}/analytics`,
+		href: `/analytics`,
 		bgColor: "#FF9800",
 	},
 
 	{
 		icon: beverageIcon,
 		text: "Menus",
-		href: `/${ID}/${storeID}/menus#/categories`,
+		href: `/menus#/categories`,
 		bgColor: "#74006D",
 	},
 
 	{
 		icon: shieldIconWhite,
 		text: "Order history",
-		href: `/${ID}/${storeID}/order_history`,
+		href: `/order_history`,
 		bgColor: "#136FFB",
 	},
 
 	{
 		icon: barCodeIcon,
 		text: "Dine-in",
-		href: `/${ID}/${storeID}/dine_in#/sections`,
+		href: `/dine_in#/sections`,
 		bgColor: "#06AE68",
 	},
 	{
 		icon: walletIconWhite,
 		text: "Payout",
-		href: `/${ID}/${storeID}/payout#/transactions`,
+		href: `/payout#/transactions`,
 		bgColor: "#F56412",
 	},
 	{
 		icon: promotionIconWhite,
 		text: "Promotions",
-		href: `/${ID}/${storeID}/promotions`,
+		href: `/promotions`,
 		bgColor: "#118507",
 	},
 
 	{
 		icon: settingsIcon,
 		text: "Settings",
-		href: `/${ID}/${storeID}/settings`,
+		href: `/settings`,
 		bgColor: "#606B7C",
 	},
 ];
@@ -1059,6 +1060,7 @@ export const transactionsData = [
 ];
 
 export const sendMenuItemsData = (page, noOfRows) => {
+    
 	return {
 		data: menuItemsData.slice(page * noOfRows, page * noOfRows + noOfRows),
 		length: menuItemsData.length,
@@ -1301,3 +1303,31 @@ export const EmployeeData = [
 		role: "Employee",
 	},
 ];
+
+
+export const riderData = [
+    {
+        name:"Ajisafe Boluwaji",
+        number:"07029345678"
+    },
+    {
+        name:"Latif Hammed",
+        number:"09034582357"
+    },
+    {
+        name:"Desmond great",
+        number:"07029345678"
+    },
+    {
+        name:"Eunice Hakeem",
+        number:"07029345678"
+    },
+    {
+        name:"Bad Boy",
+        number:"07029345678"
+    },
+    {
+        name:"David Bee",
+        number:"07029345678"
+    },
+]

@@ -14,7 +14,7 @@ const StoreHeader = ({
 	return (
 		<div className='flex justify-between md:items-center flex-col md:flex-row  '>
 			<div className='order-2 md:oder-1'>
-				<div className="flex items-center space-x-[0.75rem]">
+				<div className="flex items-center space-x-[0.75rem] md:space-x-0">
                 <span
 					className={`cursor-pointer w-fit  ${
 						showXIconMobile ? ":inline-block  md:hidden" : "hidden"

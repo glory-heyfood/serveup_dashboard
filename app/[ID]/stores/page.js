@@ -12,12 +12,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllStoresAsync } from "@/redux/features/business/storeSlice";
 import { ID } from "@/data";
 import { searchArrayForStores } from "@/utils";
+import StoreLoader from "@/components/loaders/StoreLoader";
+import FadeLoad from "@/components/loaders/FadeLoader";
+import { getBusinessById } from "@/redux/features/business/businessSlice";
 
 const Page = () => {
 	const [showStore, setShowStore] = useState(false);
 	const dispatch = useDispatch();
+	const loading = useSelector((state) => state.stores.loading);
 	const data = useSelector((state) => state.stores.data);
-	const [filteredData, setFilteredData] = useState();
+	const [businessID, setBusinessID] = useState();
+	const [filteredData, setFilteredData] = useState([]);
 	const handleOpenStore = () => {
 		setShowStore(true);
 	};
@@ -26,13 +31,23 @@ const Page = () => {
 		setShowStore(false);
 	};
 
-	const handleChange = (e) => {		
+	const handleChange = (e) => {
 		const newArr = searchArrayForStores(data, e.target.value);
 		setFilteredData(newArr);
 	};
 
 	const getAllStores = () => {
-		dispatch(getAllStoresAsync(ID))
+		const url = window.location.href.split("/");
+		const id = url[url.length - 2];
+		setBusinessID(id);
+
+		dispatch(
+			getAllStoresAsync({
+				business_id: id,
+				page: 1,
+				noOfStores: 5,
+			}),
+		)
 			.unwrap()
 			.then((res) => {
 				console.log(res);
@@ -45,13 +60,19 @@ const Page = () => {
 
 	useEffect(() => {
 		getAllStores();
+		setFilteredData([]);
 	}, []);
 
 	return showStore ? (
-		<AddStore handleClose={handleCloseStore} />
+		<AddStore handleClose={handleCloseStore} businessID={businessID} />
 	) : (
 		<DashLayout btn={true}>
-			{data?.length === 0 ? (
+			{loading ? (
+				<div className='w-full h-full'>
+					<h1 className='dashHeader'>Stores</h1>
+					<FadeLoad />
+				</div>
+			) : data?.length === 0 ? (
 				<div>
 					<h1 className='dashHeader'>Stores</h1>
 					<EmptyState
@@ -84,7 +105,7 @@ const Page = () => {
 
 					<div className='flex flex-col mt-[0.75em]'>
 						{filteredData?.map((data, i) => (
-							<StoresItem text={data.name} key={i} />
+							<StoresItem data={data} key={i} businessID={businessID} />
 						))}
 					</div>
 				</>

@@ -168,7 +168,7 @@ const Page = () => {
 								</MenuItem>
 								<MenuItem
 									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
-									value='Physiceal Location'
+									value='Physical Location'
 								>
 									Physical Location
 								</MenuItem>
@@ -180,7 +180,7 @@ const Page = () => {
 								</MenuItem>
 								<MenuItem
 									className='text-black  sudo400 text-[0.9em] tracking-[-0.56px]'
-									value='Physice and Online'
+									value='Physical and Online'
 								>
 									Physical and Online
 								</MenuItem>
