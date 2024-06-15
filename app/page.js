@@ -33,6 +33,7 @@ const Home = () => {
         }
       });
   };
+  
 
   useEffect(() => {
     if (email.trim() === "" || password === "") {
