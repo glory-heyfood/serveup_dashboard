@@ -1,6 +1,7 @@
 "use client";
 import AuthBtn from "@/components/Auth/AuthBtn";
 import Input from "@/components/Input";
+import { getBusinessById } from "@/redux/features/business/businessSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,12 +12,26 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   // const btnLoader =
   const handleClick = () => {
+    setLoader(true);
     console.log("clicked");
-    router.push("/1");
+    dispatch(getBusinessById(1))
+      .unwrap()
+      .then((res) => {
+        if (res) {
+          console.log(res);
+          window.localStorage.setItem(
+            "serveup_business",
+            JSON.stringify(res.data[0])
+          );
+          router.push("/1");
+          setLoader(false);
+        }
+      });
   };
 
   useEffect(() => {
@@ -76,6 +91,7 @@ const Home = () => {
           <div className="w-fit">
             <AuthBtn
               text="Sign in"
+              loading={loader}
               padding="1.1em 2.5em"
               handleClick={handleClick}
               disabled={disabled}
