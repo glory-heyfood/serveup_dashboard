@@ -4,26 +4,26 @@ import {
   downloadIcon,
   plusIconBlue,
   qrCodeIcon,
-} from "@/SVGs";
-import ComponentModalLayout from "@/components/ComponentModalLayout";
-import CustomSearch from "@/components/CustomSearch";
-import CustomSelect from "@/components/CustomSelect";
-import Input from "@/components/Input";
-import StoreHeader from "@/components/StoreHeader";
-import DashBtn from "@/components/buttons/DashBtn";
-import CustomLabel from "@/components/label/CustomLabel";
-import LabelSearchInput from "@/components/label/LabelSearchInput";
-import CustomLabelSwitchSelect from "@/components/label/customLabelSwitchSelect";
-import FadeLoad from "@/components/loaders/FadeLoader";
+} from "../../../../../SVGs";
+import ComponentModalLayout from "../../../../../components/ComponentModalLayout";
+import CustomSearch from "../../../../../components/CustomSearch";
+import CustomSelect from "../../../../../components/CustomSelect";
+import Input from "../../../../../components/Input";
+import StoreHeader from "../../../../../components/StoreHeader";
+import DashBtn from "../../../../../components/buttons/DashBtn";
+import CustomLabel from "../../../../../components/label/CustomLabel";
+import LabelSearchInput from "../../../../../components/label/LabelSearchInput";
+import CustomLabelSwitchSelect from "../../../../../components/label/customLabelSwitchSelect";
+import FadeLoad from "../../../../../components/loaders/FadeLoader";
 import {
   createQrCodeAsync,
   deleteQrCode,
   getDineInInfo,
   getQrCodes,
   updateQrCodeAsync,
-} from "@/redux/features/stores/dineInSlice";
-import { getAllCategories } from "@/redux/features/stores/menuSlice";
-import { generateShortId, getMenu, getStore } from "@/utils";
+} from "../../../../../redux/features/stores/dineInSlice";
+import { getAllCategories } from "../../../../../redux/features/stores/menuSlice";
+import { generateShortId, getMenu, getStore } from "../../../../../utils";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

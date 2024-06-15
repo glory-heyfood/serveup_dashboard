@@ -1,13 +1,13 @@
 "use client";
-import CustomSelect from "@/components/CustomSelect";
-import DashLayout from "@/components/Dashboard/DashLayout";
-import { options } from "@/data";
+import CustomSelect from "../../../../components/CustomSelect";
+import DashLayout from "../../../../components/Dashboard/DashLayout";
+import { options } from "../../../../data";
 import React from "react";
 import BarChart from "./Chart";
 import AnalyticsCard from "./AnalyticsCard";
-import DateRangePicker from "@/components/CustomDateRangePicker";
-import CustomCalendarButton, { DateRange } from "@/components/DateRangePicker";
-import StoreDashLayout from "@/components/Dashboard/storeDashLayout";
+import DateRangePicker from "../../../../components/CustomDateRangePicker";
+import CustomCalendarButton, { DateRange } from "../../../../components/DateRangePicker";
+import StoreDashLayout from "../../../../components/Dashboard/storeDashLayout";
 
 const Page = () => {
 	return (
