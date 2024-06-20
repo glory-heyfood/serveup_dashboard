@@ -185,7 +185,7 @@ export const sidebarData = [
   {
     icon: companyIcon,
     text: "Business Settings",
-    href: `/business`,
+    href: `/settings`,
   },
 ];
 

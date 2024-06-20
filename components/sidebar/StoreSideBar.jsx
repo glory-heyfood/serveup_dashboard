@@ -105,7 +105,7 @@ const StoreSideBar = ({ btn }) => {
 				<div className=' grid grid-cols-3 gap-x-[1.5em]  gap-y-[1.5em]'>
 					{storeSideBarData.map((data, i) => (
 						<StoreSidebarItem
-							href={`/${id}/${store?.id}${data.href}`}
+							href={`/business/${id}/${store?.id}${data.href}`}
 							icon={data.icon}
 							text={data.text}
 							bgColor={data.bgColor}

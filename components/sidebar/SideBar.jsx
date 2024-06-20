@@ -54,7 +54,7 @@ const SideBar = ({ btn }) => {
 				<div className=' grid grid-cols-4 md:grid-cols-3 gap-x-[32px] md:gap-x-[1.5em] gap-y-[50px] md:gap-y-[1.5em]'>
 					{sidebarData.map((data, i) => (
 						<SidebarItem
-							href={`/${id}${data.href}`}
+							href={`/business/${id}${data.href}`}
 							icon={data.icon}
 							text={data.text}
 							key={i}

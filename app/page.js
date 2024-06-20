@@ -28,12 +28,11 @@ const Home = () => {
             "serveup_business",
             JSON.stringify(res.data[0])
           );
-          router.push("/1");
+          router.push("/business/1");
           setLoader(false);
         }
       });
   };
-  
 
   useEffect(() => {
     if (email.trim() === "" || password === "") {

@@ -50,7 +50,7 @@ const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
     const storeId = parts[parts.length - 2];
     setStoreId(storeId);
 
-    if (window.location.pathname === `/${id}/${storeId}/kitchen`) {
+    if (window.location.pathname === `/business/${id}/${storeId}/kitchen`) {
       setGrid(kitchenSidebar);
     }
   }, [kitchenSidebar]);
@@ -101,7 +101,7 @@ const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
                         data.text === "Dine-in" ||
                         data.text === "Kitchen"
                       }
-                      href={`/${id}/${storeId}${data.href}`}
+                      href={`/business/${id}/${storeId}${data.href}`}
                       icon={data.icon}
                       text={data.text}
                       key={i}
@@ -118,7 +118,7 @@ const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
                           ? true
                           : false
                       }
-                      href={`/${id}${data.href}`}
+                      href={`/business/${id}${data.href}`}
                       icon={data.icon}
                       text={data.text}
                       key={i}
