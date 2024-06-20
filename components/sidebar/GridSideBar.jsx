@@ -49,50 +49,50 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    if (window.location.pathname === `/${ID}/marketing`) {
+    if (window.location.pathname === `/business/${ID}/marketing`) {
       dispatch(toggleMarketingGridSidebar(false));
     }
-    if (window.location.pathname === `/${ID}/loyalty`) {
+    if (window.location.pathname === `/business/${ID}/loyalty`) {
       dispatch(toggleLoyaltyGridSidebar(false));
     }
-    if (window.location.pathname === `/${ID}/website`) {
+    if (window.location.pathname === `/business/${ID}/website`) {
       dispatch(toggleWebsiteGridSidebar(false));
     }
-    if (window.location.pathname === `/${ID}/mobile`) {
+    if (window.location.pathname === `/business/${ID}/mobile`) {
       dispatch(toggleMobileAppGridSidebar(false));
     }
-    if (window.location.pathname === `/${ID}/${storeId}/menus`) {
+    if (window.location.pathname === `/business/${ID}/${storeId}/menus`) {
       dispatch(toggleMenusGridSidebar(false));
     }
-    if (window.location.pathname === `/${ID}/${storeId}/payout`) {
+    if (window.location.pathname === `/business/${ID}/${storeId}/payout`) {
       dispatch(togglePayoutGridSidebar(false));
     }
-    if (window.location.pathname === `/${ID}/${storeId}/dine_in`) {
+    if (window.location.pathname === `/business/${ID}/${storeId}/dine_in`) {
       dispatch(toggleDineInGridSidebar(false));
     }
   };
 
   useEffect(() => {
-    if (window.location.pathname === `/${ID}/marketing`) {
+    if (window.location.pathname === `/business/${ID}/marketing`) {
       setGrid(marketingGrid);
     }
 
-    if (window.location.pathname === `/${ID}/loyalty`) {
+    if (window.location.pathname === `/business/${ID}/loyalty`) {
       setGrid(loyaltyGrid);
     }
-    if (window.location.pathname === `/${ID}/website`) {
+    if (window.location.pathname === `/business/${ID}/website`) {
       setGrid(websiteGrid);
     }
-    if (window.location.pathname === `/${ID}/mobile`) {
+    if (window.location.pathname === `/business/${ID}/mobile`) {
       setGrid(mobileAppGrid);
     }
-    if (window.location.pathname === `/${ID}/${storeId}/menus`) {
+    if (window.location.pathname === `/business/${ID}/${storeId}/menus`) {
       setGrid(menusGrid);
     }
-    if (window.location.pathname === `/${ID}/${storeId}/payout`) {
+    if (window.location.pathname === `/business/${ID}/${storeId}/payout`) {
       setGrid(payoutGrid);
     }
-    if (window.location.pathname === `/${ID}/${storeId}/dine_in`) {
+    if (window.location.pathname === `/business/${ID}/${storeId}/dine_in`) {
       setGrid(dineInGrid);
     }
   }, [
@@ -108,7 +108,7 @@ const GridSideBar = ({ btn, GridComponent, type }) => {
   useEffect(() => {
     const id = window.location.pathname;
     console.log(id);
-    let [empty, ID, storeId] = id.split("/");
+    let [empty, empty2, ID, storeId] = id.split("/");
     console.log(ID, storeId);
     setID(ID);
     setStoreId(storeId);

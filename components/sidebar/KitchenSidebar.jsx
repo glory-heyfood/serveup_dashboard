@@ -34,10 +34,11 @@ const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
   const handleClick = () => {
     const url = window.location.href;
     const parts = url.split("/");
+    console.log(parts, "part");
     const id = parts[parts.length - 3];
     const storeId = parts[parts.length - 2];
 
-    if (window.location.pathname === `/${id}/${storeId}/kitchen`) {
+    if (window.location.pathname === `/business/${id}/${storeId}/kitchen`) {
       dispatch(toggleKitchenSidebar(false));
     }
   };

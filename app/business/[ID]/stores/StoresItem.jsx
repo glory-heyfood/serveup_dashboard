@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const StoresItem = ({ data, businessID }) => {
-  const router = useRouter();
+  const router = useRouter();  
 
   return (
     <div
       className="w-full h-[3.56em] flex items-center justify-between my-[0.5px] cursor-pointer"
       style={{
         background: "#FFF",
-        boxShadow: " 0px 1px 0px 0px #F0F0F0",		
+        boxShadow: " 0px 1px 0px 0px #F0F0F0",
       }}
       onClick={() => {
         router.push(`/business/${businessID}/${data?.id}`);
