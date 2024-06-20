@@ -38,7 +38,7 @@ const Page = () => {
 			.then((res) => {
 				console.log(res);
 				if (res) {
-					router.push("/signup/business-info");
+					router.push("/sign_up/business-info");
 				}
 			});
 	};

@@ -48,7 +48,7 @@ const Page = () => {
       .then((res) => {
         console.log(res);
         if (res?.data?.error === false) {
-          router.push("/signup/verify-email");
+          router.push("/sign_up/verify-email");
         }
       });
   };

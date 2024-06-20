@@ -53,7 +53,7 @@ const Page = () => {
 				console.log(res);
 				if (res) {
                     window.localStorage.setItem("serveup_business", JSON.stringify(res.data))
-					router.push("/signup/pricing");
+					router.push("/sign_up/pricing");
 				}
 			});
 	};
