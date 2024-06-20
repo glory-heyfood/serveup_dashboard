@@ -16,7 +16,7 @@ import {
   toggleDineInGridSidebar,
   toggleKitchenSidebar,
 } from "../../redux/features/gridSidebarSlice";
-import Sidebar from "../../app/[ID]/[storeID]/kitchen/Sidebar";
+import Sidebar from "../../app/business/[ID]/[storeID]/kitchen/Sidebar";
 
 const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
   const [grid, setGrid] = useState(true);

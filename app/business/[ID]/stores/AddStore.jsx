@@ -3,7 +3,7 @@ import ComponentModalLayout from "@/components/ComponentModalLayout";
 import CustomLabel from "@/components/label/CustomLabel";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
 import React, { useState } from "react";
-import LabelDateInput from "../../../components/label/LabelDateInput";
+import LabelDateInput from "@/components/label/LabelDateInput";
 import LabelSelect from "@/components/label/LabelSelect";
 import DashBtn from "@/components/buttons/DashBtn";
 

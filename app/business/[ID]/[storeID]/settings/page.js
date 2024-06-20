@@ -35,7 +35,7 @@ import { getBusinessById } from "@/redux/features/business/businessSlice";
 import useLocationSuggestions from "@/hooks/useLocationSuggestions";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
 import { ClipLoader } from "react-spinners";
-import { checkIsStoreOpen, generateId } from "../../../../utils";
+import { checkIsStoreOpen, generateId } from "../../../../../utils";
 
 const Page = () => {
   const [selectedValue, setSelectedValue] = useState("");
