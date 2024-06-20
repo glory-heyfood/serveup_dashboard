@@ -67,7 +67,7 @@ const Home = () => {
             </h1>
             <h4 className="tracking-[-0.28px] sodo400  text-[0.875em]">
               New to Serveup?{" "}
-              <Link href="/signup" className="text-[#072A85] sodo600">
+              <Link href="/sign_up" className="text-[#072A85] sodo600">
                 Sign up
               </Link>{" "}
             </h4>
