@@ -330,8 +330,6 @@ export const listenForStorageChanges = (handleChange, key) => {
   }
 };
 
-
-
 export function convertTo24Hour(timeString) {
   const time = dayjs(timeString, "h:mm A");
   const hour = time.format("H");
@@ -356,4 +354,51 @@ export const getMenu = () => {
 export const getStore = () => {
   const store = JSON.parse(window.localStorage.getItem("serveup_store"));
   return store;
+};
+
+export const getRecurringApis = async (promise, duration) => {
+  console.log("hey");
+};
+
+export function getTimeAgo(timestamp) {
+  const date = new Date(timestamp); // Parse the ISO 8601 timestamp
+  const now = new Date(); // Current time
+
+  const seconds = Math.floor((now - date) / 1000);
+
+  if (seconds < 60) {
+    return `${seconds} seconds ago`;
+  } else if (seconds < 3600) {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+  } else if (seconds < 86400) {
+    const hours = Math.floor(seconds / 3600);
+    return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+  } else {
+    const days = Math.floor(seconds / 86400);
+    return `${days} ${days === 1 ? "day" : "days"} ago`;
+  }
+}
+
+function getOrderTime(timestamp) {
+  const date = new Date(timestamp); // Parse the ISO 8601 timestamp
+
+  // Get hours, minutes, and optionally seconds
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+
+  // Format the time
+  const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+  return formattedTime;
+}
+
+
+export const formatMoney = (amount) => {
+  let formatter = new Intl.NumberFormat("en-US");
+
+  return formatter.format(amount);
 };

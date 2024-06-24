@@ -18,7 +18,15 @@ import {
 } from "../../redux/features/gridSidebarSlice";
 import Sidebar from "../../app/business/[ID]/[storeID]/kitchen/Sidebar";
 
-const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
+const KitchenSidebar = ({
+  btn,
+  GridComponent,
+  type,
+  tab,
+  setTab,
+  orderSelected,
+  setOrderSelected,
+}) => {
   const [grid, setGrid] = useState(true);
   const [storeId, setStoreId] = useState();
   const [id, setId] = useState();
@@ -78,7 +86,13 @@ const KitchenSidebar = ({ btn, GridComponent, type, tab, setTab }) => {
         }}
       >
         {grid ? (
-          <Sidebar handleClick={handleClick} tab={tab} setTab={setTab} />
+          <Sidebar
+            handleClick={handleClick}
+            tab={tab}
+            setTab={setTab}
+            orderSelected={orderSelected}
+            setOrderSelected={setOrderSelected}
+          />
         ) : (
           <div>
             <span
