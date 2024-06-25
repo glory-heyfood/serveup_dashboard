@@ -32,19 +32,48 @@ import LabelText from "@/components/label/LabelText";
 import LabelTextarea from "@/components/label/LabelTextarea";
 import LabelSearchInput from "@/components/label/LabelSearchInput";
 import { riderData } from "@/data";
-import { formatMoney, getTimeAgo, getTimeFromDate } from "@/utils";
+import {
+  formatMoney,
+  getOrderTime,
+  getTimeAgo,
+  getTimeFromDate,
+} from "@/utils";
+import { DateCalendar } from "@mui/x-date-pickers";
+import DateAndTimePicker from "@/components/DateAndTimePicker";
+import {
+  markOrderAsPreparingAsync,
+  markOrderAsReadyAsync,
+} from "@/redux/features/stores/kitchenSlice";
 
 const Page = () => {
   const [tab, setTab] = useState("Needs Action");
   const [orderSelected, setOrderSelected] = useState({});
   const showModal = useSelector((state) => state.modal.showModal);
+  const orderBtnLoader = useSelector((state) => state.kitchen.orderBtnLoading);
   const [readyOrderTime, setReadyOrderTime] = useState("");
   const [modalToShow, setModalToShow] = useState("");
   const [driver, setDriver] = useState();
+  const [showDateAndTime, setShowDateAndTime] = useState(false);
+  const [displayDate, setDisplayDate] = useState("");
+  const [orderWillBeReadyTime, setOrderWillBeReadyTime] = useState("");
   const [formData, setFormData] = useState({
     riderName: "",
     riderNumber: "",
   });
+  const [dynamicReadyTime, setDynamicReadyTime] = useState("");
+
+  useEffect(() => {
+    if (orderSelected) {
+      const intervalId = setInterval(() => {
+        const timeRemaining = getOrderTime(orderSelected?.order_ready_date);
+        setDynamicReadyTime(timeRemaining);
+      }, 1000); // Update every second
+
+      return () => {
+        clearInterval(intervalId); // Clean up interval on component unmount
+      };
+    }
+  }, [orderSelected, dynamicReadyTime]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,10 +83,99 @@ const Page = () => {
     }));
   };
 
+  const combineDateAndTime = (date, time) => {
+    // Function to extract date components
+    function extractDateComponents(dateString) {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = date.toLocaleString("default", { month: "short" }); // Short month name like "Jun"
+      const day = date.getDate();
+      return { year, month, day };
+    }
+
+    // Function to extract time components
+    function extractTimeComponents(timeString) {
+      const date = new Date(timeString);
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      return { hours, minutes, seconds };
+    }
+
+    // Extract components from each date string
+    const date1Components = extractDateComponents(date);
+    const date2Components = extractTimeComponents(time);
+
+    // Combine date and time components into a new Date object
+
+    function monthNameToIndex(monthName) {
+      const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      return months.indexOf(monthName);
+    }
+
+    const combinedDate = new Date(
+      date1Components.year,
+      monthNameToIndex(date1Components.month),
+      date1Components.day,
+      date2Components.hours,
+      date2Components.minutes,
+      date2Components.seconds
+    );
+    console.log(displayDate, "ds");
+    setReadyOrderTime(displayDate);
+    setOrderWillBeReadyTime(combinedDate);
+  };
+
   const dispatch = useDispatch();
 
   const handleReadyOrderTime = (text) => {
     setReadyOrderTime(text);
+  };
+
+  const markOrderAsPreparing = () => {
+    const payload = {
+      id: orderSelected?.id,
+      time: `${orderWillBeReadyTime}`,
+      status: "preparing",
+    };
+    console.log(payload);
+    dispatch(markOrderAsPreparingAsync(payload))
+      .unwrap()
+      .then((res) => {
+        dispatch(toggleModal(false));
+      });
+  };
+
+  const markOrderAsReady = () => {
+    const payload = {
+      id: orderSelected?.id,
+      driver_contact:
+        orderSelected?.type === "delivery"
+          ? {
+              name: formData.riderName,
+              phone: formData.riderNumber,
+            }
+          : null,
+      status: "ready",
+    };
+    dispatch(markOrderAsReadyAsync(payload))
+      .unwrap()
+      .then((res) => {
+        dispatch(toggleModal(false));
+      });
   };
 
   const Numb = () => {
@@ -292,8 +410,8 @@ const Page = () => {
                   {tab === "Needs Action"
                     ? ""
                     : tab === "Preparing"
-                    ? " : 5 mins"
-                    : " : 2 mins ago"}{" "}
+                    ? ` : ${dynamicReadyTime}`
+                    : ` : ${getTimeAgo(orderSelected?.ready_date)}`}
                 </span>{" "}
               </h1>
             </div>
@@ -340,6 +458,11 @@ const Page = () => {
             <div>
               {tab !== "Ready" && (
                 <DashBtn
+                  btnLoading={
+                    orderSelected?.type !== "delivery" &&
+                    tab === "Preparing" &&
+                    orderBtnLoader
+                  }
                   text={
                     tab === "Needs Action"
                       ? "I am making this order"
@@ -355,8 +478,12 @@ const Page = () => {
                           dispatch(toggleModal(true));
                         }
                       : () => {
-                          setModalToShow("rider");
-                          dispatch(toggleModal(true));
+                          if (orderSelected?.type === "delivery") {
+                            setModalToShow("rider");
+                            dispatch(toggleModal(true));
+                          } else {
+                            markOrderAsReady();
+                          }
                         }
                   }
                 />
@@ -366,7 +493,15 @@ const Page = () => {
 
           {showModal &&
             (modalToShow === "ready_order" ? (
-              <Modal header="When will this order be ready" btnText="Set time">
+              <Modal
+                header="When will this order be ready"
+                btnText="Set time"
+                btnLoading={orderBtnLoader}
+                disabledBtn={setOrderWillBeReadyTime === ""}
+                handleClick={() => {
+                  markOrderAsPreparing();
+                }}
+              >
                 <div
                   className="flex items-center flex-wrap  "
                   style={{
@@ -378,35 +513,60 @@ const Page = () => {
                       handleReadyOrderTime(text);
                     }}
                     readyOrderTime={readyOrderTime}
+                    time={5}
                     text="5 minutes"
+                    handleTime={(date) => {
+                      console.log(date);
+                      setOrderWillBeReadyTime(date);
+                    }}
                   />
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
                     }}
+                    time={10}
                     readyOrderTime={readyOrderTime}
                     text="10 minutes"
+                    handleTime={(date) => {
+                      console.log(date);
+                      setOrderWillBeReadyTime(date);
+                    }}
                   />
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
                     }}
+                    time={15}
                     readyOrderTime={readyOrderTime}
                     text="15 minutes"
+                    handleTime={(date) => {
+                      console.log(date);
+                      setOrderWillBeReadyTime(date);
+                    }}
                   />
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
                     }}
+                    time={20}
                     readyOrderTime={readyOrderTime}
                     text="20 minutes"
+                    handleTime={(date) => {
+                      console.log(date);
+                      setOrderWillBeReadyTime(date);
+                    }}
                   />
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
                     }}
                     readyOrderTime={readyOrderTime}
+                    time={25}
                     text="25 minutes"
+                    handleTime={(date) => {
+                      console.log(date);
+                      setOrderWillBeReadyTime(date);
+                    }}
                   />
                   <TimeComp
                     handleClick={(text) => {
@@ -414,6 +574,11 @@ const Page = () => {
                     }}
                     readyOrderTime={readyOrderTime}
                     text="30 minutes"
+                    handleTime={(date) => {
+                      console.log(date);
+                      setOrderWillBeReadyTime(date);
+                    }}
+                    time={30}
                   />
                   <TimeComp
                     handleClick={(text) => {
@@ -425,17 +590,22 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setShowDateAndTime(true);
                     }}
                     readyOrderTime={readyOrderTime}
                     icon={calenderIconBlack}
-                    text="Date and time"
+                    text={displayDate ? displayDate : "Date and time"}
                   />
                 </div>
 
                 {readyOrderTime === "Other" && (
                   <div className="mt-[2rem]">
                     <CustomLabel header="Set time">
-                      <SetTime />
+                      <SetTime
+                        handleTime={(date, message) => {
+                          setOrderWillBeReadyTime(date);
+                        }}
+                      />
                     </CustomLabel>
                   </div>
                 )}
@@ -549,7 +719,11 @@ const Page = () => {
 
                   <div className="mt-[2.5rem]">
                     <DashBtn
+                      handleClick={() => {
+                        markOrderAsReady();
+                      }}
                       text="Continue"
+                      btnLoading={orderBtnLoader}
                       disabled={
                         formData.riderName === "" || formData.riderNumber === ""
                       }
@@ -579,6 +753,19 @@ const Page = () => {
                 </div>
               </Modal>
             ))}
+
+          {showDateAndTime && (
+            <DateAndTimePicker
+              handleClick={() => {
+                setShowDateAndTime(false);
+              }}
+              handleChange={(date, time, displayDate) => {
+                setDisplayDate(displayDate);
+                combineDateAndTime(date, time);
+                setReadyOrderTime(displayDate);
+              }}
+            />
+          )}
         </div>
       )}
     </GridLayout>

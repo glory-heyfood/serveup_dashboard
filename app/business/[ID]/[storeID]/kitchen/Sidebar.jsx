@@ -58,6 +58,7 @@ const Sidebar = ({
         <SidebarTab
           handleClick={() => {
             setTab("Needs Action");
+            if (pendingOrders.length > 0) setOrderSelected(pendingOrders[0]);
           }}
           name="Needs Action"
           number={pendingOrders?.length}
@@ -69,6 +70,8 @@ const Sidebar = ({
         <SidebarTab
           handleClick={() => {
             setTab("Preparing");
+            if (preparingOrders.length > 0)
+              setOrderSelected(preparingOrders[0]);
           }}
           name="Preparing"
           number={preparingOrders?.length}
@@ -80,6 +83,7 @@ const Sidebar = ({
         <SidebarTab
           handleClick={() => {
             setTab("Ready");
+            if (readyOrders.length > 0) setOrderSelected(readyOrders[0]);
           }}
           name="Ready"
           number={readyOrders?.length}

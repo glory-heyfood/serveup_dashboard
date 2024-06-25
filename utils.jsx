@@ -380,22 +380,67 @@ export function getTimeAgo(timestamp) {
   }
 }
 
-function getOrderTime(timestamp) {
-  const date = new Date(timestamp); // Parse the ISO 8601 timestamp
+export function getOrderTime(dateString) {
+  // Example: Given date
+  if (dateString === null || dateString === undefined) {
+    return "";
+  }
+  const givenDate = new Date(dateString); // Replace with your own date
 
-  // Get hours, minutes, and optionally seconds
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
+  // Get current date
+  const currentDate = new Date();
 
-  // Format the time
-  const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  // Calculate difference in milliseconds
+  const differenceMs = givenDate - currentDate;
 
-  return formattedTime;
+  if (givenDate > currentDate) {
+    // Function to format the difference as a string
+    function formatTimeDifference(differenceMs) {
+      // Convert milliseconds to positive integer
+      const differenceSeconds = Math.abs(differenceMs) / 1000;
+
+      // Calculate days, hours, minutes, seconds
+      let days = Math.floor(differenceSeconds / (3600 * 24));
+      let hours = Math.floor((differenceSeconds % (3600 * 24)) / 3600);
+      let minutes = Math.floor((differenceSeconds % 3600) / 60);
+      let seconds = Math.floor(differenceSeconds % 60);
+
+      // Calculate years and months based on calendar approximation (ignores leap years, etc.)
+      const yearDiff = Math.floor(days / 365);
+      const monthDiff = Math.floor((days % 365) / 30); // Approximate, assuming 30 days per month
+
+      // Build the formatted string
+      const parts = [];
+      if (yearDiff > 0) {
+        parts.push(`${yearDiff} year${yearDiff !== 1 ? "s" : ""}`);
+      }
+      if (monthDiff > 0) {
+        parts.push(`${monthDiff} month${monthDiff !== 1 ? "s" : ""}`);
+      }
+      if (days > 0) {
+        parts.push(`${days} day${days !== 1 ? "s" : ""}`);
+      }
+      if (hours > 0) {
+        parts.push(`${hours} hour${hours !== 1 ? "s" : ""}`);
+      }
+      if (minutes > 0) {
+        parts.push(`${minutes} minute${minutes !== 1 ? "s" : ""}`);
+      }
+      if (seconds > 0) {
+        parts.push(`${seconds} second${seconds !== 1 ? "s" : ""}`);
+      }
+
+      // Return the formatted string
+      return parts.join(", ");
+    }
+
+    // Format the difference between givenDate and currentDate
+    const formattedDifference = formatTimeDifference(differenceMs);
+    return formattedDifference;
+  } else {
+    return getTimeAgo(givenDate);
+  }
 }
-
 
 export const formatMoney = (amount) => {
   let formatter = new Intl.NumberFormat("en-US");
