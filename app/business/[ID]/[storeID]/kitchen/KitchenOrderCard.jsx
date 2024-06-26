@@ -4,7 +4,7 @@ import KitchenOrderCardItem from "./KitchenOrderCardItem";
 // console
 const KitchenOrderCard = ({ data }) => {
   return (
-    <div className=" w-full sm:w-[50%] lg:w-1/3 ">
+    <div className=" w-full sm:w-[50%] md:w-[50%] lg:1/3 max-w-[400px] ">
       <div
         className="border-[0.5px] border-[#E6E6E6] p-[0.75rem]"
         style={{

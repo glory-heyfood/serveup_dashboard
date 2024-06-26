@@ -7,13 +7,13 @@ import { chevronIconDownBlack } from "@/SVGs";
 import DashBtn from "./buttons/DashBtn";
 import OuterModal from "./modal/OuterModal";
 
-const DateAndTimePicker = ({ handleChange, handleClick }) => {
+const DateAndTimePicker = ({ handleChange, handleClick, handleCancel }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState(dayjs(Date.now()));
   const [displayDate, setDisplayDate] = useState("");
   const [selectedTime, setSelectedTime] = useState(dayjs(Date.now()));
-  const [displayTime, setDisplayTime] = useState("");  
+  const [displayTime, setDisplayTime] = useState("");
 
   const handleDateChange = (newDate) => {
     // setDatePickerVisibility(t);
@@ -48,6 +48,7 @@ const DateAndTimePicker = ({ handleChange, handleClick }) => {
         maxWidth=" md:max-w-[400px]"
         minHeight=" md:min-h-[600px]"
         relative={true}
+        handleCancel={handleCancel}
       >
         <div className="flex flex-col space-y-[4px]">
           <h1 className="text-black text-[1rem] tracking-[-0.32px] sodo400 ">

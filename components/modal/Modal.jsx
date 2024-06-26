@@ -11,6 +11,7 @@ const Modal = ({
   minHeight,
   maxWidth,
   disabledBtn,
+  handleCancel,
   handleClick,
   btnLoading,
   btnText,
@@ -20,6 +21,7 @@ const Modal = ({
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains("overlay")) {
+      if (typeof handleCancel === "function") handleCancel();
       dispatch(toggleModal(false));
     }
   };
@@ -46,6 +48,7 @@ const Modal = ({
             <span
               className=" flex items-center justify-center h-[32px] w-[32px] cursor-pointer "
               onClick={() => {
+                if (typeof handleCancel === "function") handleCancel();
                 toggleModal(false);
                 dispatch(
                   toggleModal({
@@ -71,6 +74,7 @@ const Modal = ({
             <span
               className=" flex items-center justify-center h-[32px] w-[32px] cursor-pointer "
               onClick={() => {
+                if (typeof handleCancel === "function") handleCancel();
                 dispatch(toggleModal(false));
                 dispatch(
                   toggleModal({

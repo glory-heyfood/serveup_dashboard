@@ -8,6 +8,7 @@ const OuterModal = ({
   btn,
   header,
   children,
+  handleCancel,
   minHeight,
   relative,
   handleClick,
@@ -22,7 +23,7 @@ const OuterModal = ({
           payload: false,
         })
       );
-      handleClick();
+      if (typeof handleCancel === "function") handleCancel();
     }
   };
 
@@ -54,6 +55,7 @@ const OuterModal = ({
                     payload: false,
                   })
                 );
+                if (typeof handleCancel === "function") handleCancel();
               }}
             >
               {XIcon}
@@ -70,13 +72,13 @@ const OuterModal = ({
             <span
               className=" flex items-center justify-center h-[32px] w-[32px] cursor-pointer "
               onClick={() => {
+                if (typeof handleCancel === "function") handleCancel();
                 dispatch(
                   toggleModal({
                     modal: "outer",
                     payload: false,
                   })
                 );
-                handleClick();
               }}
             >
               {XIcon}

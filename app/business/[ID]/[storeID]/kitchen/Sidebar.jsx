@@ -1,4 +1,4 @@
-import { XIcon, bellIconSmall } from "@/SVGs";
+import { XIcon, bellIconSmall, noOrderIcon, prepIcon, readyIcon } from "@/SVGs";
 import React, { useEffect, useState } from "react";
 import SidebarTab from "./SidebarTab";
 import CustomSearch from "@/components/CustomSearch";
@@ -22,13 +22,24 @@ const Sidebar = ({
 
   const [arr, setArr] = useState([]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch(fetchVendorOrdersForTheDay());
-    }, 2000);
+  const fetchOrdersRecursively = () => {
+    dispatch(fetchVendorOrdersForTheDay())
+      .unwrap()
+      .then((res) => {
+        setTimeout(fetchOrdersRecursively, 2000); // Schedule next fetch in 30 seconds ..on prod change to 30
+      })
+      .catch((err) => {
+        setTimeout(fetchOrdersRecursively, 2000); // Schedule next fetch in 30 seconds ..on prod change to 30
+      });
+  };
 
-    return () => clearInterval(interval);
-  }, [dispatch]);
+  useEffect(() => {
+    fetchOrdersRecursively(); // Initial call to start fetching recursively
+    return () => {
+      // Clear any pending timeouts when component unmounts
+      clearTimeout(fetchOrdersRecursively);
+    };
+  }, []);
 
   useEffect(() => {
     let array = [];
@@ -41,7 +52,7 @@ const Sidebar = ({
   }, [tab, pendingOrders, preparingOrders, readyOrders]);
 
   return (
-    <div className="shrink-0">
+    <div className="shrink-0 ">
       <div className="flex items-center space-x-[1rem]">
         <span
           onClick={() => {
@@ -58,59 +69,73 @@ const Sidebar = ({
         <SidebarTab
           handleClick={() => {
             setTab("Needs Action");
-            if (pendingOrders.length > 0) setOrderSelected(pendingOrders[0]);
+            if (pendingOrders.length > 0) {
+              setOrderSelected(pendingOrders[0]);
+            } else {
+              setOrderSelected([]);
+            }
           }}
           name="Needs Action"
           number={pendingOrders?.length}
           status={tab === "Needs Action" && "active"}
-          icon={(color) => {
-            bellIconSmall(color);
-          }}
+          icon={(color) => bellIconSmall(color)}
         />
         <SidebarTab
           handleClick={() => {
             setTab("Preparing");
-            if (preparingOrders.length > 0)
+            if (preparingOrders.length > 0) {
               setOrderSelected(preparingOrders[0]);
+            } else {
+              setOrderSelected([]);
+            }
           }}
           name="Preparing"
           number={preparingOrders?.length}
           status={tab === "Preparing" && "active"}
-          icon={(color) => {
-            bellIconSmall(color);
-          }}
+          icon={(color) => prepIcon(color)}
         />
         <SidebarTab
           handleClick={() => {
             setTab("Ready");
-            if (readyOrders.length > 0) setOrderSelected(readyOrders[0]);
+            if (readyOrders.length > 0) {
+              setOrderSelected(readyOrders[0]);
+            } else {
+              setOrderSelected([]);
+            }
           }}
           name="Ready"
           number={readyOrders?.length}
           status={tab === "Ready" && "active"}
-          icon={(color) => {
-            bellIconSmall(color);
-          }}
+          icon={(color) => readyIcon(color)}
         />
       </div>
 
       <CustomSearch placeholder="Search" fullWidth />
 
-      <div className="flex flex-col space-y-[1.25rem] mt-[1.5rem]">
-        {arr.map((order) => (
-          <SidebarCard
-            name={order?.contact?.name}
-            time={getTimeAgo(order?.created_date)}
-            type={order?.type}
-            status={orderSelected?.id === order?.id && "active"}
-            data={order}
-            handleClick={(data) => {
-              console.log(data, "da");
-              setOrderSelected(data);
-            }}
-            scheduled={order?.is_schedule_order}
-          />
-        ))}
+      <div className="flex flex-col space-y-[1.25rem] mt-[1.5rem] h-full  ">
+        {arr.length === 0 ? (
+          <div className="flex items-center justify-center flex-col mt-[40%] space-y-[0.5rem] ">
+            <span>{noOrderIcon}</span>
+            <h2 className="text-[1rem] sodo600 tracking-[-0.04rem]  ">
+              No ongoing orders
+            </h2>
+          </div>
+        ) : (
+          arr.map((order) => (
+            <SidebarCard
+              name={order?.contact?.name}
+              time={getTimeAgo(order?.created_date)}
+              type={order?.type}
+              status={orderSelected?.id === order?.id && "active"}
+              data={order}
+              handleClick={(data) => {
+                console.log(data, "da");
+                setOrderSelected(data);
+              }}
+              scheduled={order?.is_schedule_order}
+            />
+          ))
+        )}
       </div>
     </div>
   );

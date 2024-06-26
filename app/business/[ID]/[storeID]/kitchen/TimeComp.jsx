@@ -7,6 +7,7 @@ const TimeComp = ({
   handleClick,
   readyOrderTime,
   handleTime,
+  activeIcon,
   time,
 }) => {
   return (
@@ -25,7 +26,13 @@ const TimeComp = ({
       }}
     >
       <span>
-        {icon ? icon : readyOrderTime === text ? clockBlueIcon : clockIconBlack}
+        {icon
+          ? readyOrderTime === text
+            ? activeIcon
+            : icon
+          : readyOrderTime === text
+          ? clockBlueIcon
+          : clockIconBlack}
       </span>
       <h2
         className={` text-[0.825rem] tracking-[-0.56px] sodo400 ${

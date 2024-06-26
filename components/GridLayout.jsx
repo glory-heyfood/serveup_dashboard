@@ -22,7 +22,7 @@ const GridLayout = ({
       {/* I am calculating the padding top if there is a button the pt is 6px lower cause for the padding of the button */}
       <div className={`flex h-full  w-full `}>
         {gridType === "kitchen" ? (
-          <div className="shrink-0">
+          <div className="shrink-0 lg:min-w-[400px]">
             <KitchenSidebar
               gridContent={gridContent}
               setGridContent={setGridContent}

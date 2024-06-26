@@ -78,7 +78,7 @@ const KitchenSidebar = ({
         }}
       ></div>
       <div
-        className={`bg-white  animate05s overflow-auto scroll-hidden h-screen pt-[32px]  fixed top-0 left-0 z-50 sidebar px-[1.5rem] w-full sm:w-[380px] max-w-[520px] pb-[2rem]   ${
+        className={`bg-white  animate05s overflow-auto scroll-hidden h-screen pt-[32px]  fixed top-0 left-0 z-50 sidebar px-[1.5rem] w-full sm:w-[380px] lg:w-full  pb-[2rem]   ${
           showSidebar ? "translate-x-[-100%]" : "translate-x-0  "
         } ${btn && " md:pt-[100px]"} `}
         style={{

@@ -12,6 +12,7 @@ import {
   bellIcon,
   bellIconBlue,
   calenderIconBlack,
+  calenderIconBlue,
   calenderIconWhiteBig,
   cashIcon,
   clockIconBlack,
@@ -19,6 +20,7 @@ import {
   dineInIcon,
   locationIcon,
   readyIconBlue,
+  shieldIcon,
 } from "@/SVGs";
 import KitchenOrderCard from "./KitchenOrderCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,6 +46,9 @@ import {
   markOrderAsPreparingAsync,
   markOrderAsReadyAsync,
 } from "@/redux/features/stores/kitchenSlice";
+import EmptyState from "@/components/EmptyState";
+import Instructions from "./instructions";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [tab, setTab] = useState("Needs Action");
@@ -75,6 +80,10 @@ const Page = () => {
     }
   }, [orderSelected, dynamicReadyTime]);
 
+  // useEffect(() => {
+
+  // }, [orderSelected]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -83,7 +92,7 @@ const Page = () => {
     }));
   };
 
-  const combineDateAndTime = (date, time) => {
+  const combineDateAndTime = (date, time, init) => {
     // Function to extract date components
     function extractDateComponents(dateString) {
       const date = new Date(dateString);
@@ -134,8 +143,18 @@ const Page = () => {
       date2Components.minutes,
       date2Components.seconds
     );
-    console.log(displayDate, "ds");
-    setReadyOrderTime(displayDate);
+
+    if (init) {
+      setDisplayDate(
+        orderSelected?.schedule_details?.replace("scheduled for", "")
+      );
+      setReadyOrderTime(
+        orderSelected?.schedule_details?.replace("scheduled for", "")
+      );
+    } else {
+      setReadyOrderTime(displayDate);
+    }
+
     setOrderWillBeReadyTime(combinedDate);
   };
 
@@ -151,10 +170,12 @@ const Page = () => {
       time: `${orderWillBeReadyTime}`,
       status: "preparing",
     };
-    console.log(payload);
     dispatch(markOrderAsPreparingAsync(payload))
       .unwrap()
       .then((res) => {
+        setOrderWillBeReadyTime("");
+        setDisplayDate("");
+        setReadyOrderTime("");
         dispatch(toggleModal(false));
       });
   };
@@ -194,7 +215,15 @@ const Page = () => {
       }}
     >
       {/* doing this to check if the object is empty or not */}
-      {Object.keys(orderSelected).length > 0 && (
+      {Object.keys(orderSelected).length === 0 ? (
+        <div>
+          <EmptyState
+            header="Order details will appear here"
+            icon={shieldIcon}
+            text="Select an ongoing order to view its details"
+          />
+        </div>
+      ) : (
         <div className="pb-[2rem]">
           <span className="md:hidden bg-[#F0F0F0] h-[32px] w-[32px] rounded-[4px] flex items-center justify-center mb-[2rem]  ">
             {backArrowIcon}
@@ -416,6 +445,21 @@ const Page = () => {
               </h1>
             </div>
 
+            {(orderSelected?.store_instructions ||
+              orderSelected?.driver_instructions) && (
+              <div className="flex flex-col space-y-[0.5rem] w-full h-full ">
+                {orderSelected?.store_instructions && (
+                  <Instructions
+                    text={orderSelected?.store_instructions}
+                    type="store"
+                  />
+                )}
+                {orderSelected?.driver_instructions && (
+                  <Instructions text={orderSelected?.driver_instructions} />
+                )}
+              </div>
+            )}
+
             <div className="flex flex-col space-y-[1rem] mt-[1.5rem] ">
               {orderSelected?.items.map((order) => (
                 <KitchenOrderCard
@@ -434,7 +478,7 @@ const Page = () => {
               ))}
             </div>
 
-            <div className=" flex flex-col space-y-[0.5rem] mt-[2rem] w-full sm:w-[50%] lg:w-1/3 ">
+            <div className=" flex flex-col space-y-[0.5rem] mt-[2rem]  w-full sm:w-[50%] md:w-[50%] lg:1/3 max-w-[400px]">
               {orderSelected?.order_fees?.fees?.map((fee) => (
                 <div className="flex items-center justify-between">
                   <h1 className="text-black text-[0.75rem] tracking-[-0.48px] sodo700 ">
@@ -474,6 +518,19 @@ const Page = () => {
                   handleClick={
                     tab === "Needs Action"
                       ? () => {
+                          if (orderSelected) {
+                            if (orderSelected?.is_schedule_order) {
+                              let date = orderSelected?.schedule_date;
+                              let init = true;
+                              combineDateAndTime(date, date, init); //note the date is already combined, so i just passed in the same date for the date and also for the time, this works as well
+                              console.log("hi");
+                              setModalToShow("ready_order");
+                              dispatch(toggleModal(true));
+                            } else {
+                              setDisplayDate("");
+                              setReadyOrderTime("");
+                            }
+                          }
                           setModalToShow("ready_order");
                           dispatch(toggleModal(true));
                         }
@@ -497,7 +554,7 @@ const Page = () => {
                 header="When will this order be ready"
                 btnText="Set time"
                 btnLoading={orderBtnLoader}
-                disabledBtn={setOrderWillBeReadyTime === ""}
+                disabledBtn={orderWillBeReadyTime === ""}
                 handleClick={() => {
                   markOrderAsPreparing();
                 }}
@@ -511,6 +568,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     readyOrderTime={readyOrderTime}
                     time={5}
@@ -523,6 +581,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     time={10}
                     readyOrderTime={readyOrderTime}
@@ -535,6 +594,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     time={15}
                     readyOrderTime={readyOrderTime}
@@ -547,6 +607,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     time={20}
                     readyOrderTime={readyOrderTime}
@@ -559,6 +620,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     readyOrderTime={readyOrderTime}
                     time={25}
@@ -571,6 +633,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     readyOrderTime={readyOrderTime}
                     text="30 minutes"
@@ -583,6 +646,7 @@ const Page = () => {
                   <TimeComp
                     handleClick={(text) => {
                       handleReadyOrderTime(text);
+                      setDisplayDate("");
                     }}
                     readyOrderTime={readyOrderTime}
                     text="Other"
@@ -594,6 +658,7 @@ const Page = () => {
                     }}
                     readyOrderTime={readyOrderTime}
                     icon={calenderIconBlack}
+                    activeIcon={calenderIconBlue}
                     text={displayDate ? displayDate : "Date and time"}
                   />
                 </div>
@@ -757,6 +822,12 @@ const Page = () => {
           {showDateAndTime && (
             <DateAndTimePicker
               handleClick={() => {
+                setShowDateAndTime(false);
+              }}
+              handleCancel={() => {
+                setOrderWillBeReadyTime("");
+                setReadyOrderTime("");
+                setDisplayDate("");
                 setShowDateAndTime(false);
               }}
               handleChange={(date, time, displayDate) => {
