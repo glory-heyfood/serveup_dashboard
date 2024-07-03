@@ -4,21 +4,21 @@
 
 /* For Firefox */
 input[type="number"] {
-	-moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 /* For Chrome, Safari, and Edge */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* For Edge */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
@@ -26,129 +26,129 @@ input[type="number"]::-webkit-outer-spin-button {
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap");
 
 @font-face {
-	font-family: "SoDoSans-bold";
-	src: url("../fonts/SoDoSans-Bold.woff2") format("woff2"),
-		url("../fonts/SoDoSans-Bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
+  font-family: "SoDoSans-bold";
+  src: url("../fonts/SoDoSans-Bold.woff2") format("woff2"),
+    url("../fonts/SoDoSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SoDoSans-reg";
-	src: url("../fonts/SoDoSans-Regular.woff2") format("woff2"),
-		url("../fonts/SoDoSans-Regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
+  font-family: "SoDoSans-reg";
+  src: url("../fonts/SoDoSans-Regular.woff2") format("woff2"),
+    url("../fonts/SoDoSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SoDoSans-semibold";
-	src: url("../fonts/SoDoSans-SemiBold.woff2") format("woff2"),
-		url("../fonts/SoDoSans-SemiBold.woff") format("woff");
-	font-weight: 600;
-	font-style: normal;
+  font-family: "SoDoSans-semibold";
+  src: url("../fonts/SoDoSans-SemiBold.woff2") format("woff2"),
+    url("../fonts/SoDoSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SoDoSans-light";
-	src: url("../fonts/SoDoSans-Light.woff2") format("woff2"),
-		url("../fonts/SoDoSans-Light.woff") format("woff");
-	font-weight: 300;
-	font-style: normal;
+  font-family: "SoDoSans-light";
+  src: url("../fonts/SoDoSans-Light.woff2") format("woff2"),
+    url("../fonts/SoDoSans-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
 }
 
 .inter600 {
-	font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .poppins {
-	font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .sodo300 {
-	font-family: SodoSans-light;
+  font-family: SodoSans-light;
 }
 
 .sodo700 {
-	font-family: soDoSans-bold;
+  font-family: soDoSans-bold;
 }
 
 .sodo400 {
-	font-family: SoDoSans-reg;
+  font-family: SoDoSans-reg;
 }
 
 .sodo600 {
-	font-family: soDoSans-semibold;
+  font-family: soDoSans-semibold;
 }
 
 h1 {
-	font-size: 1.5em;
-	color: black;
+  font-size: 1.5em;
+  color: black;
 }
 
 h2 {
-	font-size: 0.875em;
-	color: black;
+  font-size: 0.875em;
+  color: black;
 }
 
 h3 {
-	font-size: 0.75em;
-	color: black;
-	font-family: soDoSans-reg;
+  font-size: 0.75em;
+  color: black;
+  font-family: soDoSans-reg;
 }
 
 @media (max-width: 767px) {
-	.padd {
-		padding: 0px !important;
-	}
+  .padd {
+    padding: 0px !important;
+  }
 
-	h2 {
-		font-size: 16px;
-		color: black;
-	}
+  h2 {
+    font-size: 16px;
+    color: black;
+  }
 
-	h3 {
-		font-size: 14px;
-		color: black;
-		font-family: soDoSans-reg;
-	}
+  h3 {
+    font-size: 14px;
+    color: black;
+    font-family: soDoSans-reg;
+  }
 }
 
 .scroll-hidden::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .dashHeader {
-	color: #000;
-	font-family: SoDoSans-bold;
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 800;
-	line-height: normal;
-	letter-spacing: -0.9px;
-	margin-bottom: 1.1em;
+  color: #000;
+  font-family: SoDoSans-bold;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: -0.9px;
+  margin-bottom: 1.1em;
 }
 
 .animate05s {
-	transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .animate03s {
-	transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .animate005s {
-	transition: all 0.05s ease-in;
+  transition: all 0.05s ease-in;
 }
 
 /* Styling mui drop down */
 .MuiPaper-root {
-	box-shadow: none !important;
-	border: 0.5px solid rgb(233, 233, 233);
+  box-shadow: none !important;
+  border: 0.5px solid rgb(233, 233, 233);
 }
 
 .MuiPaper-elevation1 {
-	border: none !important;
+  border: none !important;
 }
 
 /* .MuiMenuItem-gutters {
@@ -156,92 +156,128 @@ h3 {
 } */
 
 .MuiTableCell-root {
-	border-bottom: 0.5px solid #f0f0f0 !important ;
-	color: black !important;
-	font-size: 12px !important;
-	font-family: SodoSans-SemiBold !important;
-	letter-spacing: -0.24px !important;
-	padding: 12px 0px !important;
+  border-bottom: 0.5px solid #f0f0f0 !important ;
+  color: black !important;
+  font-size: 12px !important;
+  font-family: SodoSans-SemiBold !important;
+  letter-spacing: -0.24px !important;
+  padding: 12px 0px !important;
 }
 
 .MuiTableCell-stickyHeader {
-	border-bottom: 0.5px solid #f0f0f0 !important ;
-	color: black !important;
-	font-size: 12px !important;
-	font-family: SodoSans-Bold !important;
-	letter-spacing: -0.24px !important;
-	padding: 12px 0px !important;
+  border-bottom: 0.5px solid #f0f0f0 !important ;
+  color: black !important;
+  font-size: 12px !important;
+  font-family: SodoSans-Bold !important;
+  letter-spacing: -0.24px !important;
+  padding: 12px 0px !important;
 }
 
 /* Styling the date popup picker */
 .MuiPickersToolbar-root,
 .MuiPickersToolbarText-root {
-	background-color: #072a85 !important;
-	color: white !important;
-	text-align: center !important;
-	font-family: SodoSans-SemiBold !important;
+  background-color: #072a85 !important;
+  color: white !important;
+  text-align: center !important;
+  font-family: SodoSans-SemiBold !important;
 }
 .MuiTypographyOverline,
 .MuiTypography-overline {
-	color: white !important;
-	text-align: center !important;
-	font-family: SodoSans-SemiBold !important;
+  color: white !important;
+  text-align: center !important;
+  font-family: SodoSans-SemiBold !important;
 }
 .MuiPaper-elevation24,
 .MuiDialog-paper {
-	border: none !important;
+  border: none !important;
 }
 
 .css-1g7nc1s-MuiPickersLayout-root,
 .css-1lugbff-MuiPickersLayout-root {
-	display: flex !important;
-	flex-direction: column !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .css-1m5r8g7-MuiTimePickerToolbar-amPmSelection {
-	flex-direction: column !important;
+  flex-direction: column !important;
 }
 .css-1dakek4-MuiPickersToolbar-content {
-	flex-wrap: nowrap !important;
+  flex-wrap: nowrap !important;
 }
 
 .MuiStack-root {
-	padding-top: 0px;
+  padding-top: 0px;
 }
 
 /* Styling priceCard height in onboarding page */
 @media (max-width: 567px) {
-	.priceCard {
-		height: fit-content !important;
-	}
+  .priceCard {
+    height: fit-content !important;
+  }
 }
 
 @media (min-width: 900px) {
-	.sidebar {
-		position: static;
-		background-color: transparent;
-		transform: translateX(0);
-		z-index: 0;
-		height: 100%;
-		padding-top: 88px;
-	}
+  .sidebar {
+    position: static;
+    background-color: transparent;
+    transform: translateX(0);
+    z-index: 0;
+    height: 100%;
+    padding-top: 88px;
+  }
 
-	.sideXIcon {
-		display: none;
-	}
+  .sideXIcon {
+    display: none;
+  }
+
+  #order {
+    display: none;
+  }
+
+  .show {
+    position: static !important;
+    top: 0;
+    left: 0;
+  }
+
+  .head {
+    padding-top: 0;
+  }
 }
 
 @media (max-width: 899px) {
-	.sidebar {
-		padding-top: 32px !important;
-	}
+  .sidebar {
+    padding-top: 32px !important;
+  }
 
-	.customerSidebar {
-		padding-top: 0px;
-		z-index: 60;
-	}
+  .customerSidebar {
+    padding-top: 0px;
+    z-index: 60;
+  }
 
-	.sidebarCont {
-		display: block;
-	}
+  .sidebarCont {
+    display: block;
+  }
+
+  .kitchenBackArr {
+    display: flex;
+  }
+}
+
+@keyframes slide {
+  0% {
+    /* transform: translateX(0); */
+    opacity: 0.2;
+  }
+  /* 50% {
+    transform: translateX(calc(100% + 100px));
+  } */
+  100% {
+    /* transform: translateX(0); */
+    opacity: 1;
+  }
+}
+
+.animate {
+  animation: slide 1s linear infinite alternate;
 }

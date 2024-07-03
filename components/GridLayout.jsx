@@ -10,15 +10,23 @@ const GridLayout = ({
   type,
   orderSelected,
   setOrderSelected,
+  showSideBar,
+  setShowSideBar,
   gridType,
   tab,
   setTab,
 }) => {
   const [gridContent, setGridContent] = useState(true);
 
+  useEffect(() => {
+    console.log(showSideBar, "dlsoa");
+  }, [showSideBar]);
+
   return (
     <div className="h-screen w-full ">
-      <DashHeader />
+      <div className={`${gridType === "kitchen" ? "hidden lg:block" : ""}`}>
+        <DashHeader />
+      </div>
       {/* I am calculating the padding top if there is a button the pt is 6px lower cause for the padding of the button */}
       <div className={`flex h-full  w-full `}>
         {gridType === "kitchen" ? (
@@ -28,6 +36,8 @@ const GridLayout = ({
               setGridContent={setGridContent}
               GridComponent={GridComponent}
               type={type}
+              showTab={showSideBar}
+              setShowTab={setShowSideBar}
               orderSelected={orderSelected}
               setOrderSelected={setOrderSelected}
               tab={tab}

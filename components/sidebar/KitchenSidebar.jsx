@@ -28,6 +28,7 @@ const KitchenSidebar = ({
   setOrderSelected,
 }) => {
   const [grid, setGrid] = useState(true);
+  const [mobile, setMobile] = useState(false);
   const [storeId, setStoreId] = useState();
   const [id, setId] = useState();
 
@@ -64,6 +65,20 @@ const KitchenSidebar = ({
     }
   }, [kitchenSidebar]);
 
+  useEffect(() => {
+    function handleResize() {
+      setGrid(window.innerWidth >= 900);
+    }
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <div
@@ -78,9 +93,10 @@ const KitchenSidebar = ({
         }}
       ></div>
       <div
-        className={`bg-white  animate05s overflow-auto scroll-hidden h-screen pt-[32px]  fixed top-0 left-0 z-50 sidebar px-[1.5rem] w-full sm:w-[380px] lg:w-full  pb-[2rem]   ${
+        className={`bg-white  animate05s overflow-auto scroll-hidden h-screen pt-[32px]  fixed top-0 left-0 z-50 sidebar  px-[1.5rem] w-full sm:w-[380px] lg:w-full  pb-[2rem]   ${
           showSidebar ? "translate-x-[-100%]" : "translate-x-0  "
         } ${btn && " md:pt-[100px]"} `}
+        id="sidebar"
         style={{
           boxShadow: "1.1px 0px 0px 0px #E6E6E6",
         }}
@@ -96,7 +112,7 @@ const KitchenSidebar = ({
         ) : (
           <div>
             <span
-              className="sideXIcon flex items-center justify-center h-[32px] w-[32px] ml-[32px] mb-[32px]  cursor-pointer "
+              className="sideXIcon flex items-center justify-center h-[32px] w-[32px] ml-[32px] mb-[32px]  cursor-pointer mt-[56px] "
               onClick={() => {
                 dispatch(toggleSidebar(true));
                 setTimeout(() => {

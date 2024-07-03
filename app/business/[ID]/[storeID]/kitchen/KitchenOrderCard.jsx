@@ -18,7 +18,12 @@ const KitchenOrderCard = ({ data }) => {
       </div>
       <div className="border-[0.5px] border-[#E6E6E6] border-top-transparent border-bottom-transparent p-[0.75rem] ">
         {data.orders.map((dat, i) => (
-          <KitchenOrderCardItem number={dat.number} item={dat.item} key={i} />
+          <KitchenOrderCardItem
+            number={dat.number}
+            item={dat.item}
+            amount={dat.amount}
+            key={i}
+          />
         ))}
       </div>
 

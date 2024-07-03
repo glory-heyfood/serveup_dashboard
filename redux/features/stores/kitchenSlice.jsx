@@ -35,6 +35,7 @@ export const markOrderAsPreparingAsync = createAsyncThunk(
         payload
       )
     );
+    console.log(response, "resd");
     return response?.data?.response;
   }
 );
@@ -45,6 +46,20 @@ export const markOrderAsReadyAsync = createAsyncThunk(
     const response = await handleAPI(
       axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/orders/update-status`,
+        payload
+      )
+    );
+    console.log(response?.data?.response, "resd");
+    return response?.data?.response;
+  }
+);
+
+export const makeRefundAsync = createAsyncThunk(
+  "orders/make-refund",
+  async (payload) => {
+    const response = await handleAPI(
+      axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/orders/make-refund`,
         payload
       )
     );
@@ -135,6 +150,15 @@ const kitchen = createSlice({
         readyOrders.push(newOrder);
       })
       .addCase(markOrderAsReadyAsync.rejected, (state, action) => {
+        state.orderBtnLoading = false;
+      })
+      .addCase(makeRefundAsync.pending, (state, action) => {
+        state.orderBtnLoading = true;
+      })
+      .addCase(makeRefundAsync.fulfilled, (state, action) => {
+        state.orderBtnLoading = false;                                      
+      })
+      .addCase(makeRefundAsync.rejected, (state, action) => {
         state.orderBtnLoading = false;
       });
   },

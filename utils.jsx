@@ -447,3 +447,43 @@ export const formatMoney = (amount) => {
 
   return formatter.format(amount);
 };
+
+export const getDateAndTime = (dateString) => {
+  // Create a Date object from the input dateString
+  const date = new Date(dateString);
+
+  // Array of month names for formatting
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // Get day, month, year, hours, and minutes
+  const dayOfWeek = date.toLocaleString("en-US", { weekday: "short" }); // Short day name (e.g., Wed)
+  const month = monthNames[date.getMonth()]; // Short month name (e.g., Oct)
+  const day = date.getDate(); // Day of the month (e.g., 4)
+  const year = date.getFullYear(); // Full year (e.g., 2024)
+  const hours = date.getHours(); // Hours (e.g., 10)
+  const minutes = date.getMinutes(); // Minutes (e.g., 0)
+
+  // Format the time into AM/PM format
+  const period = hours >= 12 ? "PM" : "AM";
+  const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+  const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
+  // Construct the formatted date string
+  const formattedDate = `${dayOfWeek} ${month} ${day}, ${year} . ${formattedHours}:${formattedMinutes} ${period}`;
+
+  return formattedDate;
+};
+
