@@ -7,23 +7,28 @@ import { Button } from "@mui/material";
 import { shieldIcon } from "@/SVGs";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBusinessOrdersForTheDay } from "@/redux/features/business/businessSlice";
+import FadeLoad from "@/components/loaders/FadeLoader";
 
 const Page = () => {
   const [showState, setShowState] = useState(true);
   const orders = useSelector((state) => state.business.orders);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const fetchOrdersRecursively = () => {
     dispatch(fetchBusinessOrdersForTheDay())
       .unwrap()
       .then((res) => {
         setTimeout(fetchOrdersRecursively, 2000); // Schedule next fetch in 30 seconds ..on prod change to 30
+        setLoading(false);
       })
       .catch((err) => {
         setTimeout(fetchOrdersRecursively, 2000); // Schedule next fetch in 30 seconds ..on prod change to 30
+        setLoading(false);
       });
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchOrdersRecursively(); // Initial call to start fetching recursively
     return () => {
       // Clear any pending timeouts when component unmounts
@@ -36,7 +41,12 @@ const Page = () => {
       <div className=" w-full ">
         <h1 className="dashHeader ">New Orders</h1>
 
-        {orders.length === 0 ? (
+        {loading ? (
+          <div className="h-[70vh] flex w-full items-center justify-center ">
+            {" "}
+            <FadeLoad />{" "}
+          </div>
+        ) : orders.length === 0 ? (
           <EmptyState
             header="No new orders"
             icon={shieldIcon}
@@ -49,7 +59,6 @@ const Page = () => {
             ))}
           </div>
         )}
-
         {/* <Button
           variant="text"
           onClick={() => {
