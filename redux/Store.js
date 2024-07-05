@@ -8,6 +8,7 @@ import storeSlice from "./features/business/storeSlice";
 import menuSlice from "./features/stores/menuSlice";
 import dineInSlice from "./features/stores/dineInSlice";
 import kitchenSlice from "./features/stores/kitchenSlice";
+import orderSlice from "./features/stores/orderSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     menu: menuSlice,
     dineIn: dineInSlice,
     kitchen: kitchenSlice,
+    order: orderSlice,
   },
 });
 

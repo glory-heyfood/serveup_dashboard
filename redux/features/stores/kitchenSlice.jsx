@@ -100,7 +100,7 @@ const kitchen = createSlice({
     builder
       .addCase(fetchVendorOrdersForTheDay.fulfilled, (state, action) => {
         const initialArray = state.allOrders;
-        const newArr = action.payload;
+        const newArr = action.payload.docs;
         //   console.log(action, "ac")
         if (newArr.length > initialArray.length) {
           state.showAlert = true;
@@ -156,7 +156,7 @@ const kitchen = createSlice({
         state.orderBtnLoading = true;
       })
       .addCase(makeRefundAsync.fulfilled, (state, action) => {
-        state.orderBtnLoading = false;                                      
+        state.orderBtnLoading = false;
       })
       .addCase(makeRefundAsync.rejected, (state, action) => {
         state.orderBtnLoading = false;

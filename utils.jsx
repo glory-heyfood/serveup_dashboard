@@ -356,6 +356,11 @@ export const getStore = () => {
   return store;
 };
 
+export const getBusiness = () => {
+  const store = JSON.parse(window.localStorage.getItem("serveup_business"));
+  return store;
+};
+
 export const getRecurringApis = async (promise, duration) => {
   console.log("hey");
 };
@@ -486,4 +491,3 @@ export const getDateAndTime = (dateString) => {
 
   return formattedDate;
 };
-

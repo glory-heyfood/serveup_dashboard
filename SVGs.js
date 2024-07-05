@@ -3971,3 +3971,39 @@ export const riderInstructionIcon = (
     </defs>
   </svg>
 );
+
+export const chevronLeftBlueIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+  >
+    <path
+      d="M10 4L6 8L10 12"
+      stroke="#072A85"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const chevronRightBlueIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+  >
+    <path
+      d="M6 4L10 8L6 12"
+      stroke="#072A85"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
