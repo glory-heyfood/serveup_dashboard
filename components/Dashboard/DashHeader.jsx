@@ -12,6 +12,10 @@ const DashHeader = ({ handleSideBar }) => {
         setData(dat)
     }, [])
 
+
+	
+
+
 	return (
 		<div
 			className='flex justify-between h-[56px] items-center fixed top-0 left-0 w-full z-50 bg-white px-[20px] md:pt-[15px] md:pr-[40px] md:pb-[16px] md:pl-[24px]  '

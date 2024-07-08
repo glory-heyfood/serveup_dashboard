@@ -13,7 +13,12 @@ import TableSelect from "./TableSelect";
 import { sendCampaignData } from "@/data";
 import ClickableTableSideBar from "./ClickableTableSideBar";
 import { useSelector } from "react-redux";
-import { chevronLeftBlueIcon, chevronRightBlueIcon } from "@/SVGs";
+import {
+  bigSearchIcon,
+  chevronLeftBlueIcon,
+  chevronRightBlueIcon,
+} from "@/SVGs";
+import EmptyState from "../EmptyState";
 
 export default function ClickableTableComponent({
   TableTab,
@@ -21,6 +26,7 @@ export default function ClickableTableComponent({
   row,
   setData,
   tab,
+  empty,
   prev,
   next,
   disablePrev,
@@ -150,13 +156,13 @@ export default function ClickableTableComponent({
               className="cursor-pointer"
               onClick={disablePrev ? () => {} : prev}
             >
-              {chevronLeftBlueIcon}
+              {chevronLeftBlueIcon(disablePrev ? "#E6E6E6" : "#072A85")}
             </span>
             <span
               className="cursor-pointer"
               onClick={disableNext ? () => {} : next}
             >
-              {chevronRightBlueIcon}
+              {chevronRightBlueIcon(disableNext ? "#E6E6E6" : "#072A85")}
             </span>
           </div>
         </div>

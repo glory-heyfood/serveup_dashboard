@@ -3972,7 +3972,46 @@ export const riderInstructionIcon = (
   </svg>
 );
 
-export const chevronLeftBlueIcon = (
+export const chevronLeftBlueIcon = (color) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="M10 4L6 8L10 12"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+export const chevronRightBlueIcon = (color) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="M6 4L10 8L6 12"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const circleXIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -3980,30 +4019,76 @@ export const chevronLeftBlueIcon = (
     viewBox="0 0 16 16"
     fill="none"
   >
+    <rect width="16" height="16" rx="8" fill="#E4E4E4" />
     <path
-      d="M10 4L6 8L10 12"
-      stroke="#072A85"
-      stroke-width="2"
+      d="M11 11L8 8M8 8L5 5M8 8L11 5M8 8L5 11"
+      stroke="black"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
   </svg>
 );
 
-export const chevronRightBlueIcon = (
+export const storeIconSmall = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+  >
+    <g clip-path="url(#clip0_326_19743)">
+      <mask
+        id="mask0_326_19743"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="14"
+        height="14"
+      >
+        <path d="M14 0H0V14H14V0Z" fill="white" />
+      </mask>
+      <g mask="url(#mask0_326_19743)">
+        <path
+          d="M1.75 12.25H2.91667M2.91667 12.25H11.0833M2.91667 12.25V5.44155M12.25 12.25H11.0833M11.0833 12.25V5.44155M2.91667 5.44155C2.89508 5.42908 2.8738 5.41586 2.85285 5.4019L2.53764 5.19176C2.0786 4.88573 1.89667 4.29999 2.10157 3.78775L2.62331 2.48338C2.80049 2.04044 3.22949 1.75 3.70654 1.75H10.2934C10.7705 1.75 11.1995 2.04044 11.3767 2.48338L11.8984 3.78775C12.1034 4.29999 11.9214 4.88573 11.4624 5.19176L11.1471 5.4019C11.1262 5.41586 11.1049 5.42908 11.0833 5.44155M2.91667 5.44155C3.29897 5.66241 3.77621 5.64919 4.14715 5.4019L5.25 4.66667L6.35285 5.4019C6.74473 5.66316 7.25527 5.66316 7.64715 5.4019L8.75 4.66667L9.85285 5.4019C10.2238 5.64919 10.701 5.66241 11.0833 5.44155"
+          stroke="black"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.16671 12.2503V9.33366C8.16671 8.68931 7.64439 8.16699 7.00004 8.16699C6.35569 8.16699 5.83337 8.68931 5.83337 9.33366V12.2503"
+          stroke="black"
+        />
+      </g>
+    </g>
+    <defs>
+      <clipPath id="clip0_326_19743">
+        <rect width="14" height="14" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const bigSearchIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="48"
+    height="48"
+    viewBox="0 0 48 48"
     fill="none"
   >
     <path
-      d="M6 4L10 8L6 12"
-      stroke="#072A85"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M14.0261 31.1299C12.3656 29.4343 11.2393 27.2887 10.787 24.959C10.331 22.6227 10.5652 20.2043 11.4609 17.999C12.3491 15.806 13.8653 13.9244 15.8193 12.5903C19.7839 9.88265 25.003 9.88265 28.9674 12.5903C30.9216 13.9244 32.4378 15.806 33.3258 17.999C34.2217 20.2043 34.4559 22.6227 33.9997 24.959C33.5476 27.2887 32.4213 29.4343 30.7607 31.1299C28.5617 33.3864 25.5445 34.6592 22.3933 34.6592C19.2424 34.6592 16.2251 33.3864 14.0261 31.1299Z"
+      stroke="black"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+    />
+    <path
+      d="M22.4068 14.7897C21.6159 14.8735 21.0428 15.5826 21.1265 16.3734C21.2104 17.1643 21.9195 17.7375 22.7103 17.6537L22.4068 14.7897ZM25.9615 19.569C26.2716 20.3014 27.1165 20.6438 27.849 20.3337C28.5813 20.0236 28.9236 19.1786 28.6136 18.4463L25.9615 19.569ZM31.9528 29.927C31.3901 29.3652 30.4783 29.3659 29.9165 29.9289C29.3545 30.4916 29.3555 31.4035 29.9182 31.9652L31.9528 29.927ZM36.4232 38.4587C36.9861 39.0207 37.8977 39.0199 38.4597 38.457C39.0215 37.894 39.0207 36.9824 38.4578 36.4204L36.4232 38.4587ZM22.7103 17.6537C24.0975 17.5067 25.4177 18.2844 25.9615 19.569L28.6136 18.4463C27.5754 15.9938 25.0552 14.5091 22.4068 14.7897L22.7103 17.6537ZM29.9182 31.9652L36.4232 38.4587L38.4578 36.4204L31.9528 29.927L29.9182 31.9652Z"
+      fill="black"
     />
   </svg>
 );

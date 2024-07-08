@@ -10,6 +10,7 @@ const initialState = {
   preparingOrders: [],
   readyOrders: [],
   orderBtnLoading: false,
+  newOrders: [],
 };
 
 export const getOrderHistoryAsync = createAsyncThunk(
@@ -25,6 +26,20 @@ export const getOrderHistoryAsync = createAsyncThunk(
   }
 );
 
+export const fetchVendorNewOrdersForTheDay = createAsyncThunk(
+  "orders/fetch-new-today",
+  async (payload) => {
+    const store = getStore();
+    const response = await handleAPI(
+      axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/orders/get-vendors-new-orders-for-the-day`,
+        { storeId: store?.id }
+      )
+    );
+    return response?.data?.response;
+  }
+);
+
 const order = createSlice({
   name: "order",
   initialState,
@@ -32,12 +47,14 @@ const order = createSlice({
 
   extraReducers(builder) {
     builder
+      .addCase(fetchVendorNewOrdersForTheDay.fulfilled, (state, action) => {        
+        state.newOrders = action.payload;
+      })
       .addCase(getOrderHistoryAsync.pending, (state, action) => {
         state.orderBtnLoading = true;
       })
       .addCase(getOrderHistoryAsync.fulfilled, (state, action) => {
-        state.orderBtnLoading = false;
-        console.log(action.payload, "pay");
+        state.orderBtnLoading = false;        
         state.orderHistory = action.payload;
       })
       .addCase(getOrderHistoryAsync.rejected, (state, action) => {

@@ -13,7 +13,7 @@ import { getOrderHistoryAsync } from "@/redux/features/stores/orderSlice";
 import useDebounce from "@/hooks/useDebounce";
 
 const Page = () => {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("today");
   const dispatch = useDispatch();
   // const orderBtnLoading = useSelector((state) => state.order.orderBtnLoading);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ const Page = () => {
       .then((res) => {
         setLoading(false);
       });
-  };  
+  };
 
   // Call the useDebounce hook
   const debounceCallback = useDebounce((value) => {
@@ -73,7 +73,7 @@ const Page = () => {
       storeId: getStore()?.id,
       page: 1,
       perPage: 5,
-      filter: "1 month",
+      filter: "today",
     };
     dispatch(getOrderHistoryAsync(payload))
       .unwrap()
@@ -116,15 +116,10 @@ const Page = () => {
 
   return (
     <StoreDashLayout>
-      {loading ? (
-        <div className="h-[80vh] flex items-center justify-center">
-          <FadeLoad />
-        </div>
-      ) : (
-        <div className="w-full flex flex-col space-y-[1.5rem] pb-[3rem]">
-          <h1 className="dashHeader !md:mb-[3rem]"> Order history </h1>
+      <div className="w-full flex flex-col space-y-[1.5rem] pb-[3rem]">
+        <h1 className="dashHeader !md:mb-[3rem]"> Order history </h1>
 
-          {/* <div className="flex flex-col md:flex-row md:items-center justify-between w-full lg:w-[70%]  ">
+        {/* <div className="flex flex-col md:flex-row md:items-center justify-between w-full lg:w-[70%]  ">
             <InterTextComp header="Total number of orders" text="1,875" />
             <hr className="h-[51px] w-[0.5px] hidden md:block bg-[#E6E6E6]  " />
             <div className="flex items-center justify-between mt-[1.5rem] md:mt-0 w-[60%] ">
@@ -135,28 +130,32 @@ const Page = () => {
           </div>
           <hr className="w-full mt-[0.75rem] h-[0.5px] bg-[#E6E6E6] " /> */}
 
-          <div className="flex md:space-x-[0.75rem] md:items-center flex-col md:flex-row  space-y-[1.5rem] md:space-y-0">
-            <div className="w-fit">
-              <CustomSelect
-                defaultValue="Sort by"
-                options={[
-                  { value: "today", label: "Today" },
-                  { value: "1 day", label: "Yesterday" },
-                  { value: "7 days", label: "Last 7 days" },
-                  { value: "1 month", label: "Last 30 days" },
-                  { value: "6 months", label: "Last 6 months" },
-                  { value: "1 year", label: "Last 12 months" },
-                ]}
-                handleChange={handleChange}
-                selectedValue={filter}
-              />
-            </div>
-            <CustomSearch placeholder="Search " handleChange={handleSearch} />
+        <div className="flex md:space-x-[0.75rem] md:items-center flex-col md:flex-row  space-y-[1.5rem] md:space-y-0">
+          <div className="w-fit">
+            <CustomSelect
+              defaultValue="Sort by"
+              options={[
+                { value: "today", label: "Today" },
+                { value: "1 day", label: "Yesterday" },
+                { value: "7 days", label: "Last 7 days" },
+                { value: "1 month", label: "Last 30 days" },
+                { value: "6 months", label: "Last 6 months" },
+                { value: "1 year", label: "Last 12 months" },
+              ]}
+              handleChange={handleChange}
+              selectedValue={filter}
+            />
           </div>
-
-          <StickyHeadTable prev={prev} next={next} page={page} />
+          <CustomSearch placeholder="Search " handleChange={handleSearch} />
         </div>
-      )}
+
+        <StickyHeadTable
+          loading={loading}
+          prev={prev}
+          next={next}
+          page={page}
+        />
+      </div>
     </StoreDashLayout>
   );
 };
