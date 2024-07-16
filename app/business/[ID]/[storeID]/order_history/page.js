@@ -72,7 +72,7 @@ const Page = () => {
     const payload = {
       storeId: getStore()?.id,
       page: 1,
-      perPage: 5,
+      perPage: 20,
       filter: "today",
     };
     dispatch(getOrderHistoryAsync(payload))
