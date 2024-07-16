@@ -179,6 +179,7 @@ const UploadImage = ({ padding, border, handleImage, image }) => {
       {showCropper && (
         <Modal
           handleClick={saveImage}
+          header="Edit Image"
           handleCancel={() => {
             setShowCropper(false);
             setCroppedImage("");

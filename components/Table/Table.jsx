@@ -22,6 +22,7 @@ export default function TableComponent({
 	setData,
 	sort,
 	data,
+	loading,
 	tab,
 	length,
 	handleEdit,
@@ -75,7 +76,7 @@ export default function TableComponent({
 		console.log(selectedData);
 	}, [clearSelectedData]);
 
-	return dataLoading ? (
+	return loading ? (
 		<div className='h-[50vh] w-full flex items-center justify-center'>
 			<FadeLoad />
 		</div>

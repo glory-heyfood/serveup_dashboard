@@ -104,8 +104,7 @@ const AddnewItems = ({ handleClose, editData }) => {
   };
 
   useEffect(() => {
-    if (editData) {
-      console.log(editData,"da")
+    if (editData) {      
       setFormData({
         name: editData.name,
         description: editData.description,
@@ -254,7 +253,10 @@ const AddnewItems = ({ handleClose, editData }) => {
           </div>
 
           {editData ? (
-            <SaveDiscardBtn handleSaveClick={handleEditItem} />
+            <SaveDiscardBtn
+              btnLoading={btnLoading}
+              handleSaveClick={handleEditItem}
+            />
           ) : (
             <div className="w-fit">
               <DashBtn

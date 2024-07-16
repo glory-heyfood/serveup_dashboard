@@ -140,7 +140,7 @@ const DiscountSelectItemsModal = ({ name }) => {
 					<div>
 						<h3 className='sodo700'>Selected Items:</h3>
 
-						{checkedItems.map((item) => (
+						{checkedItems?.map((item) => (
 							<DiscountSelectModalItem
 								key={item.id}
 								header={item.name}
