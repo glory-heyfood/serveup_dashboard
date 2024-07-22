@@ -196,7 +196,7 @@ const CreateDiscount = ({ handleClose, editData }) => {
     const business = getBusiness();
     const payload = {
       id: editData?.id,
-      store_id: editData?.store_id,
+      store_id: editData?.store_id ? editData.store_id : undefined,
       code: formData.code,
       business_id: business.id,
       auto_apply: radioItemSelected === "Automatic" ? true : false,
@@ -756,7 +756,7 @@ const CreateDiscount = ({ handleClose, editData }) => {
                           {codeStatus ? "available" : "unavailabe"}
                         </h2>
                       </div>
-                      {suggestions && !codeStatus && formData.code !== '' ? (
+                      {suggestions && !codeStatus && formData.code !== "" ? (
                         <div>
                           <h2 className="text-[#5F6370] text-[0.75rem] tracking-[-0.015rem] sodo400 my-[1rem] ">
                             Suggestions

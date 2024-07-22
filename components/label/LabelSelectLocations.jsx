@@ -68,7 +68,7 @@ const LabelSelectLocations = ({
   useEffect(() => {
     if (checkedValues) {
       locations.forEach((loc) => {
-        if (checkedValues.includes(Number(loc.split("__")[1]))) {
+        if (checkedValues?.includes(Number(loc.split("__")[1]))) {
           setCheckedLocations((prev) => ({
             ...prev,
             [loc]: true,
@@ -76,7 +76,7 @@ const LabelSelectLocations = ({
         }
       });
     }
-    if (locations.length === checkedValues.length) {
+    if (locations.length === checkedValues?.length) {
       setCheckAllLocations(true);
     }
   }, [checkedValues, locations]);
