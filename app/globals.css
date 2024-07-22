@@ -303,3 +303,12 @@ h3 {
 .slide-animation {
   animation: slide 0.4s ease-in-out;
 }
+
+.MuiSwitch-track {
+  background-color: #c4c5ca !important;
+  opacity: 1;
+}
+.Mui-checked + .MuiSwitch-track {
+  background-color: #072a85 !important;
+  opacity: 1 !important;
+}

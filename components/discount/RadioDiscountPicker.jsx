@@ -8,7 +8,7 @@ const RadioDiscountPicker = ({
 	subHeader,
 	headerClass,
 	subHeaderClass,
-	absolute,
+	absolute,	
 	handleItemClick,
 	children,
 }) => {

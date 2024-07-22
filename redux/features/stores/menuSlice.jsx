@@ -108,9 +108,10 @@ export const getAllItemsByCategoryName = createAsyncThunk(
 );
 
 export const searchItem = createAsyncThunk("item/search", async (payload) => {
+  console.log(payload);
   const response = await handleAPI(
     axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/menu/item/search?search=${payload.value}&menu_id=${payload.menu_id}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/serveup/api/v1/menu/item/search?search=${payload.value}&menu_id=${payload.menu_id}&business_id=${payload.business_id}`
     )
   );
   console.log(response);
