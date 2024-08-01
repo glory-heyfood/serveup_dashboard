@@ -262,12 +262,12 @@ const CreateDiscount = ({ handleClose, editData }) => {
       date_range_check: data?.start_date || data?.end_date ? true : false,
       type: data?.type,
       display_start_date: {
-        date: getDateFromDateString(data?.start_date),
-        time: getTimeFromDate(data?.start_date),
+        date: data?.start_date ? getDateFromDateString(data?.start_date, true) :"" ,
+        time: data?.start_date ? getTimeFromDate(data?.start_date) : "",
       },
       display_end_date: {
-        date: getDateFromDateString(data?.end_date),
-        time: getTimeFromDate(data?.end_date),
+        date: data?.end_date ? getDateFromDateString(data?.end_date, true) :"" ,
+        time: data?.end_date ? getTimeFromDate(data?.end_date) : "",
       },
       start_date: {
         date: data?.start_date,
@@ -525,8 +525,7 @@ const CreateDiscount = ({ handleClose, editData }) => {
                 {(selectedDiscountTab === "Item discount" ||
                   editData?.type === "items") && (
                   <DiscountSelectItems
-                    label="Apply to Items"
-                    storeName={getStore()?.name}
+                    label="Apply to Items"                    
                     items={formData.items}
                     values={selectedItemsName}
                     isBusiness={true}
@@ -724,6 +723,15 @@ const CreateDiscount = ({ handleClose, editData }) => {
                   <RadioDiscountPicker
                     handleItemClick={handleRadioItemSelected}
                     itemSelected={radioItemSelected}
+                    disabled={selectedDiscountTab === "Item discount"}
+                    headerClass={
+                      selectedDiscountTab === "Item discount" &&
+                      "text-[#e6e6e6] "
+                    }
+                    subHeaderClass={
+                      selectedDiscountTab === "Item discount" &&
+                      "text-[#e6e6e6] "
+                    }
                     header="Discount code"
                     absolute={true}
                     subHeader="Customers will apply a discount code on checkout"

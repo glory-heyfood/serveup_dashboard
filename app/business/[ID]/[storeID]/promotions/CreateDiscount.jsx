@@ -256,11 +256,11 @@ const CreateDiscount = ({ handleClose, editData }) => {
       date_range_check: data?.start_date || data?.end_date ? true : false,
       type: data?.type,
       display_start_date: {
-        date: getDateFromDateString(data?.start_date),
+        date: getDateFromDateString(data?.start_date, true),
         time: getTimeFromDate(data?.start_date),
       },
       display_end_date: {
-        date: getDateFromDateString(data?.end_date),
+        date: getDateFromDateString(data?.end_date, true),
         time: getTimeFromDate(data?.end_date),
       },
       start_date: {
@@ -684,6 +684,15 @@ const CreateDiscount = ({ handleClose, editData }) => {
                   <RadioDiscountPicker
                     handleItemClick={handleRadioItemSelected}
                     itemSelected={radioItemSelected}
+                    disabled={selectedDiscountTab === "Item discount"}
+                    headerClass={
+                      selectedDiscountTab === "Item discount" &&
+                      "text-[#e6e6e6] "
+                    }
+                    subHeaderClass={
+                      selectedDiscountTab === "Item discount" &&
+                      "text-[#e6e6e6] "
+                    }
                     header="Discount code"
                     absolute={true}
                     subHeader="Customers will apply a discount code on checkout"

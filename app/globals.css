@@ -306,9 +306,24 @@ h3 {
 
 .MuiSwitch-track {
   background-color: #c4c5ca !important;
+  box-shadow: none !important;
   opacity: 1;
 }
+
+.MuiSwitch-switchBase{
+  background-color: transparent !important;
+}
+
+.MuiSwitch-switchBase:hover{
+  background-color: transparent !important;
+}
+
+.MuiSwitch-thumb{
+box-shadow: none !important;
+}
+
 .Mui-checked + .MuiSwitch-track {
   background-color: #072a85 !important;
+  box-shadow: none !important;
   opacity: 1 !important;
 }

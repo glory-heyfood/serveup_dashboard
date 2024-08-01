@@ -298,7 +298,7 @@ export const getTimeFromDate = (dateString) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
-  const formattedHours = hours > 12 ? hours - 12 : hours;
+  const formattedHours = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
   // Determine AM/PM
@@ -555,7 +555,7 @@ export const combineDateAndTime = (date, time, init) => {
   return combinedDate;
 };
 
-export const getDateFromDateString = (dateString) => {
+export const getDateFromDateString = (dateString, showDay) => {
   const date = new Date(dateString);
 
   // Get day, month, and year
@@ -575,12 +575,70 @@ export const getDateFromDateString = (dateString) => {
     "Dec",
   ];
 
+  const day = date.getDate();
+
   const dayOfWeek = daysOfWeek[date.getDay()];
   const month = monthsOfYear[date.getMonth()];
   const year = date.getFullYear();
 
   // Construct the formatted date string
-  const formattedDate = `${dayOfWeek} ${month}, ${year}`;
+  const formattedDate = showDay
+    ? ` ${month} ${day}, ${year}`
+    : `${dayOfWeek} ${month}, ${year}`;
 
   return formattedDate;
 };
+
+export function convertToSeconds(value, type) {
+  const timeUnits = {
+    seconds: 1,
+    minute: 60,
+    minutes: 60,
+    hour: 3600,
+    hours: 3600,
+    day: 86400,
+    days: 86400,
+    week: 604800,
+    weeks: 604800,
+    month: 2592000, // Rough estimate: 30 days * 24 hours * 60 minutes * 60 seconds
+    months: 2592000, // Rough estimate: 30 days * 24 hours * 60 minutes * 60 seconds
+    year: 31536000, // Rough estimate: 365 days * 24 hours * 60 minutes * 60 seconds
+    years: 31536000, // Rough estimate: 365 days * 24 hours * 60 minutes * 60 seconds
+  };
+
+  // Convert to lowercase to handle case-insensitive input
+  type = type.toLowerCase();
+
+  // Check if the type is valid
+  if (!timeUnits.hasOwnProperty(type)) {
+    throw new Error(`Unsupported time type: ${type}`);
+  }
+
+  // Convert value to seconds
+  return value * timeUnits[type];
+}
+
+export function convertSecondsToReadable(seconds) {
+  const timeUnits = [
+    { unit: "years", seconds: 31536000 }, // 365 days * 24 hours * 60 minutes * 60 seconds
+    { unit: "Months", seconds: 2592000 }, // Roughly 30 days * 24 hours * 60 minutes * 60 seconds
+    { unit: "Weeks", seconds: 604800 }, // 7 days * 24 hours * 60 minutes * 60 seconds
+    { unit: "Days", seconds: 86400 }, // 24 hours * 60 minutes * 60 seconds
+    { unit: "hours", seconds: 3600 }, // 60 minutes * 60 seconds
+    { unit: "minutes", seconds: 60 }, // 60 seconds
+    { unit: "seconds", seconds: 1 }, // 1 second
+  ];
+
+  if (seconds < 0) {
+    throw new Error("Seconds must be a non-negative number");
+  }
+
+  for (const { unit, seconds: unitSeconds } of timeUnits) {
+    const value = Math.floor(seconds / unitSeconds);
+    if (value > 0) {
+      return `${value} ${unit}`;
+    }
+  }
+
+  return "0 seconds"; // In case seconds are 0 or less than the smallest unit
+}

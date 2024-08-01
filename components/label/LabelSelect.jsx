@@ -22,6 +22,7 @@ const LabelSelect = ({
   selectedValue,
   input,
   inputName,
+  hideInput,
   inputFont,
   defaultValue,
   handleInputChange,
@@ -105,18 +106,20 @@ const LabelSelect = ({
           ))}
         </Select>
 
-        <input
-          type="text"
-          placeholder="0"
-          value={input}
-          name={inputName}
-          className={`w-full placeholder:text-[#A9ADB5] placeholder:text-[13px] border-none outline-none  tracking-[-0.52px] bg-transparent p-0 text-[13px] text-[#000] ${
-            inputFont ? inputFont : "sodo400"
-          }`}
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
-        />
+        {!hideInput && (
+          <input
+            type="text"
+            placeholder="0"
+            value={input}
+            name={inputName}
+            className={`w-full placeholder:text-[#A9ADB5] placeholder:text-[13px] border-none outline-none  tracking-[-0.52px] bg-transparent p-0 text-[13px] text-[#000] ${
+              inputFont ? inputFont : "sodo400"
+            }`}
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          />
+        )}
       </div>
     </LabelInput>
   );

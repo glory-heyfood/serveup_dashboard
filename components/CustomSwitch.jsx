@@ -1,7 +1,7 @@
 import { Switch, withStyles } from "@mui/material";
 import React from "react";
 
-const CustomSwitch = ({ handleChange, checked }) => {  
+const CustomSwitch = ({ handleChange, checked }) => {
   return (
     <Switch
       sx={{
@@ -11,11 +11,12 @@ const CustomSwitch = ({ handleChange, checked }) => {
           marginTop: 0.5, // Adjust to center thumb vertically within the track
           marginRight: "-20px",
           bgcolor: "white", // Thumb color when switched on
-          boxShadow:"none"
+          boxShadow: "none !important",
         },
         "&.Mui-checked + .MuiSwitch-track": {
           opacity: "1 !important",
           backgroundColor: "#072A85 !important",
+          boxShadow: "none !important",
           bgcolor: "red !important",
           bgcolor: "red ",
           borderColor: "#072A85 !important",

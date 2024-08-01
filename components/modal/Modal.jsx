@@ -18,6 +18,7 @@ const Modal = ({
   btnColor,
 }) => {
   const dispatch = useDispatch();
+  const showEarnModal = useSelector((state) => state.modal.showEarnModal);
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains("overlay")) {
@@ -28,7 +29,7 @@ const Modal = ({
 
   return (
     <div
-      className="fixed flex justify-center md:pt-[87px] bg-[#00000067] top-0 left-0 z-[55] overflow-y-auto scroll-hidden h-screen w-full overlay md:pb-[40px]"
+      className="fixed flex justify-center md:pt-[87px] bg-[#00000067] top-0 left-0 z-[50] overflow-y-auto scroll-hidden h-screen w-full overlay md:pb-[40px]"
       onClick={handleOverlayClick}
     >
       <div
@@ -90,9 +91,9 @@ const Modal = ({
         </div>
         <div className="mt-[40px] px-[20px] md:px-[40px] ">{children}</div>
 
-        {!btn && (
+        {!btn && !showEarnModal && (
           <div className="flex  md:justify-end px-[20px] md:px-[40px] mt-[24px]">
-            <div className="inline-block w-full md:w-fit">
+            <div className="inline-block w-full md:w-fit ">
               {btnText !== "none" && (
                 <DashBtn
                   text={btnText ? btnText : "Save"}

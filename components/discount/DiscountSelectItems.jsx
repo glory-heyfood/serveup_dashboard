@@ -62,59 +62,63 @@ const DiscountSelectItems = ({
       </h1>
 
       {showEarnModal && (
-        <MenuModal
-          header="Item discount"
-          btn={true}
-          btnText="Add item to this discount"
-          type="discount"
-          setItems={setItems}
-          setFilteredArray={setFilteredArray}
-          isBusiness={isBusiness}
-          setNames={setNames}
-          items={items}
-        >
-          <CustomLabel header="All Items in this discount">
-            {dataLoading ? (
-              <FadeLoad />
-            ) : filteredArray.length === 0 ? (
-              <EmptyState
-                icon={searchIconLarge}
-                header="Add items"
-                text="Select items to add to this discount"
-              />
-            ) : (
-              filteredArray?.map((item_data, i) => (
-                <div
-                  key={i}
-                  className="py-[0.75rem] items-start justify-between flex border-[0.5px] border-transparent border-b-[#E6E6E6] "
-                >
-                  <div className="flex flex-col space-y-[0.125rem]">
-                    <h2 className="text-[#5F6370] text-[0.75rem] tracking-[-0.015rem] sodo400 ">
-                      {item_data.store_name}
-                    </h2>
-                    <h1 className="text-[#000000] text-[0.875rem] tracking-[-0.0175rem] sodo600 ">
-                      {item_data.name}
-                    </h1>
-                    <h2 className="text-black sodo400 text-[0.875rem] tracking-[-0.0175rem] ">
-                      <span className="inter600">₦</span>
-                      {formatMoney(item_data.price)}
-                    </h2>
-                  </div>
-
-                  <Button
-                    onClick={() => {
-                      handleRemoveItem(item_data);
-                    }}
+        <>
+          <div className="bg-[#000000b9] w-screen h-screen fixed top-0 left-0">            
+          </div>
+          <MenuModal
+            header="Item discount"
+            btn={true}
+            btnText="Add item to this discount"
+            type="discount"
+            setItems={setItems}
+            setFilteredArray={setFilteredArray}
+            isBusiness={isBusiness}
+            setNames={setNames}
+            items={items}
+          >
+            <CustomLabel header="All Items in this discount">
+              {dataLoading ? (
+                <FadeLoad />
+              ) : filteredArray.length === 0 ? (
+                <EmptyState
+                  icon={searchIconLarge}
+                  header="Add items"
+                  text="Select items to add to this discount"
+                />
+              ) : (
+                filteredArray?.map((item_data, i) => (
+                  <div
+                    key={i}
+                    className="py-[0.75rem] items-start justify-between flex border-[0.5px] border-transparent border-b-[#E6E6E6] "
                   >
-                    <h2 className="normal-case text-[#F01C1C] sodo700 tracking-[-0.24px] text-[0.75rem] ">
-                      Remove
-                    </h2>
-                  </Button>
-                </div>
-              ))
-            )}
-          </CustomLabel>
-        </MenuModal>
+                    <div className="flex flex-col space-y-[0.125rem]">
+                      <h2 className="text-[#5F6370] text-[0.75rem] tracking-[-0.015rem] sodo400 ">
+                        {item_data.store_name}
+                      </h2>
+                      <h1 className="text-[#000000] text-[0.875rem] tracking-[-0.0175rem] sodo600 ">
+                        {item_data.name}
+                      </h1>
+                      <h2 className="text-black sodo400 text-[0.875rem] tracking-[-0.0175rem] ">
+                        <span className="inter600">₦</span>
+                        {formatMoney(item_data.price)}
+                      </h2>
+                    </div>
+
+                    <Button
+                      onClick={() => {
+                        handleRemoveItem(item_data);
+                      }}
+                    >
+                      <h2 className="normal-case text-[#F01C1C] sodo700 tracking-[-0.24px] text-[0.75rem] ">
+                        Remove
+                      </h2>
+                    </Button>
+                  </div>
+                ))
+              )}
+            </CustomLabel>
+          </MenuModal>
+        </>
       )}
     </LabelInput>
   );

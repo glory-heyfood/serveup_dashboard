@@ -90,7 +90,7 @@ const LabelSelectLocations = ({
       <div className="py-[20px] flex flex-col space-y-[2px]">
         {/* Switch button */}
 
-        <div className="flex space-x-[4px] items-center  ">
+        <div className="flex space-x-[4px] items-center ml-[-.8rem] ">
           <CustomSwitch
             {...label}
             checked={checkAllLocations}
@@ -104,7 +104,7 @@ const LabelSelectLocations = ({
             Select all locations
           </h1>
         </div>
-        <div className="flex flex-col space-y-[12px] ">
+        <div className="flex flex-col space-y-[10px] ">
           {Locations?.map((data, i) => (
             <div
               key={i}

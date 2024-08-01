@@ -72,6 +72,7 @@ const DashBtn = ({
           bgColor ? bgColor : !disabled && "#072A85 !important"
         } `,
         padding: `${padding}`,
+        zIndex:"30",
         width: "100%",
         borderRadius: "4px",
         "&:hover": {

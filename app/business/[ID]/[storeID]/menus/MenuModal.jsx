@@ -48,7 +48,7 @@ const MenuModal = ({
 
   return (
     <div
-      className="fixed flex justify-center md:pt-[87px] bg-[#0000001a] top-0 left-0 z-[55] overflow-y-auto scroll-hidden h-screen w-full overlay md:pb-[40px]"
+      className="fixed flex justify-center md:pt-[87px] bg-[#0000001a] top-0 left-0 z-[65] overflow-y-auto scroll-hidden h-screen w-full overlay md:pb-[40px]"
       onClick={handleOverlayClick}
     >
       <div

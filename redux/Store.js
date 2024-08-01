@@ -10,6 +10,7 @@ import dineInSlice from "./features/stores/dineInSlice";
 import kitchenSlice from "./features/stores/kitchenSlice";
 import orderSlice from "./features/stores/orderSlice";
 import promotionSlice from "./features/promotionSlice";
+import loyaltySlice from "./features/business/loyaltySlice";
 
 const store = configureStore({
   reducer: {
@@ -23,7 +24,8 @@ const store = configureStore({
     dineIn: dineInSlice,
     kitchen: kitchenSlice,
     order: orderSlice,
-    promotions:promotionSlice
+    promotions: promotionSlice,
+    loyalty: loyaltySlice,
   },
 });
 
