@@ -29,6 +29,7 @@ export default function ClickableTableComponent({
   empty,
   prev,
   next,
+  shadeStatus,
   disablePrev,
   disableNext,
   length,
@@ -78,23 +79,11 @@ export default function ClickableTableComponent({
   return (
     <div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        {/* <div className="flex items-start justify-between border border-transparent border-b-[#E6E6E6] w-full">
-          <div className="w-full sm:w-fit">{TableTab}</div>
-          // <div className="sm:flex items-center hidden   space-x-[12px]">
-          //   <h3 className="tracking-[-0.24px] ">Showing&nbsp;</h3>
-          //   <CustomSelect
-          //     selectedValue={rowsPerPage}
-          //     handleChange={handleChangeRowsPerPage}
-          //     height="32px"
-          //     options={[
-          //       { value: 10, label: 10 },
-          //       { value: 25, label: 25 },
-          //       { value: 100, label: 100 },
-          //     ]}
-          //   />
-          //   <h3 className="tracking-[-0.24px] w-full ">&nbsp; per page</h3>
-          // </div> 
-        </div> */}
+        {TableTab && (
+          <div className="flex items-start justify-between border border-transparent border-b-[#E6E6E6] w-full">
+            <div className="w-full sm:w-fit">{TableTab}</div>
+          </div>
+        )}
         <TableContainer sx={{ border: "none" }} className="scroll-hidden">
           <Table
             sx={{
@@ -133,9 +122,37 @@ export default function ClickableTableComponent({
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
+                          {column.format && typeof value === "number" ? (
+                            column.format(value)
+                          ) : shadeStatus ? (
+                            <div
+                              className={` py-[0.2rem] px-[0.625rem] rounded-[1.25rem] text-center w-fit  ${
+                                `${value}`.toLowerCase() === "sent"
+                                  ? "bg-[#06AE681A]"
+                                  : `${value}`.toLowerCase() === "scheduled"
+                                  ? "bg-[#F564121A]"
+                                  : `${value}`.toLowerCase() === "draft"
+                                  ? "bg-[#F0F0F0]"
+                                  : ""
+                              } `}
+                            >
+                              <h2
+                                className={`  ${
+                                  `${value}`.toLowerCase() === "sent"
+                                    ? "text-[#06AE68]"
+                                    : `${value}`.toLowerCase() === "scheduled"
+                                    ? "text-[#F56412]"
+                                    : `${value}`.toLowerCase() === "draft"
+                                    ? "text-[#000]"
+                                    : ""
+                                } `}
+                              >
+                                {value}
+                              </h2>
+                            </div>
+                          ) : (
+                            value
+                          )}
                         </TableCell>
                       );
                     })}

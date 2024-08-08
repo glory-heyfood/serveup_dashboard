@@ -12,6 +12,9 @@ const Modal = ({
   maxWidth,
   disabledBtn,
   handleCancel,
+  childClass,
+  padding,
+  hideUnderline,
   handleClick,
   btnLoading,
   btnText,
@@ -35,14 +38,14 @@ const Modal = ({
       <div
         className={` rounded-[8px]  bg-white z-[60] w-screen md:w-[90%] h-screen overflow-y-auto scroll-hidden md:h-fit ${
           maxWidth ? maxWidth : "md:max-w-[552px]"
-        } pb-[32px]  ${minHeight} `}
+        }  ${minHeight} ${padding ? padding : "pb-[32px]"} `}
       >
         <div
           className={`flex items-center justify-between ${
             btn ? "px-[24px] py-[10px]" : "px-[12px] py-[12px]"
           }`}
           style={{
-            boxShadow: "0px 1px 0px 0px #E6E6E6",
+            boxShadow: hideUnderline ? "" : "0px 1px 0px 0px #E6E6E6",
           }}
         >
           {btn ? (
@@ -89,7 +92,13 @@ const Modal = ({
             </span>
           )}
         </div>
-        <div className="mt-[40px] px-[20px] md:px-[40px] ">{children}</div>
+        <div
+          className={` ${
+            childClass ? childClass : "mt-[40px] px-[20px] md:px-[40px]"
+          } `}
+        >
+          {children}
+        </div>
 
         {!btn && !showEarnModal && (
           <div className="flex  md:justify-end px-[20px] md:px-[40px] mt-[24px]">

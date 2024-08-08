@@ -1,7 +1,7 @@
 import CustomSearch from "@/components/CustomSearch";
 import DashBtn from "@/components/buttons/DashBtn";
 import React, { useEffect, useState } from "react";
-import StickyHeadTable from "./Table";
+import StickyHeadTable from "./CampaignTable";
 import { plusIcon } from "@/SVGs";
 
 const Campaign = ({ handleClick }) => {

@@ -12,6 +12,7 @@ const LabelSelectLocations = ({
   locations,
   checkedValues,
   handleLoactionsChange,
+  hideLabel,
 }) => {
   const [checkedLocations, setCheckedLocations] = useState({});
   const [checkAllLocations, setCheckAllLocations] = useState(false);
@@ -56,7 +57,7 @@ const LabelSelectLocations = ({
     const storeArray = Object.keys(updatedLocations)
       .filter((key) => updatedLocations[key] === true) // Filter keys where value is true
       .map((key) => Number(key.split("__")[1]));
-    if (locations.length === storeArray.length) {
+    if (Locations?.length === storeArray.length) {
       setCheckAllLocations(true);
     } else {
       setCheckAllLocations(false);
@@ -67,7 +68,7 @@ const LabelSelectLocations = ({
 
   useEffect(() => {
     if (checkedValues) {
-      locations.forEach((loc) => {
+      Locations?.forEach((loc) => {
         if (checkedValues?.includes(Number(loc.split("__")[1]))) {
           setCheckedLocations((prev) => ({
             ...prev,
@@ -76,12 +77,49 @@ const LabelSelectLocations = ({
         }
       });
     }
-    if (locations.length === checkedValues?.length) {
+    if (Locations?.length === checkedValues?.length) {
       setCheckAllLocations(true);
     }
-  }, [checkedValues, locations]);
+  }, [checkedValues, Locations]);
 
-  return (
+  return hideLabel ? (
+    <div className="flex flex-col space-y-[2px]">
+      {/* Switch button */}
+
+      <div className="flex space-x-[4px] items-center ml-[-.8rem] ">
+        <CustomSwitch
+          {...label}
+          checked={checkAllLocations}
+          handleChange={handleSwitchChange}
+        />
+        <h1
+          className={`text-[13px]  tracking-[-0.52px] ${
+            fontweight ? fontweight : "sodo700"
+          }`}
+        >
+          Select all locations
+        </h1>
+      </div>
+      <div className="flex flex-col space-y-[10px] ">
+        {Locations?.map((data, i) => (
+          <div
+            key={i}
+            className="flex items-center space-x-[1em] cursor-pointer"
+            onClick={() => {
+              handleCheckboxChange(data);
+            }}
+          >
+            <span>
+              <input type="checkbox" checked={checkedLocations[data]} />
+            </span>
+            <h2 className="text-[0.81em] sodo600 tracking-[-0.52px] text-[#000]">
+              {data.split("__")[0]}
+            </h2>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
     <LabelInput
       stretch={true}
       padding="16px 0px 16px 16px"

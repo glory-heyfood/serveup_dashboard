@@ -82,7 +82,7 @@ const CreateCampaign = ({ handleClick }) => {
 				Campaign Details
 			</h1>
 
-			<CampaignItems
+			{/* <CampaignItems
 				header='Campaign name'
 				subHeader='Give your campaign a unique name'
 				linkText='Add campaign name'
@@ -257,7 +257,7 @@ const CreateCampaign = ({ handleClick }) => {
 						</div>
 					)}
 				</div>
-			</CampaignItems>
+			</CampaignItems> */}
 		</div>
 	);
 };

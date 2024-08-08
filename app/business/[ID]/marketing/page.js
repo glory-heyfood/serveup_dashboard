@@ -2,49 +2,51 @@
 import { useEffect, useState } from "react";
 import SMSPage from "./SMSPage";
 import EmailPage from "./EmailPage";
+import CampaignPage from "./CampaignPage";
+import BillingPage from "./BillingPage";
+import SubscribersPage from "./SubscribersPage";
 let WINDOW;
 
 if (typeof window !== "undefined") {
-	WINDOW = window;
+  WINDOW = window;
 }
 
 const Page = () => {
-	const [subRoute, setSubRoute] = useState(WINDOW?.location.hash.substr(1));
-	const [Show, setShow] = useState(false);
+  const [subRoute, setSubRoute] = useState(WINDOW?.location.hash.substr(1));
+  const [Show, setShow] = useState(false);
 
-	const handleHashChange = () => {
-		const newSubRoute = WINDOW?.location.hash.substr(1);		
-		setSubRoute(newSubRoute);		
-	};
+  const handleHashChange = () => {
+    const newSubRoute = WINDOW?.location.hash.substr(1);
+    setSubRoute(newSubRoute);
+  };
 
-	useEffect(() => {		
-		window.addEventListener("hashchange", handleHashChange);
-		window.addEventListener("reload", handleHashChange);
+  useEffect(() => {
+    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("reload", handleHashChange);
 
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
-		return () => {
-			window.removeEventListener("hashchange", handleHashChange);
-		};
-	}, []);
+  const renderContent = () => {
+    switch (subRoute) {
+      case "/campaigns":
+        return <CampaignPage />;
+      case "/billing":
+        return <BillingPage />;
+      case "/subscribers":
+        return <SubscribersPage />;
+    }
+  };
 
-	const renderContent = () => {
-		console.log(subRoute);
-		console.log("Calls  ");
-		switch (subRoute) {
-			case "/sms":
-				return <SMSPage />;
-			case "/email":
-				return <EmailPage />;
-		}
-	};
+  useEffect(() => {
+    setSubRoute(WINDOW?.location.hash.substr(1));
+    setShow(true);
+  }, []);
 
-    useEffect(()=>{
-        setSubRoute(WINDOW?.location.hash.substr(1))
-        setShow(true)
-    }, [])
-
-    // If u reload  it throws hydration error so i am using show to make sure it calls the render function after initial render and this avoided the error on reload
-	return <div>{Show && renderContent()}</div>;
+  // If u reload  it throws hydration error so i am using show to make sure it calls the render function after initial render and this avoided the error on reload
+  return <div>{Show && renderContent()}</div>;
 };
 
 export default Page;
